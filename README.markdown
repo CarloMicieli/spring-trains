@@ -4,7 +4,8 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![GitHub last commit](https://img.shields.io/github/last-commit/CarloMicieli/spring-trains)
-![Java CI with Maven](https://github.com/CarloMicieli/spring-trains/workflows/Java%20CI%20with%20Maven/badge.svg)
+![Build](https://github.com/CarloMicieli/spring-trains/workflows/Build/badge.svg)
+![Release](https://github.com/CarloMicieli/spring-trains/workflows/Release/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/CarloMicieli/spring-trains/badge.svg?branch=main)](https://coveralls.io/github/CarloMicieli/spring-trains?branch=main)
 
 A web api for model railway collections with `Spring Boot 2.4`.
