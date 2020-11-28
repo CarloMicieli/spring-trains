@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  webapi:
+    container_name: spring_trains_app
+    build: .
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/trainsdb
+    depends_on:
+      - db
+    networks:
+      - new
+
+  db:
+    container_name: spring_trains_db
+    image: postgres:13.1-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: trainsdb
+      POSTGRES_PASSWORD: mysecretpassword
+    volumes:
+      - ./postgres_data:/var/lib/postgres
+    networks:
+      - new
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  new:

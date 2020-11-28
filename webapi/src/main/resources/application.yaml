@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/trainsdb
+    username: postgres
+    password: mysecretpassword
+    initialize: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  jackson:
+    mapper:
+      accept_case_insensitive_properties: true
+
+jwt:
+  secret: zdtlD3JK56m6wTTgsNFhqzjqP
+  issuer: myfakeissuer.io

@@ -1,0 +1,1146 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1605970292918-1
+      author: CarloMicieli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: username
+                  type: VARCHAR(50)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: authority
+                  type: VARCHAR(50)
+            tableName: authorities
+  - changeSet:
+      id: 1605970292918-2
+      author: CarloMicieli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_brands
+                  name: brand_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(25)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: slug
+                  type: VARCHAR(25)
+              - column:
+                  name: brand_logo_id
+                  type: UUID
+              - column:
+                  name: company_name
+                  type: VARCHAR(50)
+              - column:
+                  name: group_name
+                  type: VARCHAR(50)
+              - column:
+                  name: description
+                  type: VARCHAR(1000)
+              - column:
+                  name: email
+                  type: VARCHAR(100)
+              - column:
+                  name: website_url
+                  type: VARCHAR(100)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: kind
+                  type: VARCHAR(25)
+              - column:
+                  name: address_line1
+                  type: VARCHAR(255)
+              - column:
+                  name: address_line2
+                  type: VARCHAR(255)
+              - column:
+                  name: address_city
+                  type: VARCHAR(50)
+              - column:
+                  name: address_region
+                  type: VARCHAR(50)
+              - column:
+                  name: address_postal_code
+                  type: VARCHAR(10)
+              - column:
+                  name: address_country
+                  type: VARCHAR(2)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: last_modified
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueNumeric: 1
+                  name: version
+                  type: INTEGER
+            tableName: brands
+  - changeSet:
+      id: 1605970292918-3
+      author: CarloMicieli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_catalog_items
+                  name: catalog_item_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: brand_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: scale_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: item_number
+                  type: VARCHAR(10)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: slug
+                  type: VARCHAR(40)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: power_method
+                  type: VARCHAR(2)
+              - column:
+                  name: delivery_date
+                  type: VARCHAR(10)
+              - column:
+                  name: available
+                  type: BOOLEAN
+              - column:
+                  constraints:
+                    nullable: false
+                  name: description
+                  type: VARCHAR(250)
+              - column:
+                  name: model_description
+                  type: VARCHAR(2500)
+              - column:
+                  name: prototype_description
+                  type: VARCHAR(2500)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: last_modified
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueNumeric: 1
+                  name: version
+                  type: INTEGER
+            tableName: catalog_items
+  - changeSet:
+      id: 1605970292918-4
+      author: CarloMicieli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_collections
+                  name: collection_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: owner
+                  type: VARCHAR(50)
+              - column:
+                  name: notes
+                  type: VARCHAR(250)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: last_modified
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueNumeric: 1
+                  name: version
+                  type: INTEGER
+            tableName: collections
+  - changeSet:
+      id: 1605970292918-5
+      author: CarloMicieli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_railways
+                  name: railway_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(25)
+              - column:
+                  name: company_name
+                  type: VARCHAR(250)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: slug
+                  type: VARCHAR(25)
+              - column:
+                  name: railway_logo_id
+                  type: UUID
+              - column:
+                  name: country
+                  type: VARCHAR(2)
+              - column:
+                  name: operating_since
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: operating_until
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: active
+                  type: BOOLEAN
+              - column:
+                  name: gauge_mm
+                  type: numeric(19, 5)
+              - column:
+                  name: gauge_in
+                  type: numeric(19, 5)
+              - column:
+                  name: track_type
+                  type: VARCHAR(25)
+              - column:
+                  name: headquarters
+                  type: VARCHAR(250)
+              - column:
+                  name: total_length_mi
+                  type: numeric(19, 5)
+              - column:
+                  name: total_length_km
+                  type: numeric(19, 5)
+              - column:
+                  name: website_url
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: last_modified
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueNumeric: 1
+                  name: version
+                  type: INTEGER
+            tableName: railways
+  - changeSet:
+      id: 1605970292918-6
+      author: CarloMicieli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_scales
+                  name: scale_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(25)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: slug
+                  type: VARCHAR(25)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: ratio
+                  type: numeric(19, 5)
+              - column:
+                  name: gauge_mm
+                  type: numeric(19, 5)
+              - column:
+                  name: gauge_in
+                  type: numeric(19, 5)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: track_type
+                  type: VARCHAR(25)
+              - column:
+                  name: description
+                  type: VARCHAR(250)
+              - column:
+                  name: standards
+                  type: VARCHAR(100)
+              - column:
+                  name: weight
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: last_modified
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueNumeric: 1
+                  name: version
+                  type: INTEGER
+            tableName: scales
+  - changeSet:
+      id: 1605970292918-7
+      author: CarloMicieli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_shops
+                  name: shop_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(50)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: slug
+                  type: VARCHAR(50)
+              - column:
+                  name: website_url
+                  type: VARCHAR(100)
+              - column:
+                  name: phone_number
+                  type: VARCHAR(50)
+              - column:
+                  name: email
+                  type: VARCHAR(100)
+              - column:
+                  name: address_line1
+                  type: VARCHAR(255)
+              - column:
+                  name: address_line2
+                  type: VARCHAR(255)
+              - column:
+                  name: address_city
+                  type: VARCHAR(50)
+              - column:
+                  name: address_region
+                  type: VARCHAR(50)
+              - column:
+                  name: address_postal_code
+                  type: VARCHAR(10)
+              - column:
+                  name: address_country
+                  type: VARCHAR(2)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: last_modified
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueNumeric: 1
+                  name: version
+                  type: INTEGER
+            tableName: shops
+  - changeSet:
+      id: 1605970292918-8
+      author: CarloMicieli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_users
+                  name: username
+                  type: VARCHAR(50)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: password
+                  type: VARCHAR(100)
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: true
+                  name: enabled
+                  type: BOOLEAN
+              - column:
+                  name: gravatar_hash
+                  type: VARCHAR(32)
+              - column:
+                  name: email
+                  type: VARCHAR(100)
+            tableName: users
+  - changeSet:
+      id: 1605970292918-9
+      author: CarloMicieli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_wishlists
+                  name: wishlist_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: owner
+                  type: VARCHAR(50)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: slug
+                  type: VARCHAR(100)
+              - column:
+                  name: wishlist_name
+                  type: VARCHAR(100)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: visibility
+                  type: VARCHAR(15)
+              - column:
+                  name: budget
+                  type: numeric(19, 5)
+              - column:
+                  name: currency
+                  type: VARCHAR(3)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: last_modified
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  defaultValueNumeric: 1
+                  name: version
+                  type: INTEGER
+            tableName: wishlists
+  - changeSet:
+      id: 1605970292918-10
+      author: CarloMicieli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_images
+                  name: image_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: content_type
+                  type: VARCHAR(25)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: content
+                  type: BYTEA
+              - column:
+                  name: is_deleted
+                  type: BOOLEAN
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created
+                  type: TIMESTAMP WITHOUT TIME ZONE
+            tableName: images
+  - changeSet:
+      id: 1605970292918-11
+      author: CarloMicieli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_catalog_items_images
+                  name: catalog_item_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_catalog_items_images
+                  name: image_id
+                  type: UUID
+              - column:
+                  name: is_default
+                  type: BOOLEAN
+            tableName: catalog_items_images
+  - changeSet:
+      id: 1605970292918-12
+      author: CarloMicieli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_collection_items
+                  name: collection_item_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: collection_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: catalog_item_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: condition
+                  type: VARCHAR(15)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: price
+                  type: numeric(19, 5)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: currency
+                  type: VARCHAR(3)
+              - column:
+                  name: purchased_at
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: added_date
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: removed_date
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: notes
+                  type: VARCHAR(150)
+            tableName: collection_items
+  - changeSet:
+      id: 1605970292918-13
+      author: CarloMicieli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_favourite_shops
+                  name: shop_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_favourite_shops
+                  name: owner
+                  type: VARCHAR(50)
+            tableName: favourite_shops
+  - changeSet:
+      id: 1605970292918-14
+      author: CarloMicieli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_rolling_stocks
+                  name: rolling_stock_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: catalog_item_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: railway_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: category
+                  type: VARCHAR(25)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: epoch
+                  type: VARCHAR(10)
+              - column:
+                  name: min_radius
+                  type: numeric(19, 5)
+              - column:
+                  name: couplers
+                  type: VARCHAR(10)
+              - column:
+                  name: livery
+                  type: VARCHAR(50)
+              - column:
+                  name: length_mm
+                  type: numeric(19, 5)
+              - column:
+                  name: length_in
+                  type: numeric(19, 5)
+              - column:
+                  name: type_name
+                  type: VARCHAR(25)
+              - column:
+                  name: class_name
+                  type: VARCHAR(15)
+              - column:
+                  name: road_number
+                  type: VARCHAR(15)
+              - column:
+                  name: series
+                  type: VARCHAR(50)
+              - column:
+                  name: depot
+                  type: VARCHAR(100)
+              - column:
+                  name: dcc_interface
+                  type: VARCHAR(10)
+              - column:
+                  name: control
+                  type: VARCHAR(10)
+              - column:
+                  name: passenger_car_type
+                  type: VARCHAR(25)
+              - column:
+                  name: service_level
+                  type: VARCHAR(15)
+            tableName: rolling_stocks
+  - changeSet:
+      id: 1605970292918-15
+      author: CarloMicieli
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_wishlist_items
+                  name: wishlist_item_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: wishlist_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: catalog_item_id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: priority
+                  type: VARCHAR(10)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: added_date
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: removed_date
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: price
+                  type: numeric(19, 5)
+              - column:
+                  name: currency
+                  type: VARCHAR(3)
+              - column:
+                  name: notes
+                  type: VARCHAR(150)
+            tableName: wishlist_items
+  - changeSet:
+      id: 1605970292918-16
+      author: CarloMicieli
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: username
+              - column:
+                  name: authority
+            indexName: Idx_auth_username
+            tableName: authorities
+            unique: true
+  - changeSet:
+      id: 1605970292918-17
+      author: CarloMicieli
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: name
+            indexName: Idx_brands_name
+            tableName: brands
+            unique: true
+  - changeSet:
+      id: 1605970292918-18
+      author: CarloMicieli
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: slug
+            indexName: Idx_brands_slug
+            tableName: brands
+            unique: true
+  - changeSet:
+      id: 1605970292918-19
+      author: CarloMicieli
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: item_number
+              - column:
+                  name: brand_id
+            indexName: Idx_catalog_items_brand_id_item_number
+            tableName: catalog_items
+            unique: true
+  - changeSet:
+      id: 1605970292918-20
+      author: CarloMicieli
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: slug
+            indexName: Idx_catalog_items_slug
+            tableName: catalog_items
+            unique: true
+  - changeSet:
+      id: 1605970292918-21
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: brand_id
+            baseTableName: catalog_items
+            constraintName: FK_catalog_items_brands
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: brand_id
+            referencedTableName: brands
+            validate: true
+  - changeSet:
+      id: 1605970292918-22
+      author: CarloMicieli
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: owner
+            indexName: Idx_collections_owner
+            tableName: collections
+  - changeSet:
+      id: 1605970292918-23
+      author: CarloMicieli
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: name
+            indexName: Idx_railways_name
+            tableName: railways
+            unique: true
+  - changeSet:
+      id: 1605970292918-24
+      author: CarloMicieli
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: slug
+            indexName: Idx_railways_slug
+            tableName: railways
+            unique: true
+  - changeSet:
+      id: 1605970292918-25
+      author: CarloMicieli
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: name
+            indexName: Idx_scales_name
+            tableName: scales
+            unique: true
+  - changeSet:
+      id: 1605970292918-26
+      author: CarloMicieli
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: slug
+            indexName: Idx_scales_slug
+            tableName: scales
+            unique: true
+  - changeSet:
+      id: 1605970292918-27
+      author: CarloMicieli
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: slug
+            indexName: Idx_shops_slug
+            tableName: shops
+  - changeSet:
+      id: 1605970292918-28
+      author: CarloMicieli
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: slug
+            indexName: Idx_wishlists_slug
+            tableName: wishlists
+  - changeSet:
+      id: 1605970292918-29
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: owner
+            baseTableName: wishlists
+            constraintName: FK_wishlists_users
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: username
+            referencedTableName: users
+            validate: true
+  - changeSet:
+      id: 1605970292918-30
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: catalog_item_id
+            baseTableName: catalog_items_images
+            constraintName: FK_catalog_items_images_catalog_items
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: catalog_item_id
+            referencedTableName: catalog_items
+            validate: true
+  - changeSet:
+      id: 1605970292918-31
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: image_id
+            baseTableName: catalog_items_images
+            constraintName: FK_catalog_items_images_images
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: image_id
+            referencedTableName: images
+            validate: true
+  - changeSet:
+      id: 1605970292918-32
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: catalog_item_id
+            baseTableName: collection_items
+            constraintName: FK_collection_items_catalog_items
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: catalog_item_id
+            referencedTableName: catalog_items
+            validate: true
+  - changeSet:
+      id: 1605970292918-33
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: collection_id
+            baseTableName: collection_items
+            constraintName: FK_collection_items_collections
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: collection_id
+            referencedTableName: collections
+            validate: true
+  - changeSet:
+      id: 1605970292918-34
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: purchased_at
+            baseTableName: collection_items
+            constraintName: FK_collection_items_shops
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: shop_id
+            referencedTableName: shops
+            validate: true
+  - changeSet:
+      id: 1605970292918-35
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: shop_id
+            baseTableName: favourite_shops
+            constraintName: FK_favourite_shops_shop_id
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: shop_id
+            referencedTableName: shops
+            validate: true
+  - changeSet:
+      id: 1605970292918-36
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: owner
+            baseTableName: favourite_shops
+            constraintName: FK_favourite_shops_users
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: username
+            referencedTableName: users
+            validate: true
+  - changeSet:
+      id: 1605970292918-37
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: catalog_item_id
+            baseTableName: rolling_stocks
+            constraintName: FK_rolling_stocks_catalog_items
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: catalog_item_id
+            referencedTableName: catalog_items
+            validate: true
+  - changeSet:
+      id: 1605970292918-38
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: railway_id
+            baseTableName: rolling_stocks
+            constraintName: FK_rolling_stocks_railways
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: railway_id
+            referencedTableName: railways
+            validate: true
+  - changeSet:
+      id: 1605970292918-39
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: catalog_item_id
+            baseTableName: wishlist_items
+            constraintName: FK_wishlist_items_catalog_items
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: catalog_item_id
+            referencedTableName: catalog_items
+            validate: true
+  - changeSet:
+      id: 1605970292918-40
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: wishlist_id
+            baseTableName: wishlist_items
+            constraintName: FK_wishlist_items_wishlists
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: wishlist_id
+            referencedTableName: wishlists
+            validate: true
+  - changeSet:
+      id: 1605970292918-41
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: username
+            baseTableName: authorities
+            constraintName: FK_authorities_users
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: username
+            referencedTableName: users
+            validate: true
+  - changeSet:
+      id: 1605970292918-42
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: brand_logo_id
+            baseTableName: brands
+            constraintName: FK_brands_images
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: image_id
+            referencedTableName: images
+            validate: true
+  - changeSet:
+      id: 1605970292918-43
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: scale_id
+            baseTableName: catalog_items
+            constraintName: FK_catalog_items_scales
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: scale_id
+            referencedTableName: scales
+            validate: true
+  - changeSet:
+      id: 1605970292918-44
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: owner
+            baseTableName: collections
+            constraintName: FK_collections_users
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: username
+            referencedTableName: users
+            validate: true
+  - changeSet:
+      id: 1605970292918-45
+      author: CarloMicieli
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: railway_logo_id
+            baseTableName: railways
+            constraintName: FK_railways_images
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: image_id
+            referencedTableName: images
+            validate: true
