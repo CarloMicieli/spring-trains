@@ -3,7 +3,7 @@
 
     <groupId>io.github.carlomicieli</groupId>
     <artifactId>spring-trains</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>Spring Trains</name>
     <description>A web api for model railway collections</description>
     <packaging>pom</packaging>
@@ -79,7 +79,7 @@
         <connection>scm:git:${project.scm.url}</connection>
         <developerConnection>scm:git:${project.scm.url}</developerConnection>
         <url>git@github.com:CarloMicieli/spring-trains.git</url>
-        <tag>HEAD</tag>
+        <tag>v0.0.1</tag>
     </scm>
 
     <distributionManagement>

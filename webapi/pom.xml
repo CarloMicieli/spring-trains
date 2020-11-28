@@ -4,7 +4,7 @@
     <parent>
         <artifactId>spring-trains</artifactId>
         <groupId>io.github.carlomicieli</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
 
     <artifactId>webapi</artifactId>
@@ -14,17 +14,17 @@
         <dependency>
             <groupId>io.github.carlomicieli</groupId>
             <artifactId>catalog</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1</version>
         </dependency>
         <dependency>
             <groupId>io.github.carlomicieli</groupId>
             <artifactId>collecting</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1</version>
         </dependency>
         <dependency>
             <groupId>io.github.carlomicieli</groupId>
             <artifactId>infrastructure</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1</version>
         </dependency>
 
         <dependency>
