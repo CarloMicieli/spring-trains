@@ -13,14 +13,17 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.brands;
+package io.github.carlomicieli.scales;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+public enum ScaleStandard {
+  // NEM-standards are used by model railway industry and hobbyists in Europe.
+  NEM,
 
-@DisplayName("A Brand")
-class BrandTests {
+  // NMRA standards are used widely in North America and by certain special
+  // interest groups all over the world.
+  NRMA,
 
-  @Test
-  void it_should_create_a_new_brand() {}
+  BRITISH,
+
+  JAPANESE
 }

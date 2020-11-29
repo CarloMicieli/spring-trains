@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.web.request;
+package io.github.carlomicieli.web.catalog.catalogItems.createNew;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

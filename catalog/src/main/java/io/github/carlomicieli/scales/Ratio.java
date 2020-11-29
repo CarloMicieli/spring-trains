@@ -13,14 +13,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.brands;
+package io.github.carlomicieli.scales;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-@DisplayName("A Brand")
-class BrandTests {
+// It represents the <em>Ratio</em> between a model railway size
+// and the size of an actual train.
+@Data
+@AllArgsConstructor
+public final class Ratio implements Comparable<Ratio> {
+  private final BigDecimal value;
 
-  @Test
-  void it_should_create_a_new_brand() {}
+  @Override
+  public int compareTo(Ratio o) {
+    return 0;
+  }
 }

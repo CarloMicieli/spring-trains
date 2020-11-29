@@ -13,14 +13,23 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.brands;
+package io.github.carlomicieli.mail;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import lombok.Data;
+import lombok.Getter;
+import org.apache.commons.validator.routines.EmailValidator;
 
-@DisplayName("A Brand")
-class BrandTests {
+@Getter
+@Data
+public final class MailAddress {
 
-  @Test
-  void it_should_create_a_new_brand() {}
+  private final String address;
+
+  public MailAddress(String address) {
+    boolean valid = EmailValidator.getInstance().isValid(address);
+    if (!valid) {
+      throw new IllegalArgumentException("Invalid mail address");
+    }
+    this.address = address;
+  }
 }

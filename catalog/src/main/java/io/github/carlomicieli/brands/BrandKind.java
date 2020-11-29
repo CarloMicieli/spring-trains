@@ -15,12 +15,14 @@
 */
 package io.github.carlomicieli.brands;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+// The kinds for railway models brands
+public enum BrandKind {
+  // these manufactures produce models using the die casting method
+  INDUSTRIAL,
 
-@DisplayName("A Brand")
-class BrandTests {
-
-  @Test
-  void it_should_create_a_new_brand() {}
+  // these manufacturers produce models which are made of brass or similar alloys.
+  //
+  // They are usually more expensive than the industrial series due to the limited
+  // production quantities and the "hand made" nature of the production
+  BRASS_MODELS
 }

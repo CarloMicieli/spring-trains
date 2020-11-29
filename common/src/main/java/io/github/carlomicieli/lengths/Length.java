@@ -13,14 +13,6 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.brands;
+package io.github.carlomicieli.lengths;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-@DisplayName("A Brand")
-class BrandTests {
-
-  @Test
-  void it_should_create_a_new_brand() {}
-}
+public final class Length {}

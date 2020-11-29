@@ -13,14 +13,22 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.brands;
+package io.github.carlomicieli.addresses;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.With;
 
-@DisplayName("A Brand")
-class BrandTests {
-
-  @Test
-  void it_should_create_a_new_brand() {}
+@Data
+@AllArgsConstructor
+@Builder
+@With
+public class Address {
+  private final String line1;
+  private final String line2;
+  private final String city;
+  private final String region;
+  private final String postalCode;
+  private final String country;
 }

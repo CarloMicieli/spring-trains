@@ -13,48 +13,39 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.brands;
+package io.github.carlomicieli.scales;
 
-import io.github.carlomicieli.addresses.Address;
-import io.github.carlomicieli.mail.MailAddress;
 import io.github.carlomicieli.util.Slug;
-import java.net.URI;
 import java.util.UUID;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.With;
 
-@Data
+// A model trains <em>Scale</em> is the relationship between its size and the size of an actual
+// train,
+// usually measured as a ratio or as a millimetre to inch conversion. OO scale is said to be 4mm:ft
+// or 1:76.
+//
+// A model trains <em>Gauge</em> is the distance between the inner edges of the two rails that it
+// runs on.
 @AllArgsConstructor
+@Data
 @Builder
 @With
-@Entity(name = "brands")
-public class Brand {
+public final class Scale {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   private final UUID id;
-
-  private final String name;
-
-  private final String companyName;
 
   private final Slug slug;
 
-  private final URI websiteUrl;
+  private final String name;
 
-  private final String groupName;
+  private final Ratio ratio;
+
+  private final ScaleGauge gauge;
 
   private final String description;
 
-  private final Address address;
-
-  private final BrandKind brandKind;
-
-  private final MailAddress mailAddress;
+  private final Integer weight;
 }

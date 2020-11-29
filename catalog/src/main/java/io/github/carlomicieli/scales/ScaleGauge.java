@@ -13,14 +13,24 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.brands;
+package io.github.carlomicieli.scales;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import io.github.carlomicieli.valueObjects.Gauge;
+import io.github.carlomicieli.valueObjects.TrackGauge;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.With;
 
-@DisplayName("A Brand")
-class BrandTests {
+@Data
+@AllArgsConstructor
+@Builder
+@With
+public final class ScaleGauge {
 
-  @Test
-  void it_should_create_a_new_brand() {}
+  private final Gauge millimetres;
+
+  private final Gauge inches;
+
+  private final TrackGauge trackGauge;
 }

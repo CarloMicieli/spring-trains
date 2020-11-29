@@ -13,29 +13,39 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.catalogItems;
+package io.github.carlomicieli.railways;
 
+import io.github.carlomicieli.util.Slug;
+import java.net.URI;
 import java.util.UUID;
-import javax.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.With;
 
-@Entity
-@Table(name = "catalog_items")
 @Data
+@Builder
+@With
 @AllArgsConstructor
-@NoArgsConstructor
-public class CatalogItem {
+public final class Railway {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private UUID id;
+  private final UUID id;
 
-  private String brand;
+  private final Slug slug;
 
-  @Column(name = "item_number")
-  private String itemNumber;
+  private final String name;
 
-  private String category;
+  private final String companyName;
 
-  private String description;
+  private final Country country;
+
+  private final PeriodOfActivity periodOfActivity;
+
+  private final RailwayGauge trackGauge;
+
+  private final RailwayLength totalLength;
+
+  private final URI websiteUrl;
+
+  private final String headquarters;
 }

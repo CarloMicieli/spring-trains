@@ -13,22 +13,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.web.representation;
+package io.github.carlomicieli.railways;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.carlomicieli.catalogItems.CatalogItem;
-import org.springframework.hateoas.RepresentationModel;
-
-public class CatalogItemRepresentation extends RepresentationModel<CatalogItemRepresentation> {
-  private final CatalogItem data;
-
-  @JsonCreator
-  public CatalogItemRepresentation(@JsonProperty("data") CatalogItem data) {
-    this.data = data;
-  }
-
-  public CatalogItem getCatalogItem() {
-    return data;
-  }
+public enum RailwayStatus {
+  ACTIVE,
+  INACTIVE
 }

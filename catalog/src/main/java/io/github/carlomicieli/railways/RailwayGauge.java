@@ -13,14 +13,23 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.brands;
+package io.github.carlomicieli.railways;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import io.github.carlomicieli.lengths.Length;
+import io.github.carlomicieli.valueObjects.TrackGauge;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.With;
 
-@DisplayName("A Brand")
-class BrandTests {
+@Data
+@With
+@AllArgsConstructor
+@Builder
+public final class RailwayGauge {
+  private final TrackGauge trackGauge;
 
-  @Test
-  void it_should_create_a_new_brand() {}
+  private final Length millimeters;
+
+  private final Length inches;
 }

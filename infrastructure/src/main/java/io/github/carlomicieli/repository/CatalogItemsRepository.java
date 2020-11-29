@@ -17,9 +17,10 @@ package io.github.carlomicieli.repository;
 
 import io.github.carlomicieli.catalogItems.CatalogItem;
 import java.util.Optional;
+import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CatalogItemsRepository extends JpaRepository<CatalogItem, Integer> {
+public interface CatalogItemsRepository extends JpaRepository<CatalogItem, UUID> {
 
-  Optional<CatalogItem> findOneById(Integer id);
+  Optional<CatalogItem> findOneById(UUID id);
 }
