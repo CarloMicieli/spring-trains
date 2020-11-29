@@ -36,5 +36,8 @@ jobs:
       - name: Maven package
         run: mvn -B clean package -DskipTests
 
+      - name: Maven check formatting
+        run: mvn -B clean spotless:check
+
       - name: Maven verify
         run: mvn clean verify
