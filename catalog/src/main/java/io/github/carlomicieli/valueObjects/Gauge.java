@@ -15,6 +15,7 @@
 */
 package io.github.carlomicieli.valueObjects;
 
+import io.github.carlomicieli.lengths.MeasureUnit;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;

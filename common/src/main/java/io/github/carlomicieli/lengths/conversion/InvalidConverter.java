@@ -13,15 +13,26 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.lengths;
+package io.github.carlomicieli.lengths.conversion;
 
+import io.github.carlomicieli.lengths.MeasureUnit;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.ToString;
 
-@Data
+/** It represents a measure conversion that will always fail. */
 @AllArgsConstructor
-public final class Length {
-  private final BigDecimal value;
-  private final MeasureUnit measureUnit;
+@Getter
+@ToString
+public final class InvalidConverter implements MeasureUnitConverter {
+
+  private final MeasureUnit fromUnit;
+  private final MeasureUnit toUnit;
+
+  @Override
+  public BigDecimal convert(BigDecimal value, int decimals) {
+    var msg = String.format("Unable to find a suitable converter from %s to %s", fromUnit, toUnit);
+    throw new RuntimeException(msg);
+  }
 }

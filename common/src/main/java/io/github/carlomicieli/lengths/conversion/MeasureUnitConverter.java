@@ -13,15 +13,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.lengths;
+package io.github.carlomicieli.lengths.conversion;
 
 import java.math.BigDecimal;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
-@Data
-@AllArgsConstructor
-public final class Length {
-  private final BigDecimal value;
-  private final MeasureUnit measureUnit;
+/**
+ * An interface to define a generic converter mechanism between values with different length measure
+ * units.
+ */
+public interface MeasureUnitConverter {
+  BigDecimal convert(BigDecimal value, int decimals);
+
+  default BigDecimal convert(BigDecimal value) {
+    return convert(value, 2);
+  }
 }

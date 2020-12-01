@@ -13,11 +13,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.valueObjects;
+package io.github.carlomicieli.lengths.conversion;
 
-public enum MeasureUnit {
-  MILLIMETERS,
-  INCHES,
-  MILES,
-  KILOMETERS
+import java.math.BigDecimal;
+
+/**
+ * A same unit converter is basically a no-op converter, that returns back the same value untouched.
+ */
+public final class SameUnitConverter implements MeasureUnitConverter {
+  @Override
+  public BigDecimal convert(BigDecimal value, int decimals) {
+    return value;
+  }
 }

@@ -13,15 +13,27 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.lengths;
+package io.github.carlomicieli.lengths.conversion;
 
+import io.github.carlomicieli.lengths.MeasureUnit;
 import java.math.BigDecimal;
+import java.math.MathContext;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.ToString;
 
-@Data
 @AllArgsConstructor
-public final class Length {
-  private final BigDecimal value;
-  private final MeasureUnit measureUnit;
+@Getter
+@ToString
+public final class MeasureUnitConverterByRate implements MeasureUnitConverter {
+  private final MeasureUnit fromUnit;
+  private final MeasureUnit toUnit;
+  private final BigDecimal rate;
+
+  @Override
+  public BigDecimal convert(BigDecimal value, int decimals) {
+    var mc = new MathContext(decimals);
+    var result = value.multiply(this.getRate());
+    return result.round(mc);
+  }
 }
