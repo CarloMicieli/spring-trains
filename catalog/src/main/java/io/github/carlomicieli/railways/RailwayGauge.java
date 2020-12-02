@@ -16,7 +16,7 @@
 package io.github.carlomicieli.railways;
 
 import io.github.carlomicieli.lengths.Length;
-import io.github.carlomicieli.valueObjects.TrackGauge;
+import io.github.carlomicieli.valueobject.TrackGauge;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

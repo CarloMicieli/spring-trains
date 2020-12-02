@@ -13,24 +13,29 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.scales;
+package io.github.carlomicieli.catalogitems.rollingstocks;
 
-import io.github.carlomicieli.valueobject.Gauge;
-import io.github.carlomicieli.valueobject.TrackGauge;
+import io.github.carlomicieli.lengths.Length;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.With;
 
-@Data
+/** Minimum curve radius for rolling stocks, in millimeters. */
 @AllArgsConstructor
-@Builder
-@With
-public final class ScaleGauge {
+@Data
+public class MinRadius implements Comparable<MinRadius> {
+  private final Length value;
 
-  private final Gauge millimetres;
+  public static MinRadius ofMillimeters(BigDecimal value) {
+    throw new UnsupportedOperationException();
+  }
 
-  private final Gauge inches;
+  @Override
+  public int compareTo(MinRadius o) {
+    return 0;
+  }
 
-  private final TrackGauge trackGauge;
+  public BigDecimal getMillimeters() {
+    throw new UnsupportedOperationException();
+  }
 }

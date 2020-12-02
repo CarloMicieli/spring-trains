@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.valueObjects;
+package io.github.carlomicieli.valueobject;
 
 // In rail transport, track gauge or track gage is the spacing of the rails on a
 // railway track and is measured between the inner faces of the load-bearing rails.

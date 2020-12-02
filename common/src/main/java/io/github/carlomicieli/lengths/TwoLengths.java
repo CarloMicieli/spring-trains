@@ -13,29 +13,23 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.catalogItems;
+package io.github.carlomicieli.lengths;
 
-import java.util.UUID;
-import javax.persistence.*;
-import lombok.*;
+import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-@Entity
-@Table(name = "catalog_items")
-@Data
 @AllArgsConstructor
-@NoArgsConstructor
-public class CatalogItem {
+@Getter
+public final class TwoLengths {
+  private final MeasureUnit measureUnit1;
+  private final MeasureUnit measureUnit2;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private UUID id;
-
-  private String brand;
-
-  @Column(name = "item_number")
-  private String itemNumber;
-
-  private String category;
-
-  private String description;
+  /**
+   * Create a new object with two lengths, in case only one value is provided it will convert the
+   * other from the only value.
+   */
+  public static TwoLengths ofValues(BigDecimal left, BigDecimal right) {
+    throw new UnsupportedOperationException();
+  }
 }

@@ -15,7 +15,7 @@
 */
 package io.github.carlomicieli.web.catalog.catalogItems.createNew;
 
-import io.github.carlomicieli.catalogItems.CatalogItem;
+import io.github.carlomicieli.catalogitems.CatalogItem;
 import io.github.carlomicieli.repository.CatalogItemsRepository;
 import io.github.carlomicieli.web.catalog.catalogItems.representation.CatalogItemRepresentation;
 import java.util.UUID;

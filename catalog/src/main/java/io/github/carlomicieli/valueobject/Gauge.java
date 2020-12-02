@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.valueObjects;
+package io.github.carlomicieli.valueobject;
 
 import io.github.carlomicieli.lengths.MeasureUnit;
 import java.math.BigDecimal;

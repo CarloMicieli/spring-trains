@@ -15,7 +15,7 @@
 */
 package io.github.carlomicieli.repository;
 
-import io.github.carlomicieli.catalogItems.CatalogItem;
+import io.github.carlomicieli.catalogitems.CatalogItem;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;

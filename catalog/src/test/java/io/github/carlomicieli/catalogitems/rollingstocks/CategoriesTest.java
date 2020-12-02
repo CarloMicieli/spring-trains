@@ -13,24 +13,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.scales;
+package io.github.carlomicieli.catalogitems.rollingstocks;
 
-import io.github.carlomicieli.valueobject.Gauge;
-import io.github.carlomicieli.valueobject.TrackGauge;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.With;
+import static org.junit.jupiter.api.Assertions.*;
 
-@Data
-@AllArgsConstructor
-@Builder
-@With
-public final class ScaleGauge {
+import org.junit.jupiter.api.Test;
 
-  private final Gauge millimetres;
+class CategoriesTest {
 
-  private final Gauge inches;
-
-  private final TrackGauge trackGauge;
+  @Test
+  void itShouldCheckWhetherCategoryIsLocomotive() {
+    // Categories.isLocomotive("locomotive")
+  }
 }

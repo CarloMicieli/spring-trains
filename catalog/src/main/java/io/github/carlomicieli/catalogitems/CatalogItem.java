@@ -13,24 +13,29 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.scales;
+package io.github.carlomicieli.catalogitems;
 
-import io.github.carlomicieli.valueobject.Gauge;
-import io.github.carlomicieli.valueobject.TrackGauge;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.With;
+import java.util.UUID;
+import javax.persistence.*;
+import lombok.*;
 
+@Entity
+@Table(name = "catalog_items")
 @Data
 @AllArgsConstructor
-@Builder
-@With
-public final class ScaleGauge {
+@NoArgsConstructor
+public class CatalogItem {
 
-  private final Gauge millimetres;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private UUID id;
 
-  private final Gauge inches;
+  private String brand;
 
-  private final TrackGauge trackGauge;
+  @Column(name = "item_number")
+  private String itemNumber;
+
+  private String category;
+
+  private String description;
 }

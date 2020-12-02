@@ -13,24 +13,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.scales;
+package io.github.carlomicieli.catalogitems;
 
-import io.github.carlomicieli.valueobject.Gauge;
-import io.github.carlomicieli.valueobject.TrackGauge;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.With;
-
-@Data
-@AllArgsConstructor
-@Builder
-@With
-public final class ScaleGauge {
-
-  private final Gauge millimetres;
-
-  private final Gauge inches;
-
-  private final TrackGauge trackGauge;
+public enum CatalogItemCategory {
+  UNSPECIFIED,
+  TRAINS,
+  LOCOMOTIVES,
+  PASSENGER_CARS,
+  FREIGHT_CARS
 }

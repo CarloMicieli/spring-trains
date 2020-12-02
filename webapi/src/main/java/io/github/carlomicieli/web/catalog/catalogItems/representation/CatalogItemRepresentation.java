@@ -20,7 +20,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.carlomicieli.catalogItems.CatalogItem;
+import io.github.carlomicieli.catalogitems.CatalogItem;
 import io.github.carlomicieli.web.catalog.catalogItems.getById.CatalogItemsController;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.RepresentationModel;
