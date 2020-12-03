@@ -30,10 +30,10 @@ import java.util.stream.Stream;
  * @see <a href="http://www.codecodex.com/wiki/Generate_a_url_slug#Java">Original implementation</a>
  * @author Carlo Micieli
  */
-public final class Slug {
-  static final Pattern NON_LATIN = Pattern.compile("[^\\w-]");
-  static final Pattern WHITESPACE = Pattern.compile("[\\s]");
-  static final String SEP = "-";
+public interface Slug {
+  Pattern NON_LATIN = Pattern.compile("[^\\w-]");
+  Pattern WHITESPACE = Pattern.compile("[\\s]");
+  String SEP = "-";
 
   /**
    * Checks whether the provided {@code slugValue} is not empty, otherwise the method will use the
@@ -43,7 +43,7 @@ public final class Slug {
    * @param supplier the slug supplier
    * @return the slug
    */
-  public static String orElseGet(String slugValue, Supplier<String> supplier) {
+  static String orElseGet(String slugValue, Supplier<String> supplier) {
     if (slugValue != null && !slugValue.isEmpty()) {
       return slugValue;
     }
@@ -61,7 +61,7 @@ public final class Slug {
    * @param str the String to be encoded
    * @return the slug
    */
-  public static String of(String str) {
+  static String of(String str) {
     Objects.requireNonNull(str, "Slug: input string must be not null");
     String noWhitespace = WHITESPACE.matcher(str).replaceAll(SEP);
     String normalized = Normalizer.normalize(noWhitespace, Normalizer.Form.NFD);
@@ -74,7 +74,7 @@ public final class Slug {
    * @param values the values to be joined and then encoded
    * @return the slug
    */
-  public static String ofValues(Object... values) {
+  static String ofValues(Object... values) {
     Objects.requireNonNull(values, "Slug: input values must be not null");
     Predicate<Object> valueIsNotNull = obj -> !Objects.isNull(obj);
     return Stream.of(values)

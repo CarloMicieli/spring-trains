@@ -40,6 +40,11 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.11</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
             <exclusions>
@@ -82,14 +87,6 @@
         <url>git@github.com:CarloMicieli/spring-trains.git</url>
         <tag>HEAD</tag>
     </scm>
-
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub CarloMicieli Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/CarloMicieli/spring-trains</url>
-        </repository>
-    </distributionManagement>
 
     <build>
         <plugins>
@@ -251,17 +248,6 @@
     </build>
 
     <profiles>
-        <profile>
-            <id>github</id>
-            <repositories>
-                <repository>
-                    <id>github</id>
-                    <name>GitHub OWNER Apache Maven Packages</name>
-                    <url>https://maven.pkg.github.com/CarloMicieli/spring-trains</url>
-                </repository>
-            </repositories>
-        </profile>
-
         <profile>
             <id>jacoco</id>
             <build>
