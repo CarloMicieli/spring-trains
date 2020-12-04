@@ -15,9 +15,7 @@
 */
 package io.github.carlomicieli.mail;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -33,18 +31,13 @@ class MailAddressTest {
     final String expected = "mail@mail.com";
 
     var mail = new MailAddress("mail@mail.com");
-    assertThat(mail, notNullValue());
-    assertThat(mail.getAddress(), equalTo(expected));
+    assertThat(mail).isNotNull();
+    assertThat(mail.getAddress()).isEqualTo(expected);
   }
 
   @Test
   void it_should_accept_only_valid_addresses() {
-    IllegalArgumentException thrown =
-        assertThrows(
-            IllegalArgumentException.class,
-            () -> new MailAddress("invalid mail"),
-            "Expected new MailAddress() to throw, but it didn't");
-
-    assertThat(thrown.getMessage().contains("Invalid mail address"), is(true));
+    IllegalArgumentException thrown = catchThrowableOfType(() -> new MailAddress("invalid mail"), IllegalArgumentException.class);
+    assertThat(thrown.getMessage()).contains("Invalid mail address");
   }
 }
