@@ -33,7 +33,9 @@ class RailwayLengthTest {
   void is_created_via_a_builder() {
     var oneHundred = BigDecimal.valueOf(100);
     var railwayLength =
-        RailwayLength.builder().kilometers(new Length(oneHundred, MeasureUnit.KILOMETERS)).build();
+        RailwayLength.builder()
+            .kilometers(Length.valueOf(oneHundred.longValue(), MeasureUnit.KILOMETERS))
+            .build();
 
     assertEquals(oneHundred, railwayLength.getKilometers().getValue());
   }

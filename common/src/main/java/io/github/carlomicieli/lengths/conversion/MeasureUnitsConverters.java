@@ -23,11 +23,11 @@ import lombok.Data;
 
 public final class MeasureUnitsConverters {
 
-  private final Map<Conversion, MeasureUnitConverter> converterMap;
+  private static final Map<Conversion, MeasureUnitConverter> converterMap;
   private static final MeasureUnitConverter sameUnitConvert = new SameUnitConverter();
 
-  public MeasureUnitsConverters() {
-    this.converterMap =
+  static {
+    converterMap =
         Map.ofEntries(
             converterEntry(
                 MeasureUnit.INCHES, MeasureUnit.MILLIMETERS, ConversionRate.INCHES_TO_MILLIMETERS),

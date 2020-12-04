@@ -15,9 +15,38 @@
 */
 package io.github.carlomicieli.lengths;
 
+import io.github.carlomicieli.lengths.conversion.MeasureUnitConverter;
+import io.github.carlomicieli.lengths.conversion.MeasureUnitsConverters;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
 public enum MeasureUnit {
-  MILLIMETERS,
-  INCHES,
-  MILES,
-  KILOMETERS
+  MILLIMETERS("mm"),
+  INCHES("in"),
+  MILES("mi"),
+  KILOMETERS("km");
+
+  private final String symbol;
+
+  MeasureUnit(String symbol) {
+    this.symbol = symbol;
+  }
+
+  String getSymbol() {
+    return symbol;
+  }
+
+  String buildString(BigDecimal value) {
+    var df = new DecimalFormat("#,###.0");
+    return df.format(value) + " " + this.symbol;
+  }
+
+  /**
+   * Returns the appropriate converter to convert from this MeasureUnit to the other If such
+   * converter does not exist, a converter that always failed is returned instead.
+   */
+  MeasureUnitConverter convertTo(MeasureUnit other) {
+    var converters = new MeasureUnitsConverters();
+    return converters.getConverter(this, other);
+  }
 }
