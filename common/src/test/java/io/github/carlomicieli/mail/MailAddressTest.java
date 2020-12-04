@@ -37,7 +37,8 @@ class MailAddressTest {
 
   @Test
   void it_should_accept_only_valid_addresses() {
-    IllegalArgumentException thrown = catchThrowableOfType(() -> new MailAddress("invalid mail"), IllegalArgumentException.class);
+    IllegalArgumentException thrown =
+        catchThrowableOfType(() -> new MailAddress("invalid mail"), IllegalArgumentException.class);
     assertThat(thrown.getMessage()).contains("Invalid mail address");
   }
 }
