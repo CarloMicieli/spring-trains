@@ -211,13 +211,15 @@ public final class DeliveryDate {
       int startYearWithQuarters,
       int endYearWithQuarters) {
 
-   if (startYearWithoutQuarters > endYearWithoutQuarters) {
-     throw new IllegalArgumentException("DeliveryDate: startYearWithoutQuarters > endYearWithoutQuarters");
-   }
+    if (startYearWithoutQuarters > endYearWithoutQuarters) {
+      throw new IllegalArgumentException(
+          "DeliveryDate: startYearWithoutQuarters > endYearWithoutQuarters");
+    }
 
-   if (startYearWithQuarters > endYearWithQuarters) {
-     throw new IllegalArgumentException("DeliveryDate: startYearWithQuarters > endYearWithQuarters");
-   }
+    if (startYearWithQuarters > endYearWithQuarters) {
+      throw new IllegalArgumentException(
+          "DeliveryDate: startYearWithQuarters > endYearWithQuarters");
+    }
 
     Function<Integer, Stream<DeliveryDate>> deliveryDatesForYear =
         year -> quarters().mapToObj(qtr -> DeliveryDate.of(year, qtr));
