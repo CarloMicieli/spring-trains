@@ -26,7 +26,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-import org.springframework.util.Assert;
 
 /**
  * It represents an immutable class for delivery date for a rolling stock model.
@@ -212,12 +211,13 @@ public final class DeliveryDate {
       int startYearWithQuarters,
       int endYearWithQuarters) {
 
-    Assert.isTrue(
-        startYearWithoutQuarters <= endYearWithoutQuarters,
-        "DeliveryDate: startYearWithoutQuarters <= endYearWithoutQuarters");
-    Assert.isTrue(
-        startYearWithQuarters <= endYearWithQuarters,
-        "DeliveryDate: startYearWithQuarters <= endYearWithQuarters");
+   if (startYearWithoutQuarters > endYearWithoutQuarters) {
+     throw new IllegalArgumentException("DeliveryDate: startYearWithoutQuarters > endYearWithoutQuarters");
+   }
+
+   if (startYearWithQuarters > endYearWithQuarters) {
+     throw new IllegalArgumentException("DeliveryDate: startYearWithQuarters > endYearWithQuarters");
+   }
 
     Function<Integer, Stream<DeliveryDate>> deliveryDatesForYear =
         year -> quarters().mapToObj(qtr -> DeliveryDate.of(year, qtr));
