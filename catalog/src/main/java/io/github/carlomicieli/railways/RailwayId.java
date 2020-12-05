@@ -13,26 +13,30 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.domain;
+package io.github.carlomicieli.railways;
 
+import io.github.carlomicieli.domain.Identifier;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-/**
- * A reference to another aggregate root.
- *
- * @param <T> the aggregate data type
- * @param <ID> the ID type
- */
+/** The Railway unique identifier. */
 @AllArgsConstructor
-@Data
-public abstract class AggregateRootRef<T extends AggregateRoot<ID>, ID extends Identifier> {
-  private final ID id;
-  private final String slug;
-  private final String representation;
+@EqualsAndHashCode
+public final class RailwayId implements Identifier {
+  private final UUID value;
+
+  public static RailwayId randomId() {
+    return new RailwayId(UUID.randomUUID());
+  }
+
+  @Override
+  public UUID toUUID() {
+    return value;
+  }
 
   @Override
   public String toString() {
-    return representation;
+    return value.toString();
   }
 }

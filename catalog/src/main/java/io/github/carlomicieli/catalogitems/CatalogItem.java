@@ -15,27 +15,52 @@
 */
 package io.github.carlomicieli.catalogitems;
 
-import java.util.UUID;
-import javax.persistence.*;
+import io.github.carlomicieli.catalogitems.deliverydates.DeliveryDate;
+import io.github.carlomicieli.catalogitems.rollingstocks.RollingStock;
+import io.github.carlomicieli.domain.AggregateRoot;
+import io.github.carlomicieli.util.Slug;
+import java.time.Instant;
+import java.util.List;
+import java.util.stream.Stream;
 import lombok.*;
 
-@Entity
-@Table(name = "catalog_items")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class CatalogItem {
+@Builder
+@With
+@EqualsAndHashCode
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+public final class CatalogItem implements AggregateRoot<CatalogItemId> {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private UUID id;
+  private final CatalogItemId id;
+  private final BrandRef brand;
+  private final ScaleRef scale;
+  private final ItemNumber itemNumber;
+  private final Slug slug;
+  private final String category;
+  private final String description;
+  private final String prototypeDescription;
+  private final String modelDescription;
+  private final List<RollingStock> rollingStocks;
+  private final PowerMethod powerMethod;
+  private final DeliveryDate deliveryDate;
+  private final boolean available;
+  private final int version;
+  private final Instant createdDate;
+  private final Instant modifiedDate;
 
-  private String brand;
+  /** Returns the number of rolling stocks for this catalog item */
+  public int getCount() {
+    throw new UnsupportedOperationException();
+  }
 
-  @Column(name = "item_number")
-  private String itemNumber;
+  /**
+   * Returns the category for this catalog item, from the categories of the rolling stocks included
+   */
+  public CatalogItemCategory getCategory() {
+    throw new UnsupportedOperationException();
+  }
 
-  private String category;
-
-  private String description;
+  public Stream<RollingStock> getRollingStocks() {
+    return rollingStocks.stream();
+  }
 }

@@ -13,26 +13,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.domain;
+package io.github.carlomicieli.brands;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * A reference to another aggregate root.
- *
- * @param <T> the aggregate data type
- * @param <ID> the ID type
- */
-@AllArgsConstructor
-@Data
-public abstract class AggregateRootRef<T extends AggregateRoot<ID>, ID extends Identifier> {
-  private final ID id;
-  private final String slug;
-  private final String representation;
+import org.junit.jupiter.api.Test;
 
-  @Override
-  public String toString() {
-    return representation;
-  }
+class BrandTest {
+
+  @Test
+  void buildNewBrand() {}
 }

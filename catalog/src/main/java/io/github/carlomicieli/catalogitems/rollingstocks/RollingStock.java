@@ -13,26 +13,23 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.domain;
+package io.github.carlomicieli.catalogitems.rollingstocks;
 
+import io.github.carlomicieli.catalogitems.Epoch;
+import io.github.carlomicieli.domain.Entity;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 
-/**
- * A reference to another aggregate root.
- *
- * @param <T> the aggregate data type
- * @param <ID> the ID type
- */
-@AllArgsConstructor
-@Data
-public abstract class AggregateRootRef<T extends AggregateRoot<ID>, ID extends Identifier> {
-  private final ID id;
-  private final String slug;
-  private final String representation;
-
-  @Override
-  public String toString() {
-    return representation;
-  }
+@Getter
+@AllArgsConstructor(access = AccessLevel.MODULE)
+public abstract class RollingStock implements Entity<RollingStockId> {
+  private final RollingStockId id;
+  private final RailwayRef railway;
+  private final Category category;
+  private final Epoch epoch;
+  private final LengthOverBuffer lengthOverBuffer;
+  private final MinRadius minRadius;
+  private final Couplers couplers;
+  private final String livery;
 }

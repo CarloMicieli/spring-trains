@@ -13,26 +13,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.domain;
+package io.github.carlomicieli.catalogitems.rollingstocks;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import io.github.carlomicieli.domain.AggregateRootRef;
+import io.github.carlomicieli.railways.Railway;
+import io.github.carlomicieli.railways.RailwayId;
 
-/**
- * A reference to another aggregate root.
- *
- * @param <T> the aggregate data type
- * @param <ID> the ID type
- */
-@AllArgsConstructor
-@Data
-public abstract class AggregateRootRef<T extends AggregateRoot<ID>, ID extends Identifier> {
-  private final ID id;
-  private final String slug;
-  private final String representation;
-
-  @Override
-  public String toString() {
-    return representation;
+public final class RailwayRef extends AggregateRootRef<Railway, RailwayId> {
+  public RailwayRef(RailwayId id, String slug, String representation) {
+    super(id, slug, representation);
   }
 }

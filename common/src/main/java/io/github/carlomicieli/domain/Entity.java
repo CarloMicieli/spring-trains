@@ -15,20 +15,11 @@
 */
 package io.github.carlomicieli.domain;
 
-import lombok.Getter;
-import org.apache.commons.lang3.Validate;
-
 /**
  * An entity, to be included inside an aggregate.
  *
  * @param <ID> the ID type
  */
-@Getter
-public abstract class Entity<ID> {
-  private final ID id;
-
-  protected Entity(ID id) {
-    Validate.notNull(id, "Entity id cannot be null");
-    this.id = id;
-  }
+public interface Entity<ID extends Identifier> {
+  ID getId();
 }

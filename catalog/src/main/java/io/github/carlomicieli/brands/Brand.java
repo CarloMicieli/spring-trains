@@ -16,45 +16,45 @@
 package io.github.carlomicieli.brands;
 
 import io.github.carlomicieli.addresses.Address;
+import io.github.carlomicieli.domain.AggregateRoot;
 import io.github.carlomicieli.mail.MailAddress;
 import io.github.carlomicieli.util.Slug;
 import java.net.URI;
-import java.util.UUID;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.With;
+import java.time.Instant;
+import lombok.*;
 
+/**
+ * It represents a model railways rolling stock manufacturer.
+ *
+ * <p>Two distinct family of manufacturer exists:
+ *
+ * <ul>
+ *   <li>{@code industrial}: these manufactures produce models using the die casting method;
+ *   <li>{@code brass models}: these manufacturers produce models which are made of brass or similar
+ *       alloys. They are usually more expensive than the industrial series due to the limited
+ *       production quantities and the {@code "hand made"} nature of the production.
+ * </ul>
+ *
+ * <p>This class allows one company to have local branches for a given country, either a local
+ * office or a distribution company.
+ */
 @Data
-@AllArgsConstructor
 @Builder
 @With
-@Entity(name = "brands")
-public class Brand {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private final UUID id;
-
+@EqualsAndHashCode
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+public final class Brand implements AggregateRoot<BrandId> {
+  private final BrandId id;
   private final String name;
-
   private final String companyName;
-
   private final Slug slug;
-
   private final URI websiteUrl;
-
   private final String groupName;
-
   private final String description;
-
   private final Address address;
-
   private final BrandKind brandKind;
-
   private final MailAddress mailAddress;
+  private final int version;
+  private final Instant createdDate;
+  private final Instant modifiedDate;
 }

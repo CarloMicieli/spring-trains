@@ -15,37 +15,33 @@
 */
 package io.github.carlomicieli.scales;
 
+import io.github.carlomicieli.domain.AggregateRoot;
 import io.github.carlomicieli.util.Slug;
-import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.With;
+import java.time.Instant;
+import lombok.*;
 
-// A model trains <em>Scale</em> is the relationship between its size and the size of an actual
-// train,
-// usually measured as a ratio or as a millimetre to inch conversion. OO scale is said to be 4mm:ft
-// or 1:76.
-//
-// A model trains <em>Gauge</em> is the distance between the inner edges of the two rails that it
-// runs on.
-@AllArgsConstructor
+/**
+ * A model trains <em>Scale</em> is the relationship between its size and the size of an actual
+ * train, usually measured as a ratio or as a millimetre to inch conversion. OO scale is said to be
+ * 4mm:ft or 1:76.
+ *
+ * <p>A model trains <em>Gauge</em> is the distance between the inner edges of the two rails that it
+ * runs on.
+ */
 @Data
 @Builder
 @With
-public final class Scale {
-
-  private final UUID id;
-
+@EqualsAndHashCode
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+public final class Scale implements AggregateRoot<ScaleId> {
+  private final ScaleId id;
   private final Slug slug;
-
   private final String name;
-
   private final Ratio ratio;
-
   private final ScaleGauge gauge;
-
   private final String description;
-
   private final Integer weight;
+  private final int version;
+  private final Instant createdDate;
+  private final Instant modifiedDate;
 }

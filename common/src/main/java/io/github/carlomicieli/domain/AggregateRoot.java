@@ -16,29 +16,25 @@
 package io.github.carlomicieli.domain;
 
 import java.time.Instant;
-import lombok.Getter;
-import org.apache.commons.lang3.Validate;
 
 /**
  * An aggregate root.
  *
+ * <pre>
+ *   "Cluster the entities and value objects into aggregates and define boundaries around each. Choose one
+ *   entity to be the root of each aggregate and control all access to the objects inside the boundary
+ *   through the root" -- Eric Evans in Domain Driven Design
+ * </pre>
+ *
  * @param <ID> the ID type
  */
-@Getter
-public abstract class AggregateRoot<ID> extends Entity<ID> {
+public interface AggregateRoot<ID extends Identifier> extends Entity<ID> {
+  /** The instant when this aggregate was created */
+  Instant getCreatedDate();
 
-  private final Instant createdDate;
+  /** The instant when this aggregate was modified the last time */
+  Instant getModifiedDate();
 
-  private final Instant modifiedDate;
-
-  private final int version;
-
-  protected AggregateRoot(ID id, Instant createdDate, Instant modifiedDate, int version) {
-    super(id);
-
-    Validate.isTrue(version >= 0, "Aggregate version must be non negative");
-    this.createdDate = createdDate;
-    this.modifiedDate = modifiedDate;
-    this.version = version;
-  }
+  /** The version number for this aggregate */
+  int getVersion();
 }

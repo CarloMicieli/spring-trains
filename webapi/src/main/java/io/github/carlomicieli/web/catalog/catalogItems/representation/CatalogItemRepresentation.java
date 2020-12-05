@@ -40,11 +40,13 @@ public class CatalogItemRepresentation extends RepresentationModel<CatalogItemRe
   public static CatalogItemRepresentation of(CatalogItem item) {
     var catalogItem = new CatalogItemRepresentation(item);
     catalogItem.add(
-        linkTo(methodOn(CatalogItemsController.class).getById(item.getId())).withSelfRel());
+        linkTo(methodOn(CatalogItemsController.class).getById(item.getId().toUUID()))
+            .withSelfRel());
     return catalogItem;
   }
 
   public static Link selfLink(CatalogItem item) {
-    return linkTo(methodOn(CatalogItemsController.class).getById(item.getId())).withSelfRel();
+    return linkTo(methodOn(CatalogItemsController.class).getById(item.getId().toUUID()))
+        .withSelfRel();
   }
 }

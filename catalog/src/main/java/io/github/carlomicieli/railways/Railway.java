@@ -15,37 +15,29 @@
 */
 package io.github.carlomicieli.railways;
 
+import io.github.carlomicieli.domain.AggregateRoot;
 import io.github.carlomicieli.util.Slug;
 import java.net.URI;
-import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.With;
+import java.time.Instant;
+import lombok.*;
 
 @Data
 @Builder
 @With
-@AllArgsConstructor
-public final class Railway {
-
-  private final UUID id;
-
+@EqualsAndHashCode
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+public final class Railway implements AggregateRoot<RailwayId> {
+  private final RailwayId id;
   private final Slug slug;
-
   private final String name;
-
   private final String companyName;
-
   private final Country country;
-
   private final PeriodOfActivity periodOfActivity;
-
   private final RailwayGauge trackGauge;
-
   private final RailwayLength totalLength;
-
   private final URI websiteUrl;
-
   private final String headquarters;
+  private final int version;
+  private final Instant createdDate;
+  private final Instant modifiedDate;
 }

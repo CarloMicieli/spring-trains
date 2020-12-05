@@ -21,7 +21,7 @@ import lombok.Data;
 import org.apache.commons.lang3.Validate;
 
 /**
- * the model railway industry adopted an 'Era', or 'Epoch' system; the idea being to group models
+ * The model railway industry adopted an 'Era', or 'Epoch' system; the idea being to group models
  * into a defined time bracket, so that locomotives, coaching and wagon stock could be reasonably
  * grouped together.
  */

@@ -15,10 +15,8 @@
 */
 package io.github.carlomicieli.web.catalog.catalogItems.createNew;
 
-import io.github.carlomicieli.catalogitems.CatalogItem;
 import io.github.carlomicieli.repository.CatalogItemsRepository;
 import io.github.carlomicieli.web.catalog.catalogItems.representation.CatalogItemRepresentation;
-import java.util.UUID;
 import javax.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
@@ -42,14 +40,7 @@ public class CatalogItemsController {
   public ResponseEntity<Void> postCatalogItem(@RequestBody @Valid NewCatalogItem newItem) {
     log.debug("POST {}", newItem);
 
-    var item = new CatalogItem();
-    item.setId(UUID.randomUUID());
-    item.setBrand(newItem.getBrand());
-    item.setItemNumber(newItem.getItemNumber());
-    item.setDescription(newItem.getDescription());
-    item.setCategory(newItem.getCategory());
-
-    var saved = catalogItems.saveAndFlush(item);
-    return ResponseEntity.created(CatalogItemRepresentation.selfLink(saved).toUri()).build();
+    // var saved = catalogItems.saveAndFlush(item);
+    return ResponseEntity.created(CatalogItemRepresentation.selfLink(null).toUri()).build();
   }
 }

@@ -13,26 +13,30 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.domain;
+package io.github.carlomicieli.catalogitems;
 
+import io.github.carlomicieli.domain.Identifier;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-/**
- * A reference to another aggregate root.
- *
- * @param <T> the aggregate data type
- * @param <ID> the ID type
- */
-@AllArgsConstructor
-@Data
-public abstract class AggregateRootRef<T extends AggregateRoot<ID>, ID extends Identifier> {
-  private final ID id;
-  private final String slug;
-  private final String representation;
+/** A unique identifier for catalog items. */
+@AllArgsConstructor(staticName = "of")
+@EqualsAndHashCode
+public final class CatalogItemId implements Identifier {
+  private final UUID value;
+
+  @Override
+  public UUID toUUID() {
+    return value;
+  }
 
   @Override
   public String toString() {
-    return representation;
+    return value.toString();
+  }
+
+  public static CatalogItemId randomID() {
+    return new CatalogItemId(UUID.randomUUID());
   }
 }

@@ -15,24 +15,11 @@
 */
 package io.github.carlomicieli.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import java.util.UUID;
 
-/**
- * A reference to another aggregate root.
- *
- * @param <T> the aggregate data type
- * @param <ID> the ID type
- */
-@AllArgsConstructor
-@Data
-public abstract class AggregateRootRef<T extends AggregateRoot<ID>, ID extends Identifier> {
-  private final ID id;
-  private final String slug;
-  private final String representation;
+/** The identifier for entity and aggregate roots */
+public interface Identifier {
 
-  @Override
-  public String toString() {
-    return representation;
-  }
+  /** Convert this identifier to a standard java UUID */
+  UUID toUUID();
 }
