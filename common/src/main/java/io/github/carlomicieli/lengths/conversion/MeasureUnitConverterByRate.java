@@ -17,7 +17,7 @@ package io.github.carlomicieli.lengths.conversion;
 
 import io.github.carlomicieli.lengths.MeasureUnit;
 import java.math.BigDecimal;
-import java.math.MathContext;
+import java.math.RoundingMode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -32,8 +32,7 @@ public final class MeasureUnitConverterByRate implements MeasureUnitConverter {
 
   @Override
   public BigDecimal convert(BigDecimal value, int decimals) {
-    var mc = new MathContext(decimals);
     var result = value.multiply(this.getRate());
-    return result.round(mc);
+    return result.setScale(decimals, RoundingMode.HALF_UP);
   }
 }

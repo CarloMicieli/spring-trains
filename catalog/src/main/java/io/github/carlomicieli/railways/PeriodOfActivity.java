@@ -16,35 +16,63 @@
 package io.github.carlomicieli.railways;
 
 import java.time.LocalDate;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.With;
 
-@AllArgsConstructor
+/**
+ * It represent a period of activity for {@code Railway}. Railways can be either "active" or
+ * "inactive". In the latter case, inactive railways will also have a termination date.
+ */
 @Data
-@Builder
 @With
 public final class PeriodOfActivity {
+  private final RailwayStatus railwayStatus;
   private final LocalDate operatingSince;
   private final LocalDate operatingUntil;
-  private final RailwayStatus railwayStatus;
+
+  public PeriodOfActivity(
+      RailwayStatus railwayStatus, LocalDate operatingSince, LocalDate operatingUntil) {
+    validatePeriod(railwayStatus, operatingSince, operatingUntil);
+
+    this.operatingSince = operatingSince;
+    this.operatingUntil = operatingUntil;
+    this.railwayStatus = railwayStatus;
+  }
+
+  public boolean isActive() {
+    return railwayStatus == RailwayStatus.ACTIVE;
+  }
 
   public static PeriodOfActivity activeRailway(LocalDate operatingSince) {
-    throw new RuntimeException("TODO");
+    return new PeriodOfActivity(RailwayStatus.ACTIVE, operatingSince, null);
   }
 
   public static PeriodOfActivity inactiveRailway(
       LocalDate operatingSince, LocalDate operatingUntil) {
-    throw new RuntimeException("TODO");
+    return new PeriodOfActivity(RailwayStatus.INACTIVE, operatingSince, operatingUntil);
   }
 
   public static PeriodOfActivity defaultPeriodOfActivity() {
-    throw new RuntimeException("TODO");
+    return new PeriodOfActivity(RailwayStatus.ACTIVE, null, null);
   }
 
-  private static boolean validate(
+  private static void validatePeriod(
       RailwayStatus status, LocalDate operatingSince, LocalDate operatingUntil) {
-    throw new RuntimeException("TODO");
+    if (status == RailwayStatus.INACTIVE) {
+      if (operatingSince == null || operatingUntil == null) {
+        throw new IllegalArgumentException(
+            "Invalid period of activity: both operating until and since are required for an inactive railway");
+      }
+
+      if (operatingSince.compareTo(operatingUntil) > 0) {
+        throw new IllegalArgumentException(
+            "Invalid period of activity: operating since > operating until");
+      }
+    } else {
+      if (operatingUntil != null) {
+        throw new IllegalArgumentException(
+            "Invalid period of activity: operating until has a value for an active railway");
+      }
+    }
   }
 }

@@ -16,6 +16,7 @@
 package io.github.carlomicieli.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowableOfType;
 
 import java.util.function.Supplier;
 import org.junit.jupiter.api.DisplayName;
@@ -24,48 +25,40 @@ import org.junit.jupiter.api.Test;
 @DisplayName("A Slug")
 class SlugTest {
   @Test
-  void shouldEncodeEmptyStringAsSlugs() {
-    String slug = Slug.of("");
-    assertThat(slug).isEmpty();
-  }
-
-  @Test
   public void shouldEncodeWhitespacesAsSlugs() {
-    String slug = Slug.of("Time is an illusion");
-    assertThat(slug).isEqualTo("time-is-an-illusion");
+    Slug slug = Slug.of("Time is an illusion");
+    assertThat(slug.getValue()).isEqualTo("time-is-an-illusion");
   }
 
   @Test
   public void shouldEncodePunctuationSignsAsSlugs() {
-    String slug = Slug.of("Time; is an: illusion.");
-    assertThat(slug).isEqualTo("time-is-an-illusion");
+    Slug slug = Slug.of("Time; is an: illusion.");
+    assertThat(slug.getValue()).isEqualTo("time-is-an-illusion");
   }
 
   @Test
   public void shouldEncodeNonLatinCharactersAsSlugs() {
-    String slug = Slug.of("Timè is àn illusiòn.");
-    assertThat(slug).isEqualTo("time-is-an-illusion");
+    Slug slug = Slug.of("Timè is àn illusiòn.");
+    assertThat(slug.getValue()).isEqualTo("time-is-an-illusion");
   }
 
-  //    @Test
-  //    public void shouldThrowExceptionIfProvidedStringIsNull() {
-  //        expect(() -> Slug.of(null))
-  //                .toThrow(NullPointerException.class, Matchers.is("Slug: input string must be not
-  // null"));
-  //    }
+  @Test
+  public void shouldThrowExceptionIfProvidedStringIsNull() {
+    var ex = catchThrowableOfType(() -> Slug.of(null), InvalidSlugException.class);
+    assertThat(ex.getMessage()).isEqualTo("Slug: input cannot be null or empty");
+  }
 
   @Test
   public void shouldEncodeMultipleValuesAsSlugs() {
-    String slug = Slug.ofValues("first", 2, null, "end");
-    assertThat(slug).isEqualTo("first-2-end");
+    Slug slug = Slug.ofValues("first", 2, null, "end");
+    assertThat(slug.getValue()).isEqualTo("first-2-end");
   }
 
-  //    @Test
-  //    public void shouldThrowExceptionIfProvidedValuesAreNull() {
-  //        expect(() -> Slug.ofValues((Object[])null))
-  //                .toThrow(NullPointerException.class, Matchers.is("Slug: input values must be not
-  // null"));
-  //    }
+  @Test
+  public void shouldThrowExceptionIfProvidedValuesAreNull() {
+    var ex = catchThrowableOfType(() -> Slug.ofValues((Object[]) null), InvalidSlugException.class);
+    assertThat(ex.getMessage()).isEqualTo("Slug: input cannot be null or empty");
+  }
 
   @Test
   public void shouldCheckWhetherSlugIsNotEmptyAndIfSoUseTheProvidedSupplier() {

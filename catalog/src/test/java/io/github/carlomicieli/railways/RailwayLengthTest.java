@@ -15,11 +15,10 @@
 */
 package io.github.carlomicieli.railways;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import io.github.carlomicieli.lengths.Length;
 import io.github.carlomicieli.lengths.MeasureUnit;
-import java.math.BigDecimal;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -29,14 +28,32 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class RailwayLengthTest {
 
+  private static final Length ONE_HUNDRED_KM = Length.valueOf(100, MeasureUnit.KILOMETERS);
+  private static final Length SIXTY_TWO_MILES = Length.valueOf(62, MeasureUnit.MILES);
+
   @Test
   void is_created_via_a_builder() {
-    var oneHundred = BigDecimal.valueOf(100);
     var railwayLength =
-        RailwayLength.builder()
-            .kilometers(Length.valueOf(oneHundred.longValue(), MeasureUnit.KILOMETERS))
-            .build();
+        RailwayLength.builder().kilometers(ONE_HUNDRED_KM).miles(SIXTY_TWO_MILES).build();
 
-    assertEquals(oneHundred, railwayLength.getKilometers().getValue());
+    assertThat(railwayLength.getKilometers()).isEqualTo(ONE_HUNDRED_KM);
+    assertThat(railwayLength.getMiles()).isEqualTo(SIXTY_TWO_MILES);
+  }
+
+  @Test
+  void is_created_from_kilometers_value() {
+    var railwayLength = RailwayLength.ofKilometers(100.0);
+    assertThat(railwayLength).isNotNull();
+    assertThat(railwayLength.getKilometers()).isEqualTo(ONE_HUNDRED_KM);
+    assertThat(railwayLength.getMiles()).isEqualTo(Length.valueOf(62.14, MeasureUnit.MILES));
+  }
+
+  @Test
+  void is_created_from_miles_value() {
+    var railwayLength = RailwayLength.ofMiles(62.0);
+    assertThat(railwayLength).isNotNull();
+    assertThat(railwayLength.getKilometers())
+        .isEqualTo(Length.valueOf(99.78, MeasureUnit.KILOMETERS));
+    assertThat(railwayLength.getMiles()).isEqualTo(SIXTY_TWO_MILES);
   }
 }

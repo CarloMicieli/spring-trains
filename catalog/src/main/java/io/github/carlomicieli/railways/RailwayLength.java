@@ -16,18 +16,44 @@
 package io.github.carlomicieli.railways;
 
 import io.github.carlomicieli.lengths.Length;
+import io.github.carlomicieli.lengths.MeasureUnit;
+import io.github.carlomicieli.lengths.conversion.MeasureUnitsConverters;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.With;
 
+/**
+ * It represents the total length for {@code Railway}s.
+ *
+ * <p>The length is available in both kilometers and miles.
+ */
 @Data
 @AllArgsConstructor
 @With
 @Builder
 public final class RailwayLength {
-
   private final Length kilometers;
-
   private final Length miles;
+
+  /** Creates a new {@code RailwayLength} from a kilometers value, converting this value to miles */
+  public static RailwayLength ofKilometers(double value) {
+    var lengthValue = BigDecimal.valueOf(value);
+    var converter =
+        MeasureUnitsConverters.INSTANCE.getConverter(MeasureUnit.KILOMETERS, MeasureUnit.MILES);
+    return new RailwayLength(
+        Length.of(lengthValue, MeasureUnit.KILOMETERS),
+        Length.of(converter.convert(lengthValue), MeasureUnit.MILES));
+  }
+
+  /** Creates a new {@code RailwayLength} from a miles value, converting this value to kilometers */
+  public static RailwayLength ofMiles(double value) {
+    var lengthValue = BigDecimal.valueOf(value);
+    var converter =
+        MeasureUnitsConverters.INSTANCE.getConverter(MeasureUnit.MILES, MeasureUnit.KILOMETERS);
+    return new RailwayLength(
+        Length.of(converter.convert(lengthValue), MeasureUnit.KILOMETERS),
+        Length.of(lengthValue, MeasureUnit.MILES));
+  }
 }

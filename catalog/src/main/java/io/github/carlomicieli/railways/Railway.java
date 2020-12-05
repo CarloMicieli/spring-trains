@@ -15,6 +15,7 @@
 */
 package io.github.carlomicieli.railways;
 
+import io.github.carlomicieli.countries.Country;
 import io.github.carlomicieli.domain.AggregateRoot;
 import io.github.carlomicieli.util.Slug;
 import java.net.URI;
@@ -37,7 +38,7 @@ public final class Railway implements AggregateRoot<RailwayId> {
   private final RailwayLength totalLength;
   private final URI websiteUrl;
   private final String headquarters;
-  private final int version;
   private final Instant createdDate;
   private final Instant modifiedDate;
+  private final int version;
 }

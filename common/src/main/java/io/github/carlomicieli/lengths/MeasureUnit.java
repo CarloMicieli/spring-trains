@@ -46,7 +46,6 @@ public enum MeasureUnit {
    * converter does not exist, a converter that always failed is returned instead.
    */
   MeasureUnitConverter convertTo(MeasureUnit other) {
-    var converters = new MeasureUnitsConverters();
-    return converters.getConverter(this, other);
+    return MeasureUnitsConverters.INSTANCE.getConverter(this, other);
   }
 }

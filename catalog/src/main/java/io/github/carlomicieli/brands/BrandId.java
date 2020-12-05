@@ -20,7 +20,7 @@ import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 
-/** The Brand unique identifier. */
+/** The {@code Brand} unique identifier. */
 @AllArgsConstructor(staticName = "of")
 @EqualsAndHashCode
 public final class BrandId implements Identifier {

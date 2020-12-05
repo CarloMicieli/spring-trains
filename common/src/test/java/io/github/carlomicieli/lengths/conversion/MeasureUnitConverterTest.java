@@ -15,7 +15,7 @@
 */
 package io.github.carlomicieli.lengths.conversion;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import io.github.carlomicieli.lengths.MeasureUnit;
 import java.math.BigDecimal;
@@ -31,8 +31,10 @@ class MeasureUnitConverterTest {
   @Test
   void it_should_throw_an_exception_when_conversion_is_not_valid() {
     var converter = new InvalidConverter(MeasureUnit.INCHES, MeasureUnit.KILOMETERS);
-    var ex = assertThrows(RuntimeException.class, () -> converter.convert(BigDecimal.TEN));
-    assertEquals("Unable to find a suitable converter from INCHES to KILOMETERS", ex.getMessage());
+    var ex = catchThrowableOfType(() -> converter.convert(BigDecimal.TEN), RuntimeException.class);
+    assertThat(ex).isNotNull();
+    assertThat(ex.getMessage())
+        .isEqualTo("Unable to find a suitable converter from INCHES to KILOMETERS");
   }
 
   @Test
@@ -41,7 +43,7 @@ class MeasureUnitConverterTest {
     var expected = BigDecimal.TEN;
     var actual = converter.convert(expected);
 
-    assertEquals(expected, actual);
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -49,7 +51,7 @@ class MeasureUnitConverterTest {
     var converter =
         new MeasureUnitConverterByRate(
             MeasureUnit.INCHES, MeasureUnit.MILLIMETERS, ConversionRate.INCHES_TO_MILLIMETERS);
-    var result = converter.convert(BigDecimal.ONE, 5);
-    assertEquals(BigDecimal.valueOf(25.4), result);
+    var result = converter.convert(BigDecimal.ONE, 1);
+    assertThat(result).isEqualTo(BigDecimal.valueOf(25.4));
   }
 }

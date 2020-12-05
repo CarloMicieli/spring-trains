@@ -13,14 +13,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.brands;
+package io.github.carlomicieli.util;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
-class BrandTest {
-
-  @Test
-  void buildNewBrand() {}
+/**
+ * Exception thrown when a value cannot be represents as a {@code Slug}. Examples include {@code
+ * null} or an empty {@code String}.
+ */
+public final class InvalidSlugException extends RuntimeException {
+  public InvalidSlugException() {
+    super("Slug: input cannot be null or empty");
+  }
 }

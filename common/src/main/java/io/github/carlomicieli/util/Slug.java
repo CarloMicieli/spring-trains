@@ -23,17 +23,28 @@ import java.util.function.Supplier;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.Data;
 
 /**
  * It converts a string to a "slug".
  *
  * @see <a href="http://www.codecodex.com/wiki/Generate_a_url_slug#Java">Original implementation</a>
- * @author Carlo Micieli
  */
-public interface Slug {
-  Pattern NON_LATIN = Pattern.compile("[^\\w-]");
-  Pattern WHITESPACE = Pattern.compile("[\\s]");
-  String SEP = "-";
+@Data
+public final class Slug {
+  private static final Pattern NON_LATIN = Pattern.compile("[^\\w-]");
+  private static final Pattern WHITESPACE = Pattern.compile("[\\s]");
+  private static final String SEP = "-";
+
+  private Slug(String str) {
+    if (Objects.isNull(str)) {
+      throw new InvalidSlugException();
+    }
+
+    this.value = toSeoFriendlyString(str);
+  }
+
+  private final String value;
 
   /**
    * Checks whether the provided {@code slugValue} is not empty, otherwise the method will use the
@@ -43,7 +54,7 @@ public interface Slug {
    * @param supplier the slug supplier
    * @return the slug
    */
-  static String orElseGet(String slugValue, Supplier<String> supplier) {
+  public static String orElseGet(String slugValue, Supplier<String> supplier) {
     if (slugValue != null && !slugValue.isEmpty()) {
       return slugValue;
     }
@@ -61,11 +72,8 @@ public interface Slug {
    * @param str the String to be encoded
    * @return the slug
    */
-  static String of(String str) {
-    Objects.requireNonNull(str, "Slug: input string must be not null");
-    String noWhitespace = WHITESPACE.matcher(str).replaceAll(SEP);
-    String normalized = Normalizer.normalize(noWhitespace, Normalizer.Form.NFD);
-    return NON_LATIN.matcher(normalized).replaceAll("").toLowerCase(Locale.ENGLISH);
+  public static Slug of(String str) {
+    return new Slug(str);
   }
 
   /**
@@ -74,13 +82,24 @@ public interface Slug {
    * @param values the values to be joined and then encoded
    * @return the slug
    */
-  static String ofValues(Object... values) {
-    Objects.requireNonNull(values, "Slug: input values must be not null");
+  public static Slug ofValues(Object... values) {
+    if (Objects.isNull(values)) {
+      throw new InvalidSlugException();
+    }
+
     Predicate<Object> valueIsNotNull = obj -> !Objects.isNull(obj);
-    return Stream.of(values)
-        .filter(valueIsNotNull)
-        .map(Object::toString)
-        .map(Slug::of)
-        .collect(Collectors.joining(SEP));
+    var str =
+        Stream.of(values)
+            .filter(valueIsNotNull)
+            .map(Object::toString)
+            .map(Slug::toSeoFriendlyString)
+            .collect(Collectors.joining(SEP));
+    return new Slug(str);
+  }
+
+  private static String toSeoFriendlyString(String str) {
+    String noWhitespace = WHITESPACE.matcher(str).replaceAll(SEP);
+    String normalized = Normalizer.normalize(noWhitespace, Normalizer.Form.NFD);
+    return NON_LATIN.matcher(normalized).replaceAll("").toLowerCase(Locale.ENGLISH);
   }
 }

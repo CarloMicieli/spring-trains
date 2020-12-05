@@ -13,6 +13,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.railways;
+package io.github.carlomicieli.countries;
 
-public class Country {}
+import static org.assertj.core.api.Assertions.*;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
+
+@DisplayName("A country")
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+class CountryTest {}

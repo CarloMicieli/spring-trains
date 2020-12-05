@@ -57,4 +57,8 @@ public final class Brand implements AggregateRoot<BrandId> {
   private final int version;
   private final Instant createdDate;
   private final Instant modifiedDate;
+
+  protected static Slug buildSlug(String name) {
+    return Slug.of(name);
+  }
 }

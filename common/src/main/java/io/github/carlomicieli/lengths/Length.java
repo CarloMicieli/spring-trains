@@ -17,10 +17,12 @@ package io.github.carlomicieli.lengths;
 
 import java.math.BigDecimal;
 import java.util.Objects;
-import lombok.Getter;
+import lombok.Data;
+import lombok.With;
 
 /** It represents a non negative unit of length. */
-@Getter
+@Data
+@With
 public final class Length implements Comparable<Length> {
   private final BigDecimal value;
   private final MeasureUnit measureUnit;
@@ -67,6 +69,26 @@ public final class Length implements Comparable<Length> {
   @Override
   public String toString() {
     return measureUnit.buildString(value);
+  }
+
+  public static Length of(BigDecimal value, MeasureUnit measureUnit) {
+    return new Length(value, measureUnit);
+  }
+
+  public static Length ofKilometers(BigDecimal value) {
+    return new Length(value, MeasureUnit.KILOMETERS);
+  }
+
+  public static Length ofMiles(BigDecimal value) {
+    return new Length(value, MeasureUnit.MILES);
+  }
+
+  public static Length ofMillimeters(BigDecimal value) {
+    return new Length(value, MeasureUnit.MILLIMETERS);
+  }
+
+  public static Length ofInches(BigDecimal value) {
+    return new Length(value, MeasureUnit.INCHES);
   }
 
   public static Length valueOf(double value, MeasureUnit measureUnit) {

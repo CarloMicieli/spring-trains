@@ -29,6 +29,32 @@ import org.junit.jupiter.api.Test;
 class LengthTest {
 
   @Test
+  void is_created_by_measure_unit() {
+    var oneHundred = BigDecimal.valueOf(100);
+
+    var km = Length.ofKilometers(oneHundred);
+    var mm = Length.ofMillimeters(oneHundred);
+    var mi = Length.ofMiles(oneHundred);
+    var in = Length.ofInches(oneHundred);
+
+    assertThat(km).isNotNull();
+    assertThat(km.getMeasureUnit()).isEqualTo(MeasureUnit.KILOMETERS);
+    assertThat(km.getValue()).isEqualTo(oneHundred);
+
+    assertThat(mm).isNotNull();
+    assertThat(mm.getMeasureUnit()).isEqualTo(MeasureUnit.MILLIMETERS);
+    assertThat(mm.getValue()).isEqualTo(oneHundred);
+
+    assertThat(mi).isNotNull();
+    assertThat(mi.getMeasureUnit()).isEqualTo(MeasureUnit.MILES);
+    assertThat(mi.getValue()).isEqualTo(oneHundred);
+
+    assertThat(in).isNotNull();
+    assertThat(in.getMeasureUnit()).isEqualTo(MeasureUnit.INCHES);
+    assertThat(in.getValue()).isEqualTo(oneHundred);
+  }
+
+  @Test
   void is_created_with_a_value_and_measure_unit() {
     var len = Length.valueOf(42, MeasureUnit.INCHES);
     assertThat(len.getValue()).isEqualTo(BigDecimal.valueOf(42));

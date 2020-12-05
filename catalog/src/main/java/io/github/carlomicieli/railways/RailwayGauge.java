@@ -16,7 +16,10 @@
 package io.github.carlomicieli.railways;
 
 import io.github.carlomicieli.lengths.Length;
+import io.github.carlomicieli.lengths.MeasureUnit;
+import io.github.carlomicieli.lengths.conversion.MeasureUnitsConverters;
 import io.github.carlomicieli.valueobject.TrackGauge;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,8 +31,28 @@ import lombok.With;
 @Builder
 public final class RailwayGauge {
   private final TrackGauge trackGauge;
-
   private final Length millimeters;
-
   private final Length inches;
+
+  /** Creates a new {@code RailwayGauge} value in millimeters, using the provided track gauge */
+  public static RailwayGauge ofMillimeters(double value, TrackGauge trackGauge) {
+    var lengthValue = BigDecimal.valueOf(value);
+    var converter =
+        MeasureUnitsConverters.INSTANCE.getConverter(MeasureUnit.MILLIMETERS, MeasureUnit.INCHES);
+    return new RailwayGauge(
+        trackGauge,
+        Length.of(lengthValue, MeasureUnit.MILLIMETERS),
+        Length.of(converter.convert(lengthValue, 2), MeasureUnit.INCHES));
+  }
+
+  /** Creates a new {@code RailwayGauge} value in inches, using the provided track gauge */
+  public static RailwayGauge ofInches(double value, TrackGauge trackGauge) {
+    var lengthValue = BigDecimal.valueOf(value);
+    var converter =
+        MeasureUnitsConverters.INSTANCE.getConverter(MeasureUnit.INCHES, MeasureUnit.MILLIMETERS);
+    return new RailwayGauge(
+        trackGauge,
+        Length.of(converter.convert(lengthValue, 2), MeasureUnit.MILLIMETERS),
+        Length.of(lengthValue, MeasureUnit.INCHES));
+  }
 }

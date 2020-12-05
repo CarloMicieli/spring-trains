@@ -21,12 +21,13 @@ import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-public final class MeasureUnitsConverters {
+public enum MeasureUnitsConverters {
+  INSTANCE();
 
-  private static final Map<Conversion, MeasureUnitConverter> converterMap;
-  private static final MeasureUnitConverter sameUnitConvert = new SameUnitConverter();
+  private final Map<Conversion, MeasureUnitConverter> converterMap;
+  private final MeasureUnitConverter sameUnitConvert = new SameUnitConverter();
 
-  static {
+  private MeasureUnitsConverters() {
     converterMap =
         Map.ofEntries(
             converterEntry(
