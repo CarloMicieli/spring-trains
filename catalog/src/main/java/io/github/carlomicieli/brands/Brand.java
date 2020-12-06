@@ -19,7 +19,7 @@ import io.github.carlomicieli.addresses.Address;
 import io.github.carlomicieli.domain.AggregateRoot;
 import io.github.carlomicieli.mail.MailAddress;
 import io.github.carlomicieli.util.Slug;
-import java.net.URI;
+import java.net.URL;
 import java.time.Instant;
 import lombok.*;
 
@@ -48,7 +48,7 @@ public final class Brand implements AggregateRoot<BrandId> {
   private final String name;
   private final String companyName;
   private final Slug slug;
-  private final URI websiteUrl;
+  private final URL websiteUrl;
   private final String groupName;
   private final String description;
   private final Address address;

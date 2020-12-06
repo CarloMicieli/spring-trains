@@ -15,21 +15,32 @@
 */
 package io.github.carlomicieli.mail;
 
-import lombok.Data;
-import lombok.Getter;
+import java.util.Optional;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Value;
 import org.apache.commons.validator.routines.EmailValidator;
 
-@Getter
-@Data
-public final class MailAddress {
+@Value
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+public class MailAddress {
 
-  private final String address;
+  String address;
 
-  public MailAddress(String address) {
+  public static MailAddress of(String address) {
     boolean valid = EmailValidator.getInstance().isValid(address);
     if (!valid) {
       throw new IllegalArgumentException("Invalid mail address");
     }
-    this.address = address;
+    return new MailAddress(address);
+  }
+
+  public static Optional<MailAddress> tryParse(String address) {
+    boolean valid = EmailValidator.getInstance().isValid(address);
+    if (valid) {
+      return Optional.of(new MailAddress(address));
+    }
+
+    return Optional.empty();
   }
 }

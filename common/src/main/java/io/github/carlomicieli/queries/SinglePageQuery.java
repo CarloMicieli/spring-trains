@@ -27,7 +27,7 @@ import java.util.stream.Stream;
  * @param <C> the {@code Criteria} data type
  * @param <T> the view model data type
  */
-public interface SimpleQuery<C extends Criteria, T> extends Query<C, T> {
+public interface SinglePageQuery<C extends Criteria, T> extends Query<C, T> {
 
   /**
    * Execute this {@code Query} using the provided {@code criteria} in order to select the

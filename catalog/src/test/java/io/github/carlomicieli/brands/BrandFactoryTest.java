@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import io.github.carlomicieli.addresses.Address;
 import io.github.carlomicieli.mail.MailAddress;
-import java.net.URI;
+import java.net.URL;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -58,7 +58,7 @@ class BrandFactoryTest {
     assertThat(brand.getBrandKind()).isEqualTo(BrandKind.INDUSTRIAL);
     assertThat(brand.getGroupName()).isEqualTo("Group name goes here");
     assertThat(brand.getAddress()).isEqualTo(FIXED_ADDRESS);
-    assertThat(brand.getMailAddress()).isEqualTo(new MailAddress("webmaster@acmetreni.com"));
+    assertThat(brand.getMailAddress()).isEqualTo(MailAddress.of("webmaster@acmetreni.com"));
   }
 
   @Test
@@ -84,11 +84,11 @@ class BrandFactoryTest {
     return factory.createNewBrand(
         "ACME",
         "Associazione Costruzioni Modellistiche Esatte",
-        new URI("https://www.acmetreni.com"),
+        new URL("https://www.acmetreni.com"),
         "Group name goes here",
         "ACME description goes here",
         FIXED_ADDRESS,
         BrandKind.INDUSTRIAL,
-        new MailAddress("webmaster@acmetreni.com"));
+        MailAddress.of("webmaster@acmetreni.com"));
   }
 }

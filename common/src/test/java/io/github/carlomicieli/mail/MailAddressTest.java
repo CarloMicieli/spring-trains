@@ -27,18 +27,27 @@ import org.junit.jupiter.api.Test;
 class MailAddressTest {
 
   @Test
-  void it_is_created_from_its_address() {
+  void is_created_from_its_address() {
     final String expected = "mail@mail.com";
 
-    var mail = new MailAddress("mail@mail.com");
+    var mail = MailAddress.of("mail@mail.com");
     assertThat(mail).isNotNull();
     assertThat(mail.getAddress()).isEqualTo(expected);
   }
 
   @Test
-  void it_should_accept_only_valid_addresses() {
+  void should_accept_only_valid_addresses() {
     IllegalArgumentException thrown =
-        catchThrowableOfType(() -> new MailAddress("invalid mail"), IllegalArgumentException.class);
+        catchThrowableOfType(() -> MailAddress.of("invalid mail"), IllegalArgumentException.class);
     assertThat(thrown.getMessage()).contains("Invalid mail address");
+  }
+
+  @Test
+  void can_try_to_parse_the_mail_address() {
+    var valid = MailAddress.tryParse("mail@mail.com");
+    var invalid = MailAddress.tryParse("not really");
+
+    assertThat(valid.isPresent()).isTrue();
+    assertThat(invalid.isEmpty()).isTrue();
   }
 }

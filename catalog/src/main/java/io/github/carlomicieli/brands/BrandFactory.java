@@ -19,7 +19,7 @@ import io.github.carlomicieli.addresses.Address;
 import io.github.carlomicieli.domain.AggregateRootFactory;
 import io.github.carlomicieli.mail.MailAddress;
 import io.github.carlomicieli.util.Slug;
-import java.net.URI;
+import java.net.URL;
 import java.time.Clock;
 import java.util.function.Supplier;
 import lombok.extern.log4j.Log4j2;
@@ -37,7 +37,7 @@ public final class BrandFactory extends AggregateRootFactory<Brand, BrandId> {
   public Brand createNewBrand(
       String name,
       String companyName,
-      URI websiteUrl,
+      URL websiteUrl,
       String groupName,
       String description,
       Address address,
@@ -51,6 +51,7 @@ public final class BrandFactory extends AggregateRootFactory<Brand, BrandId> {
     return Brand.builder()
         .id(newId)
         .name(name)
+        .slug(brandSlug)
         .companyName(companyName)
         .groupName(groupName)
         .address(address)
