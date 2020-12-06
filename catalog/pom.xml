@@ -8,6 +8,7 @@
     </parent>
 
     <artifactId>catalog</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

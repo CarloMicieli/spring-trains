@@ -17,9 +17,10 @@ package io.github.carlomicieli.brands.queries.getbrandbyslug;
 
 import io.github.carlomicieli.queries.criteria.Criteria;
 import io.github.carlomicieli.util.Slug;
+import javax.validation.constraints.NotNull;
 import lombok.Value;
 
 @Value
 public class GetBrandBySlugCriteria implements Criteria {
-  Slug slug;
+  @NotNull Slug slug;
 }
