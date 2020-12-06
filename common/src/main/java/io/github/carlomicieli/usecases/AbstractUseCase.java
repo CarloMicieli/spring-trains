@@ -36,7 +36,7 @@ public abstract class AbstractUseCase<
   protected OutPortType outputPort;
 
   @Override
-  public void execute(InType input) {
+  public final void execute(InType input) {
     if (input == null) {
       outputPort.error("The use case input is null");
       return;
