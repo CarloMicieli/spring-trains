@@ -17,9 +17,9 @@ package io.github.carlomicieli.usecases;
 
 import io.github.carlomicieli.usecases.boundaries.input.UseCaseInput;
 import io.github.carlomicieli.usecases.boundaries.input.UseCaseInputValidator;
-import io.github.carlomicieli.usecases.boundaries.input.validation.ValidationError;
 import io.github.carlomicieli.usecases.boundaries.output.UseCaseOutput;
 import io.github.carlomicieli.usecases.boundaries.output.port.StandardOutputPort;
+import io.github.carlomicieli.validation.ValidationError;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;

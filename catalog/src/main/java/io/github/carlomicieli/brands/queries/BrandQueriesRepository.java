@@ -16,9 +16,14 @@
 package io.github.carlomicieli.brands.queries;
 
 import io.github.carlomicieli.brands.Brand;
+import io.github.carlomicieli.queries.pagination.Page;
+import io.github.carlomicieli.queries.pagination.PaginatedResult;
+import io.github.carlomicieli.queries.sorting.Sorting;
 import io.github.carlomicieli.util.Slug;
 import java.util.Optional;
 
 public interface BrandQueriesRepository {
   Optional<Brand> findBySlug(Slug slug);
+
+  PaginatedResult<Brand> findBrands(Page currentPage, Sorting orderBy);
 }

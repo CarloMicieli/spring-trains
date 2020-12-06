@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.usecases.boundaries.input.validation;
+package io.github.carlomicieli.validation;
 
 import lombok.AllArgsConstructor;
 import lombok.Value;

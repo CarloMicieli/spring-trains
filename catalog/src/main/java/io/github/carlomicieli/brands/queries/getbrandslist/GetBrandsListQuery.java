@@ -13,29 +13,24 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.queries;
+package io.github.carlomicieli.brands.queries.getbrandslist;
 
-import io.github.carlomicieli.queries.criteria.Criteria;
+import io.github.carlomicieli.brands.Brand;
+import io.github.carlomicieli.brands.queries.BrandQueriesRepository;
+import io.github.carlomicieli.queries.PaginatedQuery;
 import io.github.carlomicieli.queries.pagination.Page;
 import io.github.carlomicieli.queries.pagination.PaginatedResult;
 import io.github.carlomicieli.queries.sorting.Sorting;
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
-/**
- * It represents a {@code Query} with pagination.
- *
- * <p>Queries never modify the database. A query returns a view models that does not encapsulate any
- * domain knowledge.
- *
- * @param <T> the view model data type
- */
-public interface PaginatedQuery<T> extends Query<PaginatedQuery.NoCriteria, T> {
+@Log4j2
+@AllArgsConstructor
+public final class GetBrandsListQuery implements PaginatedQuery<Brand> {
+  private final BrandQueriesRepository repository;
 
-  /**
-   * Execute this {@code Query} in order to select one page of the corresponding data.
-   *
-   * @throws QueryExecutionException in case of any error
-   */
-  PaginatedResult<T> execute(Page currentPage, Sorting orderBy);
-
-  class NoCriteria implements Criteria {}
+  @Override
+  public PaginatedResult<Brand> execute(Page currentPage, Sorting orderBy) {
+    return repository.findBrands(currentPage, orderBy);
+  }
 }

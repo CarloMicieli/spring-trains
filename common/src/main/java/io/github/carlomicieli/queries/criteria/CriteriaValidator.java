@@ -13,17 +13,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.queries;
+package io.github.carlomicieli.queries.criteria;
 
-import io.github.carlomicieli.queries.criteria.Criteria;
-import java.util.Optional;
+import io.github.carlomicieli.validation.ValidationError;
+import java.util.List;
 
-/**
- * A query that can produce one or zero results.
- *
- * @param <C> the criteria data type
- * @param <T> the view model data type
- */
-public interface SingleResultQuery<C extends Criteria, T> extends Query<C, T> {
-  Optional<T> execute(C criteria);
+public interface CriteriaValidator<C extends Criteria> {
+  List<ValidationError> validateCriteria(C criteria);
 }

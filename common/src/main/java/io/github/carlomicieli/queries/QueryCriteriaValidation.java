@@ -16,14 +16,22 @@
 package io.github.carlomicieli.queries;
 
 import io.github.carlomicieli.queries.criteria.Criteria;
-import java.util.Optional;
+import io.github.carlomicieli.queries.criteria.CriteriaValidator;
+import io.github.carlomicieli.queries.criteria.InvalidCriteriaException;
+import java.util.Objects;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 
-/**
- * A query that can produce one or zero results.
- *
- * @param <C> the criteria data type
- * @param <T> the view model data type
- */
-public interface SingleResultQuery<C extends Criteria, T> extends Query<C, T> {
-  Optional<T> execute(C criteria);
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+public abstract class QueryCriteriaValidation<C extends Criteria> {
+  private final CriteriaValidator<C> criteriaValidator;
+
+  protected void validateCriteria(C criteria) {
+    Objects.requireNonNull(criteria);
+
+    var validationErrors = criteriaValidator.validateCriteria(criteria);
+    if (!validationErrors.isEmpty()) {
+      throw new InvalidCriteriaException(validationErrors);
+    }
+  }
 }

@@ -16,14 +16,25 @@
 package io.github.carlomicieli.queries;
 
 import io.github.carlomicieli.queries.criteria.Criteria;
-import java.util.Optional;
+import io.github.carlomicieli.queries.pagination.Page;
+import io.github.carlomicieli.queries.pagination.PaginatedResult;
+import io.github.carlomicieli.queries.sorting.Sorting;
 
 /**
- * A query that can produce one or zero results.
+ * It represents a {@code Query} with pagination.
  *
- * @param <C> the criteria data type
+ * <p>Queries never modify the database. A query returns a view models that does not encapsulate any
+ * domain knowledge.
+ *
+ * @param <C> the {@code Criteria} data type
  * @param <T> the view model data type
  */
-public interface SingleResultQuery<C extends Criteria, T> extends Query<C, T> {
-  Optional<T> execute(C criteria);
+public interface PaginatedQueryWithCriteria<C extends Criteria, T> extends Query<C, T> {
+
+  /**
+   * Execute this {@code Query} in order to select one page of the corresponding data.
+   *
+   * @throws QueryExecutionException in case of any error
+   */
+  PaginatedResult<T> execute(C criteria, Page currentPage, Sorting orderBy);
 }

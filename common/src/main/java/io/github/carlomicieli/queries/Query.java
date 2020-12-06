@@ -15,4 +15,6 @@
 */
 package io.github.carlomicieli.queries;
 
+import io.github.carlomicieli.queries.criteria.Criteria;
+
 public interface Query<C extends Criteria, T> {}

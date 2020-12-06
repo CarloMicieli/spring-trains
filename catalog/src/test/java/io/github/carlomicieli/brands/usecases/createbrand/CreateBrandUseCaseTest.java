@@ -22,8 +22,8 @@ import io.github.carlomicieli.brands.BrandFactory;
 import io.github.carlomicieli.brands.BrandId;
 import io.github.carlomicieli.brands.usecases.BrandUseCaseRepository;
 import io.github.carlomicieli.usecases.boundaries.input.UseCaseBeanValidator;
-import io.github.carlomicieli.usecases.boundaries.input.validation.ValidationError;
 import io.github.carlomicieli.util.Slug;
+import io.github.carlomicieli.validation.ValidationError;
 import java.time.Clock;
 import java.util.List;
 import javax.validation.Validation;
@@ -63,8 +63,9 @@ class CreateBrandUseCaseTest {
   void should_always_validate_input() {
     List<ValidationError> expected =
         List.of(
-            ValidationError.of("name", "must not be blank"),
-            ValidationError.of("brandKind", "must not be blank"));
+            ValidationError.of("brandKind", "must not be blank"),
+            ValidationError.of("name", "must not be blank"));
+
     var input = CreateBrandInput.builder().build();
 
     useCase.execute(input);

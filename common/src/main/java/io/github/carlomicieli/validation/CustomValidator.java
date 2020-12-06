@@ -13,23 +13,23 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.usecases.boundaries.input;
+package io.github.carlomicieli.validation;
 
-import io.github.carlomicieli.validation.CustomValidator;
-import io.github.carlomicieli.validation.ValidationError;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
-@AllArgsConstructor
-@Getter
-public final class UseCaseBeanValidator<InType extends UseCaseInput>
-    implements UseCaseInputValidator<InType>, CustomValidator<InType> {
-  private final Validator validator;
+public interface CustomValidator<T> {
+  Validator getValidator();
 
-  @Override
-  public List<ValidationError> validateInput(InType input) {
-    return validate(input);
+  default List<ValidationError> validate(T input) {
+    Set<ConstraintViolation<T>> errors = getValidator().validate(input);
+    return errors.stream()
+        .map(e -> ValidationError.of(e.getPropertyPath().toString(), e.getMessage()))
+        .sorted(Comparator.comparing(ValidationError::getPropertyName))
+        .collect(Collectors.toList());
   }
 }

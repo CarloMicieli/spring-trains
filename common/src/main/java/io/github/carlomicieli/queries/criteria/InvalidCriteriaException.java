@@ -13,17 +13,26 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.usecases.boundaries.output.port;
+package io.github.carlomicieli.queries.criteria;
 
-import io.github.carlomicieli.usecases.boundaries.output.UseCaseOutput;
 import io.github.carlomicieli.validation.ValidationError;
+import java.util.Collections;
 import java.util.List;
 
-/** The {@code output port} when use case handling results in an error. */
-public interface ErrorOutputPort<OutType extends UseCaseOutput> extends OutputPort {
-  /** Output port for generic errors */
-  void error(String errorMessage);
+public final class InvalidCriteriaException extends RuntimeException {
+  private final List<ValidationError> errors;
 
-  /** Output port for requests that failed the validation */
-  void invalidRequest(List<ValidationError> validationErrors);
+  public InvalidCriteriaException(List<ValidationError> errors) {
+    super("Invalid query criteria");
+    this.errors = errors;
+  }
+
+  public InvalidCriteriaException(List<ValidationError> errors, Throwable ex) {
+    super("Invalid query criteria", ex);
+    this.errors = errors;
+  }
+
+  public List<ValidationError> getErrors() {
+    return Collections.unmodifiableList(errors);
+  }
 }

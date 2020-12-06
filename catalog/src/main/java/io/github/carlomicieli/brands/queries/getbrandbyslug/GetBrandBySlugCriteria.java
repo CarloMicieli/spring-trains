@@ -15,7 +15,7 @@
 */
 package io.github.carlomicieli.brands.queries.getbrandbyslug;
 
-import io.github.carlomicieli.queries.Criteria;
+import io.github.carlomicieli.queries.criteria.Criteria;
 import io.github.carlomicieli.util.Slug;
 import lombok.Value;
 

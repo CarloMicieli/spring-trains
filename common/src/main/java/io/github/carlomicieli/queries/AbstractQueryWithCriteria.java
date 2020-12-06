@@ -16,26 +16,29 @@
 package io.github.carlomicieli.queries;
 
 import io.github.carlomicieli.queries.criteria.Criteria;
-import io.github.carlomicieli.queries.pagination.Page;
-import io.github.carlomicieli.queries.pagination.PaginatedResult;
+import io.github.carlomicieli.queries.criteria.CriteriaValidator;
 import io.github.carlomicieli.queries.sorting.Sorting;
+import java.util.Objects;
+import java.util.stream.Stream;
 
-/**
- * It represents a {@code Query} with pagination.
- *
- * <p>Queries never modify the database. A query returns a view models that does not encapsulate any
- * domain knowledge.
- *
- * @param <T> the view model data type
- */
-public interface PaginatedQuery<T> extends Query<PaginatedQuery.NoCriteria, T> {
+public abstract class AbstractQueryWithCriteria<C extends Criteria, T>
+    extends QueryCriteriaValidation<C> implements QueryWithCriteria<C, T> {
 
-  /**
-   * Execute this {@code Query} in order to select one page of the corresponding data.
-   *
-   * @throws QueryExecutionException in case of any error
-   */
-  PaginatedResult<T> execute(Page currentPage, Sorting orderBy);
+  protected AbstractQueryWithCriteria(CriteriaValidator<C> criteriaValidator) {
+    super(criteriaValidator);
+  }
 
-  class NoCriteria implements Criteria {}
+  @Override
+  public final Stream<T> execute(C criteria, Sorting orderBy) {
+    validateOrderBy(orderBy);
+    validateCriteria(criteria);
+
+    return handle(criteria, orderBy);
+  }
+
+  protected abstract Stream<T> handle(C criteria, Sorting orderBy);
+
+  private static void validateOrderBy(Sorting orderBy) {
+    Objects.requireNonNull(orderBy);
+  }
 }

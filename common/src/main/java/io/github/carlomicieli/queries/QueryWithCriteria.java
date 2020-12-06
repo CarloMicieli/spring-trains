@@ -15,6 +15,7 @@
 */
 package io.github.carlomicieli.queries;
 
+import io.github.carlomicieli.queries.criteria.Criteria;
 import io.github.carlomicieli.queries.sorting.Sorting;
 import java.util.stream.Stream;
 
@@ -27,7 +28,7 @@ import java.util.stream.Stream;
  * @param <C> the {@code Criteria} data type
  * @param <T> the view model data type
  */
-public interface SinglePageQuery<C extends Criteria, T> extends Query<C, T> {
+public interface QueryWithCriteria<C extends Criteria, T> extends Query<C, T> {
 
   /**
    * Execute this {@code Query} using the provided {@code criteria} in order to select the

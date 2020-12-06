@@ -15,7 +15,7 @@
 */
 package io.github.carlomicieli.usecases.boundaries.input;
 
-import io.github.carlomicieli.usecases.boundaries.input.validation.ValidationError;
+import io.github.carlomicieli.validation.ValidationError;
 import java.util.List;
 
 public interface UseCaseInputValidator<InType extends UseCaseInput> {

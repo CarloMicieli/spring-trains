@@ -16,26 +16,22 @@
 package io.github.carlomicieli.queries;
 
 import io.github.carlomicieli.queries.criteria.Criteria;
+import io.github.carlomicieli.queries.criteria.CriteriaValidator;
 import io.github.carlomicieli.queries.pagination.Page;
 import io.github.carlomicieli.queries.pagination.PaginatedResult;
 import io.github.carlomicieli.queries.sorting.Sorting;
 
-/**
- * It represents a {@code Query} with pagination.
- *
- * <p>Queries never modify the database. A query returns a view models that does not encapsulate any
- * domain knowledge.
- *
- * @param <T> the view model data type
- */
-public interface PaginatedQuery<T> extends Query<PaginatedQuery.NoCriteria, T> {
+public abstract class AbstractPaginatedQueryWithCriteria<C extends Criteria, T>
+    extends QueryCriteriaValidation<C> implements PaginatedQueryWithCriteria<C, T> {
+  protected AbstractPaginatedQueryWithCriteria(CriteriaValidator<C> criteriaValidator) {
+    super(criteriaValidator);
+  }
 
-  /**
-   * Execute this {@code Query} in order to select one page of the corresponding data.
-   *
-   * @throws QueryExecutionException in case of any error
-   */
-  PaginatedResult<T> execute(Page currentPage, Sorting orderBy);
+  @Override
+  public final PaginatedResult<T> execute(C criteria, Page currentPage, Sorting orderBy) {
+    validateCriteria(criteria);
+    return handle(criteria, currentPage, orderBy);
+  }
 
-  class NoCriteria implements Criteria {}
+  protected abstract PaginatedResult<T> handle(C criteria, Page currentPage, Sorting orderBy);
 }
