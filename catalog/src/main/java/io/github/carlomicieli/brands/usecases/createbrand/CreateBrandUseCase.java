@@ -15,6 +15,7 @@
 */
 package io.github.carlomicieli.brands.usecases.createbrand;
 
+import com.google.common.base.Strings;
 import io.github.carlomicieli.addresses.Address;
 import io.github.carlomicieli.brands.BrandFactory;
 import io.github.carlomicieli.brands.BrandKind;
@@ -28,7 +29,6 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.Optional;
 import lombok.extern.log4j.Log4j2;
-import com.google.common.base.Strings;
 
 @Log4j2
 public final class CreateBrandUseCase

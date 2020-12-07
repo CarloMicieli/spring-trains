@@ -25,7 +25,7 @@ public final class ItemNumber {
 
   public ItemNumber(String value) {
 
-    //Validate.notBlank(value, "Item number value cannot be blank or null");
+    // Validate.notBlank(value, "Item number value cannot be blank or null");
     this.value = value;
   }
 

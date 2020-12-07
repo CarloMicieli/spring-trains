@@ -15,12 +15,12 @@
 */
 package io.github.carlomicieli.catalogitems;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import java.util.Map;
 import java.util.Optional;
 import lombok.Data;
 import org.apache.logging.log4j.util.Strings;
-
-import static com.google.common.base.Preconditions.checkArgument;
 
 /**
  * The model railway industry adopted an 'Era', or 'Epoch' system; the idea being to group models
