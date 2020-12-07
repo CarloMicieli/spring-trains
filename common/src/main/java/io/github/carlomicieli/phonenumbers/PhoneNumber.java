@@ -15,9 +15,9 @@
 */
 package io.github.carlomicieli.phonenumbers;
 
+import com.google.common.base.Strings;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
 
 /** An immutable class to store a phone number */
 @Data
@@ -26,7 +26,7 @@ public final class PhoneNumber {
   private final String value;
 
   private PhoneNumber(String value) {
-    if (StringUtils.isBlank(value)) {
+    if (Strings.isNullOrEmpty(value)) {
       throw new IllegalArgumentException("Phone number value cannot be blank or null");
     }
 

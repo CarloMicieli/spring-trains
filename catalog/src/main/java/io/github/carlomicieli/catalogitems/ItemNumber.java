@@ -17,7 +17,6 @@ package io.github.carlomicieli.catalogitems;
 
 import java.util.Optional;
 import lombok.Data;
-import org.apache.commons.lang3.Validate;
 
 /** It represent a catalog item number. */
 @Data
@@ -25,7 +24,8 @@ public final class ItemNumber {
   private final String value;
 
   public ItemNumber(String value) {
-    Validate.notBlank(value, "Item number value cannot be blank or null");
+
+    //Validate.notBlank(value, "Item number value cannot be blank or null");
     this.value = value;
   }
 

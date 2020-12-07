@@ -28,7 +28,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.Optional;
 import lombok.extern.log4j.Log4j2;
-import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Strings;
 
 @Log4j2
 public final class CreateBrandUseCase
@@ -90,7 +90,7 @@ public final class CreateBrandUseCase
   }
 
   private static Optional<URL> tryParseUrl(String url) {
-    if (StringUtils.isBlank(url)) {
+    if (Strings.isNullOrEmpty(url)) {
       return Optional.empty();
     }
 

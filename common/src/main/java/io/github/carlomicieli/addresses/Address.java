@@ -15,11 +15,11 @@
 */
 package io.github.carlomicieli.addresses;
 
+import com.google.common.base.Strings;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.With;
-import org.apache.commons.lang3.StringUtils;
 
 /** An immutable object value that represents an {@code Address}. */
 @Data
@@ -48,10 +48,10 @@ public class Address {
       return true;
     }
 
-    return StringUtils.isBlank(address.line1)
-        || StringUtils.isBlank(address.postalCode)
-        || StringUtils.isBlank(address.city)
-        || StringUtils.isBlank(address.country);
+    return Strings.isNullOrEmpty(address.line1)
+        || Strings.isNullOrEmpty(address.postalCode)
+        || Strings.isNullOrEmpty(address.city)
+        || Strings.isNullOrEmpty(address.country);
   }
 
   public static Address NULL_ADDRESS = new Address("", null, "", null, "", "");

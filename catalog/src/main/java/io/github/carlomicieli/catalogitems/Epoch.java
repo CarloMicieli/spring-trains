@@ -18,7 +18,9 @@ package io.github.carlomicieli.catalogitems;
 import java.util.Map;
 import java.util.Optional;
 import lombok.Data;
-import org.apache.commons.lang3.Validate;
+import org.apache.logging.log4j.util.Strings;
+
+import static com.google.common.base.Preconditions.checkArgument;
 
 /**
  * The model railway industry adopted an 'Era', or 'Epoch' system; the idea being to group models
@@ -60,7 +62,7 @@ public final class Epoch {
   }
 
   private Epoch(String epoch1, String epoch2) {
-    Validate.notBlank(epoch1, "epoch1 is required");
+    checkArgument(Strings.isNotBlank(epoch1), "epoch1 is required");
 
     this.value1 = epoch1;
     this.value2 = epoch2;
