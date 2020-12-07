@@ -15,31 +15,65 @@
 */
 package io.github.carlomicieli.countries;
 
+import java.util.Map;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Value;
 
 /**
  * It represents an ISO country.
  *
- * <p>A simple wrapper around country code, to ensure it allows only valid country codes
+ * <p>A simple wrapper around country code ({@code ISO 3166 alpha-2} country code), to ensure it
+ * allows only valid country codes
  */
-@Data
+@Value
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public final class Country {
+public class Country {
 
-  private final String code;
-  private final String englishName;
+  private static final Map<String, Country> COUNTRIES;
+
+  static {
+    COUNTRIES =
+        Map.ofEntries(
+            putCountry("at", "Austria"),
+            putCountry("be", "Belgium"),
+            putCountry("ca", "Canada"),
+            putCountry("cn", "China"),
+            putCountry("dk", "Denmark"),
+            putCountry("fi", "Finland"),
+            putCountry("fr", "France"),
+            putCountry("de", "Germany"),
+            putCountry("it", "Italy"),
+            putCountry("jp", "Japan"),
+            putCountry("mx", "Mexico"),
+            putCountry("nl", "Netherlands"),
+            putCountry("no", "Norway"),
+            putCountry("ro", "Romania"),
+            putCountry("ru", "Russian Federation"),
+            putCountry("es", "Spain"),
+            putCountry("se", "Sweden"),
+            putCountry("ch", "Switzerland"),
+            putCountry("tr", "Turkey"),
+            putCountry("uk", "United Kingdom"),
+            putCountry("us", "United States"));
+  }
+
+  private static Map.Entry<String, Country> putCountry(String code, String name) {
+    return Map.entry(code, new Country(code, name));
+  }
+
+  String code;
+  String englishName;
 
   public static Country of(String code) {
-    throw new UnsupportedOperationException();
+    if (code == null || code.length() != 2) {
+      throw new IllegalArgumentException("Invalid country code");
+    }
 
-    //    if (code != null && code.length() != 2)
-    //    {
-    //      throw new IllegalArgumentException("Invalid country code");
-    //    }
-    //
-    //
-    //    return new Country(code, null);
+    if (!ISOValidationUtils.countryIsValid(code)) {
+      throw new IllegalArgumentException("Invalid country code");
+    }
+
+    return COUNTRIES.getOrDefault(code.toLowerCase(), new Country(code, ""));
   }
 }

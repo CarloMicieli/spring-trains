@@ -15,28 +15,30 @@
 */
 package io.github.carlomicieli.countries;
 
+import static io.github.carlomicieli.countries.ISOValidationUtils.countryIsValid;
+import static io.github.carlomicieli.countries.ISOValidationUtils.languageIsValid;
 import static org.assertj.core.api.Assertions.*;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("A country")
-@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class CountryTest {
+class ISOValidationUtilsTest {
   @Test
-  void is_created_from_a_valid_iso_code() {
-    var country = Country.of("DE");
-    assertThat(country).isNotNull();
-    assertThat(country.getCode()).isEqualTo("de");
-    assertThat(country.getEnglishName()).isEqualTo("Germany");
+  public void shouldCheckWhetherLanguageCodesAreValid() {
+    assertThat(languageIsValid("en")).isTrue();
   }
 
   @Test
-  void is_validating_the_country_code() {
-    var ex = catchThrowableOfType(() -> Country.of("rr"), IllegalArgumentException.class);
-    assertThat(ex).isNotNull();
-    assertThat(ex.getMessage()).isEqualTo("Invalid country code");
+  public void shouldCheckWhetherLanguageCodesAreNotValid() {
+    assertThat(languageIsValid("rr")).isFalse();
+  }
+
+  @Test
+  public void shouldCheckWhetherCountryCodesAreValid() {
+    assertThat(countryIsValid("gb")).isTrue();
+  }
+
+  @Test
+  public void shouldCheckWhetherCountryCodesAreNotValid() {
+    assertThat(countryIsValid("rr")).isFalse();
   }
 }
