@@ -38,6 +38,8 @@ public class CreateBrandPresenter extends ServerResponseOutputPort<CreateBrandOu
 
   @Override
   public void standard(CreateBrandOutput output) {
+    var slug = output.getSlug();
+
     setResponse(ResponseEntity.ok().body(String.format("%d", hashCode())));
   }
 }
