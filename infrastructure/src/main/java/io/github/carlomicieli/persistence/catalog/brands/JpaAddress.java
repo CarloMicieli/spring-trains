@@ -13,21 +13,35 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.scales;
+package io.github.carlomicieli.persistence.catalog.brands;
 
-import java.math.BigDecimal;
-import lombok.AllArgsConstructor;
-import lombok.Value;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import lombok.*;
 
-// It represents the <em>Ratio</em> between a model railway size
-// and the size of an actual train.
-@Value
-@AllArgsConstructor(staticName = "of")
-public class Ratio implements Comparable<Ratio> {
-  BigDecimal value;
+@Embeddable
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@With
+public class JpaAddress {
 
-  @Override
-  public int compareTo(Ratio o) {
-    return 0;
-  }
+  @Column(name = "address_line1")
+  String line1;
+
+  @Column(name = "address_line2")
+  String line2;
+
+  @Column(name = "address_city")
+  String city;
+
+  @Column(name = "address_region")
+  String region;
+
+  @Column(name = "address_postal_code")
+  String postalCode;
+
+  @Column(name = "address_country")
+  String country;
 }

@@ -13,21 +13,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.scales;
+package io.github.carlomicieli.persistence.common.converter;
 
-import java.math.BigDecimal;
-import lombok.AllArgsConstructor;
-import lombok.Value;
+import io.github.carlomicieli.util.Slug;
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
-// It represents the <em>Ratio</em> between a model railway size
-// and the size of an actual train.
-@Value
-@AllArgsConstructor(staticName = "of")
-public class Ratio implements Comparable<Ratio> {
-  BigDecimal value;
+@Converter
+public class SlugConverter implements AttributeConverter<Slug, String> {
+  @Override
+  public String convertToDatabaseColumn(Slug slug) {
+    return slug.getValue();
+  }
 
   @Override
-  public int compareTo(Ratio o) {
-    return 0;
+  public Slug convertToEntityAttribute(String s) {
+    return Slug.of(s);
   }
 }

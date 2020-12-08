@@ -13,21 +13,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.scales;
+package io.github.carlomicieli.persistence.catalog.railways;
 
-import java.math.BigDecimal;
-import lombok.AllArgsConstructor;
-import lombok.Value;
+import java.util.UUID;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-// It represents the <em>Ratio</em> between a model railway size
-// and the size of an actual train.
-@Value
-@AllArgsConstructor(staticName = "of")
-public class Ratio implements Comparable<Ratio> {
-  BigDecimal value;
-
-  @Override
-  public int compareTo(Ratio o) {
-    return 0;
-  }
-}
+public interface JpaRailwayRepository extends JpaRepository<JpaRailway, UUID> {}
