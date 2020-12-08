@@ -30,7 +30,7 @@ $ ./run-psql.sh
 To run the application using `maven`:
 
 ```
-$ ./mvnw spring-boot:run -pl webapi
+$ ./mvnw spring-boot:run
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -120,4 +120,44 @@ Content-Type: application/hal+json
     }
 }
  
+```
+
+## Modules
+
+* `common`: contains generic data type for the application (like `Length`s) and all interfaces for the **clean architecture** implementation (use cases and queries)
+* `catalog`: domain entities and business logic for the **catalog** module
+* `collecting`: domain entities and business logic for the **collecting** module
+* `infrastructure`: contains the actual persistence implementation for use case and queries, it also contains the infrastructure code for security and the web layer. This is the first module with a dependency on the spring framework
+* `webapi`: the restuful web api layer
+
+## Clean architecture
+
+### Use cases
+
+**Use cases** are managing commands in the application. They are basically functions that given a __use case input__ are producing a __use case output__. In this implementation the output is produced as a side effect on a corresponding __output port__.
+
+```java
+public interface UseCaseInput {}
+
+@FunctionalInterface
+public interface UseCase<InType extends UseCaseInput> {
+  void execute(InType input);
+}
+```
+
+### Queries
+
+On the other hand, **Queries** are handling the reading side of the application. The application is using different kind of queries
+
+```java
+
+public interface Query<C extends Criteria, T> {}
+
+public interface SingleResultQuery<C extends Criteria, T> extends Query<C, T> {
+  Optional<T> execute(C criteria);
+}
+
+public interface PaginatedQueryWithCriteria<C extends Criteria, T> extends Query<C, T> {
+  PaginatedResult<T> execute(C criteria, Page currentPage, Sorting orderBy);
+}
 ```
