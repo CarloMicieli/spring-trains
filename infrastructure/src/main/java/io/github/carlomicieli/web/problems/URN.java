@@ -13,26 +13,30 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.web.handler;
+package io.github.carlomicieli.web.problems;
 
-import java.util.Map;
-import lombok.Builder;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.util.UUID;
 import lombok.Data;
-import org.springframework.http.MediaType;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-// From RFC-7807
-// "problem detail" is a way to carry machine-readable details of errors in a HTTP response to avoid
-// the need to
-//        define new error response formats for HTTP APIs.
 @Data
-@Builder
-public class ProblemDetail {
-  public static final MediaType JSON_MEDIA_TYPE = MediaType.valueOf("application/problem+json");
+@EqualsAndHashCode
+@ToString
+@JsonSerialize(using = URNSerializer.class)
+public class URN {
+  private final String value;
 
-  private URN type;
-  private String title;
-  private String detail;
-  private Integer status;
-  private URN instance;
-  private Map<String, String> fields;
+  private URN(String value) {
+    this.value = value;
+  }
+
+  public static URN fromUUID(UUID id) {
+    return new URN(String.format("urn:uuid:%s", id));
+  }
+
+  public static URN fromProblemType(String problemType) {
+    return new URN(String.format("urn:problem-type:%s", problemType));
+  }
 }

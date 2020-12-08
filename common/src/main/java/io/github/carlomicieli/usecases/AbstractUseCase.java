@@ -15,12 +15,14 @@
 */
 package io.github.carlomicieli.usecases;
 
+import io.github.carlomicieli.usecases.boundaries.input.UseCaseBeanValidator;
 import io.github.carlomicieli.usecases.boundaries.input.UseCaseInput;
 import io.github.carlomicieli.usecases.boundaries.input.UseCaseInputValidator;
 import io.github.carlomicieli.usecases.boundaries.output.UseCaseOutput;
 import io.github.carlomicieli.usecases.boundaries.output.port.StandardOutputPort;
 import io.github.carlomicieli.validation.ValidationError;
 import java.util.List;
+import javax.validation.Validator;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -35,6 +37,11 @@ public abstract class AbstractUseCase<
   protected UseCaseInputValidator<InType> inputValidator;
   protected OutPortType outputPort;
 
+  protected AbstractUseCase(Validator validator, OutPortType outputPort) {
+    this.inputValidator = new UseCaseBeanValidator<>(validator);
+    this.outputPort = outputPort;
+  }
+
   @Override
   public final void execute(InType input) {
     if (input == null) {
@@ -48,7 +55,12 @@ public abstract class AbstractUseCase<
       return;
     }
 
-    handle(input);
+    try {
+      handle(input);
+    } catch (Exception ex) {
+      log.error(ex);
+      outputPort.error(ex);
+    }
   }
 
   /**

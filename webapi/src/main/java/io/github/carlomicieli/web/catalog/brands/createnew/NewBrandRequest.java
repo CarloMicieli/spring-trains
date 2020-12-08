@@ -13,31 +13,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.web.catalog.catalogItems.createNew;
+package io.github.carlomicieli.web.catalog.brands.createnew;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Value;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-public class NewCatalogItem {
-  @NotNull
-  @NotBlank
-  @Size(max = 25)
-  private String brand;
-
-  @NotNull
-  @NotBlank
-  @Size(max = 10)
-  private String itemNumber;
-
-  private String category;
-
-  @Size(max = 250)
-  private String description;
+@Value
+public class NewBrandRequest {
+  String name;
+  String companyName;
+  String groupName;
+  String description;
+  String brandKind;
+  int number;
 }

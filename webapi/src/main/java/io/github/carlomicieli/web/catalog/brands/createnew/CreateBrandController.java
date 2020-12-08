@@ -13,34 +13,34 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.web.catalog.catalogItems.createNew;
+package io.github.carlomicieli.web.catalog.brands.createnew;
 
-import io.github.carlomicieli.repository.CatalogItemsRepository;
-import io.github.carlomicieli.web.catalog.catalogItems.representation.CatalogItemRepresentation;
-import javax.validation.Valid;
+import io.github.carlomicieli.brands.usecases.createbrand.CreateBrandInput;
+import io.github.carlomicieli.brands.usecases.createbrand.CreateBrandUseCase;
+import javax.annotation.Nonnull;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/catalogItems")
-@Log4j2
 @AllArgsConstructor
-public class CatalogItemsController {
+@Log4j2
+public class CreateBrandController {
+  private final CreateBrandUseCase useCase;
+  private final CreateBrandPresenter presenter;
 
-  private final CatalogItemsRepository catalogItems;
+  @PostMapping("api/brands")
+  public ResponseEntity<?> postNewBrand(@RequestBody @Nonnull NewBrandRequest request) {
+    var input =
+        CreateBrandInput.builder()
+            .name(request.getName())
+            .brandKind(request.getBrandKind())
+            .build();
 
-  @SneakyThrows
-  @PostMapping()
-  public ResponseEntity<Void> postCatalogItem(@RequestBody @Valid NewCatalogItem newItem) {
-    log.debug("POST {}", newItem);
-
-    // var saved = catalogItems.saveAndFlush(item);
-    return ResponseEntity.created(CatalogItemRepresentation.selfLink(null).toUri()).build();
+    useCase.execute(input);
+    return presenter.getResponse();
   }
 }
