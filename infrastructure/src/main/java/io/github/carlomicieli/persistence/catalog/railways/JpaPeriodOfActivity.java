@@ -15,6 +15,7 @@
 */
 package io.github.carlomicieli.persistence.catalog.railways;
 
+import io.github.carlomicieli.railways.PeriodOfActivity;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -34,4 +35,9 @@ public class JpaPeriodOfActivity {
 
   @Column(name = "operating_until")
   LocalDate operatingUntil;
+
+  public static JpaPeriodOfActivity fromDomain(PeriodOfActivity poa) {
+    return new JpaPeriodOfActivity(
+        poa.isActive(), poa.getOperatingSince(), poa.getOperatingUntil());
+  }
 }

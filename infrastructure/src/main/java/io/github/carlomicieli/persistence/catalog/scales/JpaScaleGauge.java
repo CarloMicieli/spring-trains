@@ -16,6 +16,7 @@
 package io.github.carlomicieli.persistence.catalog.scales;
 
 import io.github.carlomicieli.persistence.common.converter.GaugeConverter;
+import io.github.carlomicieli.scales.ScaleGauge;
 import io.github.carlomicieli.valueobject.Gauge;
 import io.github.carlomicieli.valueobject.TrackGauge;
 import javax.persistence.Column;
@@ -32,6 +33,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Embeddable
 public class JpaScaleGauge {
+  @Column(name = "track_type")
+  TrackGauge trackGauge;
+
   @Column(name = "gauge_mm")
   @Convert(converter = GaugeConverter.MILLIMETERS.class)
   Gauge millimetres;
@@ -40,6 +44,7 @@ public class JpaScaleGauge {
   @Convert(converter = GaugeConverter.INCHES.class)
   Gauge inches;
 
-  @Column(name = "track_type")
-  TrackGauge trackGauge;
+  public static JpaScaleGauge fromDomain(ScaleGauge g) {
+    return new JpaScaleGauge(g.getTrackGauge(), g.getMillimetres(), g.getInches());
+  }
 }

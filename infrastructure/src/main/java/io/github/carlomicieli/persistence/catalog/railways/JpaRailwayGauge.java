@@ -17,6 +17,7 @@ package io.github.carlomicieli.persistence.catalog.railways;
 
 import io.github.carlomicieli.lengths.Length;
 import io.github.carlomicieli.persistence.common.converter.LengthConverter;
+import io.github.carlomicieli.railways.RailwayGauge;
 import io.github.carlomicieli.valueobject.TrackGauge;
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -40,4 +41,8 @@ public class JpaRailwayGauge {
   @Convert(converter = LengthConverter.INCHES.class)
   @Column(name = "gauge_in")
   Length inches;
+
+  public static JpaRailwayGauge fromDomain(RailwayGauge rg) {
+    return new JpaRailwayGauge(rg.getTrackGauge(), rg.getMillimeters(), rg.getInches());
+  }
 }

@@ -17,6 +17,7 @@ package io.github.carlomicieli.persistence.catalog.railways;
 
 import io.github.carlomicieli.lengths.Length;
 import io.github.carlomicieli.persistence.common.converter.LengthConverter;
+import io.github.carlomicieli.railways.RailwayLength;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Embeddable;
@@ -36,4 +37,8 @@ public class JpaRailwayLength {
   @Convert(converter = LengthConverter.MILES.class)
   @Column(name = "total_length_mi")
   Length miles;
+
+  public static JpaRailwayLength fromDomain(RailwayLength rl) {
+    return new JpaRailwayLength(rl.getKilometers(), rl.getMiles());
+  }
 }

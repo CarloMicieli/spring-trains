@@ -15,6 +15,7 @@
 */
 package io.github.carlomicieli.persistence.catalog.brands;
 
+import io.github.carlomicieli.addresses.Address;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import lombok.*;
@@ -44,4 +45,15 @@ public class JpaAddress {
 
   @Column(name = "address_country")
   String country;
+
+  public static JpaAddress fromDomain(Address address) {
+    return JpaAddress.builder()
+        .city(address.getCity())
+        .postalCode(address.getPostalCode())
+        .country(address.getCountry())
+        .line1(address.getLine1())
+        .line2(address.getLine2())
+        .region(address.getRegion())
+        .build();
+  }
 }

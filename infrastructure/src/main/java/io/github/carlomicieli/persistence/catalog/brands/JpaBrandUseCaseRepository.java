@@ -15,13 +15,24 @@
 */
 package io.github.carlomicieli.persistence.catalog.brands;
 
+import io.github.carlomicieli.brands.Brand;
+import io.github.carlomicieli.brands.usecases.BrandUseCaseRepository;
 import io.github.carlomicieli.util.Slug;
-import java.util.Optional;
-import java.util.UUID;
-import org.springframework.data.jpa.repository.JpaRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
 
-public interface JpaBrandRepository extends JpaRepository<JpaBrand, UUID> {
-  boolean existsBySlug(Slug slug);
+@Repository
+@AllArgsConstructor
+public class JpaBrandUseCaseRepository implements BrandUseCaseRepository {
+  private final JpaBrandRepository jpaRepo;
 
-  Optional<JpaBrand> findBySlug(Slug slug);
+  @Override
+  public boolean exists(Slug brandSlug) {
+    return jpaRepo.existsBySlug(brandSlug);
+  }
+
+  @Override
+  public void save(Brand brand) {
+    jpaRepo.save(JpaBrand.builder().build());
+  }
 }
