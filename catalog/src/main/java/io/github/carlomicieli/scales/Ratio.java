@@ -16,18 +16,39 @@
 package io.github.carlomicieli.scales;
 
 import java.math.BigDecimal;
-import lombok.AllArgsConstructor;
 import lombok.Value;
 
-// It represents the <em>Ratio</em> between a model railway size
-// and the size of an actual train.
+/** It represents the {@code Ratio} between a model railway size and the size of an actual train. */
 @Value
-@AllArgsConstructor(staticName = "of")
 public class Ratio implements Comparable<Ratio> {
   BigDecimal value;
 
+  private Ratio(BigDecimal value) {
+    if (value.signum() <= 0) {
+      throw new IllegalArgumentException("Ratio: value must be positive");
+    }
+    this.value = value;
+  }
+
+  public static Ratio of(long value) {
+    return new Ratio(BigDecimal.valueOf(value));
+  }
+
+  public static Ratio of(double value) {
+    return new Ratio(BigDecimal.valueOf(value));
+  }
+
+  public static Ratio of(BigDecimal value) {
+    return new Ratio(value);
+  }
+
   @Override
-  public int compareTo(Ratio o) {
-    return 0;
+  public String toString() {
+    return String.format("1:%s", value.toString());
+  }
+
+  @Override
+  public int compareTo(Ratio that) {
+    return that.getValue().compareTo(this.getValue());
   }
 }
