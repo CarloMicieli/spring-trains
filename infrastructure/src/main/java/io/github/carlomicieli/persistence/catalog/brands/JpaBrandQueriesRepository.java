@@ -18,16 +18,15 @@ package io.github.carlomicieli.persistence.catalog.brands;
 import io.github.carlomicieli.brands.Brand;
 import io.github.carlomicieli.brands.BrandId;
 import io.github.carlomicieli.brands.queries.BrandQueriesRepository;
+import io.github.carlomicieli.persistence.common.adapter.PageableAdapter;
 import io.github.carlomicieli.queries.pagination.Page;
 import io.github.carlomicieli.queries.pagination.PaginatedResult;
 import io.github.carlomicieli.queries.sorting.Sorting;
 import io.github.carlomicieli.util.Slug;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import lombok.AllArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -43,11 +42,10 @@ public class JpaBrandQueriesRepository implements BrandQueriesRepository {
 
   @Override
   public PaginatedResult<Brand> findBrands(Page currentPage, Sorting orderBy) {
-    var pageRequest = PageRequest.of(0, currentPage.getLimit());
+    var pageable = PageableAdapter.toPageable(currentPage, orderBy);
 
-    var page = jpaRepo.findAll(pageRequest);
-    return PaginatedResult.of(
-        currentPage, page.stream().map(converter::convert).collect(Collectors.toList()));
+    var page = jpaRepo.findAll(pageable);
+    return PageableAdapter.toPaginatedResult(currentPage, page, converter::convert);
   }
 
   static class FromJpaToDomainBrandConverter implements Converter<JpaBrand, Brand> {
