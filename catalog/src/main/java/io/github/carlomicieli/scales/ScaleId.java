@@ -21,7 +21,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 
 /** The Scale unique identifier. */
-@AllArgsConstructor
+@AllArgsConstructor(staticName = "of")
 @EqualsAndHashCode
 public final class ScaleId implements Identifier {
   private final UUID value;

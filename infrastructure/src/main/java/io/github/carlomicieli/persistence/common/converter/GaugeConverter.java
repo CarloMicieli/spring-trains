@@ -40,7 +40,7 @@ public abstract class GaugeConverter implements AttributeConverter<Gauge, BigDec
     if (value == null) {
       return null;
     }
-    return new Gauge(value, measureUnit);
+    return Gauge.of(value, measureUnit);
   }
 
   @Converter

@@ -20,12 +20,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import io.github.carlomicieli.scales.ScaleGauge;
 import io.github.carlomicieli.valueobject.Gauge;
 import io.github.carlomicieli.valueobject.TrackGauge;
-import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 
 class JpaScaleGaugeTest {
-  private static final Gauge INCHES_GAUGE = Gauge.ofInches(BigDecimal.valueOf(0.65));
-  private static final Gauge MILLIMETERS_GAUGE = Gauge.ofInches(BigDecimal.valueOf(16.5));
+  private static final Gauge INCHES_GAUGE = Gauge.ofInches(0.65);
+  private static final Gauge MILLIMETERS_GAUGE = Gauge.ofInches(16.5);
 
   @Test
   void should_convert_from_domain_object() {

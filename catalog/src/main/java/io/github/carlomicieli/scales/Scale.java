@@ -44,4 +44,8 @@ public final class Scale implements AggregateRoot<ScaleId> {
   private final int version;
   private final Instant createdDate;
   private final Instant modifiedDate;
+
+  public static Slug buildSlug(String name) {
+    return Slug.of(name);
+  }
 }

@@ -17,27 +17,33 @@ package io.github.carlomicieli.valueobject;
 
 import io.github.carlomicieli.lengths.MeasureUnit;
 import java.math.BigDecimal;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
-// Gauge is the distance between the inner edges of the two rails that it runs on.
-@AllArgsConstructor
+/** Gauge is the distance between the inner edges of the two rails that it runs on. */
 @Data
 public final class Gauge implements Comparable<Gauge> {
-
   private final BigDecimal value;
   private final MeasureUnit measureUnit;
 
+  private Gauge(BigDecimal value, MeasureUnit measureUnit) {
+    this.value = value;
+    this.measureUnit = measureUnit;
+  }
+
+  public static Gauge of(BigDecimal value, MeasureUnit measureUnit) {
+    return new Gauge(value, measureUnit);
+  }
+
   public static Gauge of(float value, MeasureUnit measureUnit) {
-    throw new RuntimeException("TODO");
+    return new Gauge(BigDecimal.valueOf(value), measureUnit);
   }
 
-  public static Gauge ofMillimeters(BigDecimal value) {
-    return new Gauge(value, MeasureUnit.MILLIMETERS);
+  public static Gauge ofMillimeters(double value) {
+    return new Gauge(BigDecimal.valueOf(value), MeasureUnit.MILLIMETERS);
   }
 
-  public static Gauge ofInches(BigDecimal value) {
-    return new Gauge(value, MeasureUnit.MILLIMETERS);
+  public static Gauge ofInches(double value) {
+    return new Gauge(BigDecimal.valueOf(value), MeasureUnit.MILLIMETERS);
   }
 
   @Override
