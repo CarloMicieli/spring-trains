@@ -21,7 +21,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 
 /** The Railway unique identifier. */
-@AllArgsConstructor
+@AllArgsConstructor(staticName = "of")
 @EqualsAndHashCode
 public final class RailwayId implements Identifier {
   private final UUID value;

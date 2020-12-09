@@ -41,4 +41,8 @@ public final class Railway implements AggregateRoot<RailwayId> {
   private final Instant createdDate;
   private final Instant modifiedDate;
   private final int version;
+
+  public static Slug buildSlug(String name) {
+    return Slug.of(name);
+  }
 }
