@@ -44,6 +44,10 @@ public class JpaScaleGauge {
   @Convert(converter = GaugeConverter.INCHES.class)
   Gauge inches;
 
+  public ScaleGauge toDomain() {
+    return new ScaleGauge(millimetres, inches, trackGauge);
+  }
+
   public static JpaScaleGauge fromDomain(ScaleGauge g) {
     return new JpaScaleGauge(g.getTrackGauge(), g.getMillimetres(), g.getInches());
   }

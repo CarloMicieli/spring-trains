@@ -46,6 +46,17 @@ public class JpaAddress {
   @Column(name = "address_country")
   String country;
 
+  public Address toDomain() {
+    return Address.builder()
+        .city(this.getCity())
+        .postalCode(this.getPostalCode())
+        .country(this.getCountry())
+        .line1(this.getLine1())
+        .line2(this.getLine2())
+        .region(this.getRegion())
+        .build();
+  }
+
   public static JpaAddress fromDomain(Address address) {
     return JpaAddress.builder()
         .city(address.getCity())

@@ -16,6 +16,7 @@
 package io.github.carlomicieli.persistence.catalog.railways;
 
 import io.github.carlomicieli.railways.PeriodOfActivity;
+import io.github.carlomicieli.railways.RailwayStatus;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -39,5 +40,10 @@ public class JpaPeriodOfActivity {
   public static JpaPeriodOfActivity fromDomain(PeriodOfActivity poa) {
     return new JpaPeriodOfActivity(
         poa.isActive(), poa.getOperatingSince(), poa.getOperatingUntil());
+  }
+
+  public PeriodOfActivity toDomain() {
+    return new PeriodOfActivity(
+        active ? RailwayStatus.ACTIVE : RailwayStatus.INACTIVE, operatingSince, operatingUntil);
   }
 }

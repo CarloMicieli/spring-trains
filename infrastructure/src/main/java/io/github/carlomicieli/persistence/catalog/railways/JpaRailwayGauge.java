@@ -42,6 +42,10 @@ public class JpaRailwayGauge {
   @Column(name = "gauge_in")
   Length inches;
 
+  public RailwayGauge toDomain() {
+    return new RailwayGauge(trackGauge, millimeters, inches);
+  }
+
   public static JpaRailwayGauge fromDomain(RailwayGauge rg) {
     return new JpaRailwayGauge(rg.getTrackGauge(), rg.getMillimeters(), rg.getInches());
   }

@@ -38,6 +38,10 @@ public class JpaRailwayLength {
   @Column(name = "total_length_mi")
   Length miles;
 
+  public RailwayLength toDomain() {
+    return new RailwayLength(kilometers, miles);
+  }
+
   public static JpaRailwayLength fromDomain(RailwayLength rl) {
     return new JpaRailwayLength(rl.getKilometers(), rl.getMiles());
   }
