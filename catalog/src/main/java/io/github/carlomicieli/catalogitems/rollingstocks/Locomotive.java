@@ -15,22 +15,27 @@
 */
 package io.github.carlomicieli.catalogitems.rollingstocks;
 
+import io.github.carlomicieli.catalogitems.Control;
+import io.github.carlomicieli.catalogitems.DccInterface;
 import io.github.carlomicieli.catalogitems.Epoch;
-import io.github.carlomicieli.domain.Entity;
 import io.github.carlomicieli.railways.RailwayId;
+import lombok.*;
 
-public interface RollingStock extends Entity<RollingStockId> {
-  RailwayId getRailway();
-
-  Category getCategory();
-
-  Epoch getEpoch();
-
-  LengthOverBuffer getLengthOverBuffer();
-
-  MinRadius getMinRadius();
-
-  Couplers getCouplers();
-
-  String getLivery();
+@Data
+@Builder
+@With
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+public class Locomotive implements RollingStock {
+  private final RollingStockId id;
+  private final RailwayId railway;
+  private final Category category;
+  private final Epoch epoch;
+  private final LengthOverBuffer lengthOverBuffer;
+  private final MinRadius minRadius;
+  private final Couplers couplers;
+  private final String livery;
+  private final Prototype prototype;
+  private final String depot;
+  private final DccInterface dccInterface;
+  private final Control control;
 }

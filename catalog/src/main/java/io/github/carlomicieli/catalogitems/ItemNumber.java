@@ -15,21 +15,37 @@
 */
 package io.github.carlomicieli.catalogitems;
 
+import com.google.common.base.Strings;
 import java.util.Optional;
-import lombok.Data;
+import lombok.Value;
 
 /** It represent a catalog item number. */
-@Data
-public final class ItemNumber {
-  private final String value;
+@Value
+public class ItemNumber implements Comparable<ItemNumber> {
+  String value;
 
-  public ItemNumber(String value) {
+  private ItemNumber(String value) {
+    if (Strings.isNullOrEmpty(value)) {
+      throw new IllegalArgumentException("Item number value cannot be blank or null");
+    }
 
-    // Validate.notBlank(value, "Item number value cannot be blank or null");
     this.value = value;
   }
 
+  public static ItemNumber of(String value) {
+    return new ItemNumber(value);
+  }
+
   public static Optional<ItemNumber> tryCreate(String v) {
-    throw new UnsupportedOperationException();
+    if (Strings.isNullOrEmpty(v)) {
+      return Optional.empty();
+    }
+
+    return Optional.of(new ItemNumber(v));
+  }
+
+  @Override
+  public int compareTo(ItemNumber that) {
+    return this.value.compareTo(that.value);
   }
 }

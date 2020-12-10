@@ -34,6 +34,34 @@ public final class Epoch {
 
   private static final Map<String, Epoch> cachedValues;
 
+  public static final Epoch I = new Epoch("I");
+
+  public static final Epoch II = new Epoch("II");
+
+  public static final Epoch IIa = new Epoch("IIa");
+
+  public static final Epoch IIb = new Epoch("IIb");
+
+  public static final Epoch III = new Epoch("III");
+
+  public static final Epoch IIIa = new Epoch("IIIa");
+
+  public static final Epoch IIIb = new Epoch("IIIb");
+
+  public static final Epoch IV = new Epoch("IV");
+
+  public static final Epoch IVa = new Epoch("IVa");
+
+  public static final Epoch IVb = new Epoch("IVb");
+
+  public static final Epoch V = new Epoch("V");
+
+  public static final Epoch Va = new Epoch("Va");
+
+  public static final Epoch Vb = new Epoch("Vb");
+
+  public static final Epoch VI = new Epoch("VI");
+
   static {
     cachedValues =
         Map.ofEntries(
@@ -84,32 +112,4 @@ public final class Epoch {
 
     return String.format("%s/%s", value1, value2);
   }
-
-  public static final Epoch I = new Epoch("I");
-
-  public static final Epoch II = new Epoch("II");
-
-  public static final Epoch IIa = new Epoch("IIa");
-
-  public static final Epoch IIb = new Epoch("IIb");
-
-  public static final Epoch III = new Epoch("III");
-
-  public static final Epoch IIIa = new Epoch("IIIa");
-
-  public static final Epoch IIIb = new Epoch("IIIb");
-
-  public static final Epoch IV = new Epoch("IV");
-
-  public static final Epoch IVa = new Epoch("IVa");
-
-  public static final Epoch IVb = new Epoch("IVb");
-
-  public static final Epoch V = new Epoch("V");
-
-  public static final Epoch Va = new Epoch("Va");
-
-  public static final Epoch Vb = new Epoch("Vb");
-
-  public static final Epoch VI = new Epoch("VI");
 }

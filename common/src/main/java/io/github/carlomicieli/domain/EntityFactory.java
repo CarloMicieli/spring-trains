@@ -13,23 +13,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.lengths;
+package io.github.carlomicieli.domain;
 
-import java.math.BigDecimal;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import java.util.Objects;
+import java.util.function.Supplier;
 
-@AllArgsConstructor
-@Getter
-public final class TwoLengths {
-  private final MeasureUnit measureUnit1;
-  private final MeasureUnit measureUnit2;
+public abstract class EntityFactory<T extends Entity<ID>, ID extends Identifier> {
+  private final Supplier<ID> identifierSource;
 
-  /**
-   * Create a new object with two lengths, in case only one value is provided it will convert the
-   * other from the only value.
-   */
-  public static TwoLengths ofValues(BigDecimal left, BigDecimal right) {
-    throw new UnsupportedOperationException();
+  public EntityFactory(Supplier<ID> identifierSource) {
+    this.identifierSource =
+        Objects.requireNonNull(identifierSource, "An identifier source is required");
+  }
+
+  protected ID generateNewId() {
+    return identifierSource.get();
   }
 }

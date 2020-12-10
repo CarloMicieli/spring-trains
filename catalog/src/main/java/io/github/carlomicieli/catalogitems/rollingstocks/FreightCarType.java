@@ -15,12 +15,24 @@
 */
 package io.github.carlomicieli.catalogitems.rollingstocks;
 
-import io.github.carlomicieli.domain.AggregateRootRef;
-import io.github.carlomicieli.railways.Railway;
-import io.github.carlomicieli.railways.RailwayId;
-
-public final class RailwayRef extends AggregateRootRef<Railway, RailwayId> {
-  public RailwayRef(RailwayId id, String slug, String representation) {
-    super(id, slug, representation);
-  }
+public enum FreightCarType {
+  AUTO_TRANSPORT_CARS,
+  BRAKE_WAGON,
+  CONTAINER_CARS,
+  COVERED_FREIGHT_CARS,
+  DUMP_CARS,
+  GONDOLA,
+  HEAVY_GOODS_WAGONS,
+  HINGED_COVER_WAGONS,
+  HOPPER_WAGON,
+  REFRIGERATOR_CARS,
+  SILO_CONTAINER_CARS,
+  SLIDE_TARPAULIN_WAGON,
+  SLIDING_WALL_BOXCARS,
+  SPECIAL_TRANSPORT,
+  STAKE_WAGONS,
+  SWING_ROOF_WAGON,
+  TANK_CARS,
+  TELESCOPE_HOOD_WAGONS,
+  DEEP_WELL_FLAT_CARS,
 }

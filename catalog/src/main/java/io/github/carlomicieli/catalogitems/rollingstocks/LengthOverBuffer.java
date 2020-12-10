@@ -17,34 +17,36 @@ package io.github.carlomicieli.catalogitems.rollingstocks;
 
 import io.github.carlomicieli.lengths.Length;
 import io.github.carlomicieli.lengths.MeasureUnit;
-import io.github.carlomicieli.lengths.TwoLengths;
+import io.github.carlomicieli.lengths.conversion.MeasureUnitsConverters;
 import java.math.BigDecimal;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Value;
 
-@AllArgsConstructor
-@Data
-public final class LengthOverBuffer implements Comparable<LengthOverBuffer> {
-  private static TwoLengths TwoLengths =
-      new TwoLengths(MeasureUnit.INCHES, MeasureUnit.MILLIMETERS);
-
-  private final Length inches;
-  private final Length millimeters;
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Value
+public class LengthOverBuffer implements Comparable<LengthOverBuffer> {
+  Length inches;
+  Length millimeters;
 
   public static LengthOverBuffer of(BigDecimal inches, BigDecimal millimeters) {
-    throw new UnsupportedOperationException();
+    return new LengthOverBuffer(Length.ofInches(inches), Length.ofMillimeters(millimeters));
   }
 
   public static LengthOverBuffer ofMillimeters(BigDecimal millimeters) {
-    throw new UnsupportedOperationException();
+    var converter =
+        MeasureUnitsConverters.INSTANCE.getConverter(MeasureUnit.MILLIMETERS, MeasureUnit.INCHES);
+    return LengthOverBuffer.of(converter.convert(millimeters), millimeters);
   }
 
   public static LengthOverBuffer ofInches(BigDecimal inches) {
-    throw new UnsupportedOperationException();
+    var converter =
+        MeasureUnitsConverters.INSTANCE.getConverter(MeasureUnit.INCHES, MeasureUnit.MILLIMETERS);
+    return LengthOverBuffer.of(inches, converter.convert(inches));
   }
 
   @Override
-  public int compareTo(LengthOverBuffer o) {
-    return 0;
+  public int compareTo(LengthOverBuffer that) {
+    return this.millimeters.compareTo(that.millimeters);
   }
 }

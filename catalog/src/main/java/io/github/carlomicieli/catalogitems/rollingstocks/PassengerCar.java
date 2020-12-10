@@ -15,28 +15,24 @@
 */
 package io.github.carlomicieli.catalogitems.rollingstocks;
 
-import io.github.carlomicieli.domain.Identifier;
-import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.Value;
+import io.github.carlomicieli.catalogitems.Epoch;
+import io.github.carlomicieli.railways.RailwayId;
+import lombok.*;
 
-/** The rolling stock unique identifier. */
-@AllArgsConstructor(staticName = "of")
-@Value
-public class RollingStockId implements Identifier {
-  UUID value;
-
-  @Override
-  public UUID toUUID() {
-    return value;
-  }
-
-  @Override
-  public String toString() {
-    return value.toString();
-  }
-
-  public static RollingStockId randomId() {
-    return new RollingStockId(UUID.randomUUID());
-  }
+@Data
+@Builder
+@With
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+public class PassengerCar implements RollingStock {
+  private final RollingStockId id;
+  private final RailwayId railway;
+  private final Category category;
+  private final Epoch epoch;
+  private final LengthOverBuffer lengthOverBuffer;
+  private final MinRadius minRadius;
+  private final Couplers couplers;
+  private final String livery;
+  private final String typeName;
+  private final PassengerCarType type;
+  private final ServiceLevel serviceLevel;
 }

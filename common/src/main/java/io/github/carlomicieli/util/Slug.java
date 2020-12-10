@@ -76,6 +76,12 @@ public final class Slug {
     return new Slug(str);
   }
 
+  public static Slug ofValues(String s1, String s2) {
+    var v =
+        String.format("%s%s%s", Slug.toSeoFriendlyString(s1), SEP, Slug.toSeoFriendlyString(s2));
+    return new Slug(v);
+  }
+
   /**
    * Joins the provided values and encode them as {@code slug}.
    *

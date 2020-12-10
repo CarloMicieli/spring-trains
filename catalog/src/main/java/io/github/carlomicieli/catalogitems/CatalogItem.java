@@ -15,9 +15,11 @@
 */
 package io.github.carlomicieli.catalogitems;
 
+import io.github.carlomicieli.brands.BrandId;
 import io.github.carlomicieli.catalogitems.deliverydates.DeliveryDate;
 import io.github.carlomicieli.catalogitems.rollingstocks.RollingStock;
 import io.github.carlomicieli.domain.AggregateRoot;
+import io.github.carlomicieli.scales.ScaleId;
 import io.github.carlomicieli.util.Slug;
 import java.time.Instant;
 import java.util.List;
@@ -27,16 +29,15 @@ import lombok.*;
 @Data
 @Builder
 @With
-@EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 public final class CatalogItem implements AggregateRoot<CatalogItemId> {
 
   private final CatalogItemId id;
-  private final BrandRef brand;
-  private final ScaleRef scale;
+  private final BrandId brand;
+  private final ScaleId scale;
   private final ItemNumber itemNumber;
   private final Slug slug;
-  private final String category;
+  private final CatalogItemCategory category;
   private final String description;
   private final String prototypeDescription;
   private final String modelDescription;
@@ -48,15 +49,12 @@ public final class CatalogItem implements AggregateRoot<CatalogItemId> {
   private final Instant createdDate;
   private final Instant modifiedDate;
 
-  /** Returns the number of rolling stocks for this catalog item */
-  public int getCount() {
-    throw new UnsupportedOperationException();
+  public static Slug buildSlug(String brandName, ItemNumber itemNumber) {
+    return Slug.ofValues(brandName, itemNumber.getValue());
   }
 
-  /**
-   * Returns the category for this catalog item, from the categories of the rolling stocks included
-   */
-  public CatalogItemCategory getCategory() {
+  /** Returns the number of rolling stocks for this catalog item */
+  public int getCount() {
     throw new UnsupportedOperationException();
   }
 

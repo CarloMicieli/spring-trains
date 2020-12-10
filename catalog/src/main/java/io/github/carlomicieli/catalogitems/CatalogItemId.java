@@ -18,13 +18,13 @@ package io.github.carlomicieli.catalogitems;
 import io.github.carlomicieli.domain.Identifier;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.Value;
 
 /** A unique identifier for catalog items. */
 @AllArgsConstructor(staticName = "of")
-@EqualsAndHashCode
-public final class CatalogItemId implements Identifier {
-  private final UUID value;
+@Value
+public class CatalogItemId implements Identifier {
+  UUID value;
 
   @Override
   public UUID toUUID() {

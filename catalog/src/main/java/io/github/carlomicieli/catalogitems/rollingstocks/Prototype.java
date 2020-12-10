@@ -15,13 +15,22 @@
 */
 package io.github.carlomicieli.catalogitems.rollingstocks;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
-@AllArgsConstructor
-@Data
-public final class Prototype {
-  private final String className;
-  private final String roadNumber;
-  private final String series;
+@AllArgsConstructor(staticName = "of")
+@Value
+@Builder
+@With
+public class Prototype {
+  String className;
+  String roadNumber;
+  String series;
+
+  public static Prototype ofLocomotive(String className, String roadNumber) {
+    return new Prototype(className, roadNumber, null);
+  }
+
+  public static Prototype ofLocomotive(String className, String roadNumber, String series) {
+    return new Prototype(className, roadNumber, series);
+  }
 }

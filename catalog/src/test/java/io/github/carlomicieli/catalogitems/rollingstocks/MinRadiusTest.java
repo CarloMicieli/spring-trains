@@ -15,28 +15,23 @@
 */
 package io.github.carlomicieli.catalogitems.rollingstocks;
 
-import io.github.carlomicieli.domain.Identifier;
-import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.Value;
+import static org.assertj.core.api.Assertions.*;
 
-/** The rolling stock unique identifier. */
-@AllArgsConstructor(staticName = "of")
-@Value
-public class RollingStockId implements Identifier {
-  UUID value;
+import java.math.BigDecimal;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.Test;
 
-  @Override
-  public UUID toUUID() {
-    return value;
-  }
+@DisplayName("Min radius")
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+class MinRadiusTest {
 
-  @Override
-  public String toString() {
-    return value.toString();
-  }
+  @Test
+  void is_created_from_its_value_in_millimeters() {
+    var minRadius = MinRadius.ofMillimeters(360);
 
-  public static RollingStockId randomId() {
-    return new RollingStockId(UUID.randomUUID());
+    assertThat(minRadius).isNotNull();
+    assertThat(minRadius.getMillimeters()).isEqualTo(BigDecimal.valueOf(360));
   }
 }

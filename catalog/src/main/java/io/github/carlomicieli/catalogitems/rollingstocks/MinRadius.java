@@ -18,24 +18,24 @@ package io.github.carlomicieli.catalogitems.rollingstocks;
 import io.github.carlomicieli.lengths.Length;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Value;
 
 /** Minimum curve radius for rolling stocks, in millimeters. */
 @AllArgsConstructor
-@Data
-public class MinRadius implements Comparable<MinRadius> {
-  private final Length value;
+@Value
+public class MinRadius {
+  Length value;
 
-  public static MinRadius ofMillimeters(BigDecimal value) {
-    throw new UnsupportedOperationException();
+  public static MinRadius ofMillimeters(int value) {
+    return new MinRadius(Length.ofMillimeters(BigDecimal.valueOf(value)));
   }
 
-  @Override
-  public int compareTo(MinRadius o) {
-    return 0;
+  private Length getValue() {
+    return value;
   }
 
+  /** Returns this minimum radius in millimeters */
   public BigDecimal getMillimeters() {
-    throw new UnsupportedOperationException();
+    return value.getValue();
   }
 }
