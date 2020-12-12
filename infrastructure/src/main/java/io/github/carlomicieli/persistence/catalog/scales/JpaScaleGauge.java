@@ -19,9 +19,9 @@ import io.github.carlomicieli.persistence.common.converter.GaugeConverter;
 import io.github.carlomicieli.scales.ScaleGauge;
 import io.github.carlomicieli.valueobject.Gauge;
 import io.github.carlomicieli.valueobject.TrackGauge;
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Embeddable;
+
+import javax.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,6 +34,7 @@ import lombok.NoArgsConstructor;
 @Embeddable
 public class JpaScaleGauge {
   @Column(name = "track_type")
+  @Enumerated(EnumType.STRING)
   TrackGauge trackGauge;
 
   @Column(name = "gauge_mm")

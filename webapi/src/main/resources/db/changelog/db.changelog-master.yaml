@@ -650,6 +650,11 @@ databaseChangeLog:
               - column:
                   constraints:
                     nullable: false
+                  name: sub_category
+                  type: VARCHAR(25)
+              - column:
+                  constraints:
+                    nullable: false
                   name: epoch
                   type: VARCHAR(10)
               - column:
@@ -671,9 +676,6 @@ databaseChangeLog:
                   name: type_name
                   type: VARCHAR(25)
               - column:
-                  name: class_name
-                  type: VARCHAR(15)
-              - column:
                   name: road_number
                   type: VARCHAR(15)
               - column:
@@ -688,9 +690,6 @@ databaseChangeLog:
               - column:
                   name: control
                   type: VARCHAR(10)
-              - column:
-                  name: passenger_car_type
-                  type: VARCHAR(25)
               - column:
                   name: service_level
                   type: VARCHAR(15)

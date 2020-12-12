@@ -55,7 +55,7 @@ public final class CatalogItem implements AggregateRoot<CatalogItemId> {
 
   /** Returns the number of rolling stocks for this catalog item */
   public int getCount() {
-    throw new UnsupportedOperationException();
+    return rollingStocks.size();
   }
 
   public Stream<RollingStock> getRollingStocks() {

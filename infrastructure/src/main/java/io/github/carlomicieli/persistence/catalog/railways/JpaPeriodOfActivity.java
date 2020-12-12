@@ -31,10 +31,10 @@ import lombok.*;
 public class JpaPeriodOfActivity {
   boolean active;
 
-  @Column(name = "operating_since")
+  @Column(name = "operating_since", columnDefinition = "TIMESTAMP")
   LocalDate operatingSince;
 
-  @Column(name = "operating_until")
+  @Column(name = "operating_until", columnDefinition = "TIMESTAMP")
   LocalDate operatingUntil;
 
   public static JpaPeriodOfActivity fromDomain(PeriodOfActivity poa) {

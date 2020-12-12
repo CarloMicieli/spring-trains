@@ -65,6 +65,7 @@ public class JpaBrand {
   @Embedded JpaAddress address;
 
   @Column(name = "kind")
+  @Enumerated(EnumType.STRING)
   BrandKind brandKind;
 
   @Column(name = "email")

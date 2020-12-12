@@ -26,6 +26,10 @@ import lombok.Value;
 public class MinRadius {
   Length value;
 
+  public static MinRadius ofMillimeters(BigDecimal value) {
+    return new MinRadius(Length.ofMillimeters(value));
+  }
+
   public static MinRadius ofMillimeters(int value) {
     return new MinRadius(Length.ofMillimeters(BigDecimal.valueOf(value)));
   }

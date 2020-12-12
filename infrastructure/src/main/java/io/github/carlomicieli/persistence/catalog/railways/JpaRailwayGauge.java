@@ -19,9 +19,9 @@ import io.github.carlomicieli.lengths.Length;
 import io.github.carlomicieli.persistence.common.converter.LengthConverter;
 import io.github.carlomicieli.railways.RailwayGauge;
 import io.github.carlomicieli.valueobject.TrackGauge;
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Embeddable;
+
+import javax.persistence.*;
+
 import lombok.*;
 
 @Embeddable
@@ -32,6 +32,7 @@ import lombok.*;
 @With
 public class JpaRailwayGauge {
   @Column(name = "track_type")
+  @Enumerated(EnumType.STRING)
   TrackGauge trackGauge;
 
   @Convert(converter = LengthConverter.MILLIMETERS.class)

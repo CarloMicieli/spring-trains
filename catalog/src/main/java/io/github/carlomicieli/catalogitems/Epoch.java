@@ -19,8 +19,9 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 import java.util.Map;
 import java.util.Optional;
+
+import com.google.common.base.Strings;
 import lombok.Data;
-import org.apache.logging.log4j.util.Strings;
 
 /**
  * The model railway industry adopted an 'Era', or 'Epoch' system; the idea being to group models
@@ -90,18 +91,27 @@ public final class Epoch {
   }
 
   private Epoch(String epoch1, String epoch2) {
-    checkArgument(Strings.isNotBlank(epoch1), "epoch1 is required");
+    checkArgument(Strings.isNullOrEmpty(epoch1), "epoch1 is required");
 
     this.value1 = epoch1;
     this.value2 = epoch2;
   }
 
-  public Optional<Epoch> tryParse(String str) {
+  public static Optional<Epoch> tryParse(String str) {
     throw new UnsupportedOperationException();
   }
 
-  public Epoch parse(String str) {
-    throw new UnsupportedOperationException();
+  public static Epoch parse(String str) {
+    if (Strings.isNullOrEmpty(str)) {
+      return null;
+    }
+
+    var cached = cachedValues.get(str.toUpperCase());
+    if (cached != null) {
+      return cached;
+    }
+
+    return null;
   }
 
   @Override
