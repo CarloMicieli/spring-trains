@@ -19,9 +19,7 @@ import io.github.carlomicieli.persistence.common.converter.GaugeConverter;
 import io.github.carlomicieli.scales.ScaleGauge;
 import io.github.carlomicieli.valueobject.Gauge;
 import io.github.carlomicieli.valueobject.TrackGauge;
-
 import javax.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

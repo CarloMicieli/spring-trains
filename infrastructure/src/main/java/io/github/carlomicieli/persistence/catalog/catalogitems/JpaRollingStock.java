@@ -66,6 +66,7 @@ public class JpaRollingStock {
 
   @Enumerated(EnumType.STRING)
   Couplers couplers;
+
   String livery;
 
   @Column(name = "length_mm")

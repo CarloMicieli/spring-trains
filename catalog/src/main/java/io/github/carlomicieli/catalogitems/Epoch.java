@@ -17,10 +17,9 @@ package io.github.carlomicieli.catalogitems;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
+import com.google.common.base.Strings;
 import java.util.Map;
 import java.util.Optional;
-
-import com.google.common.base.Strings;
 import lombok.Data;
 
 /**

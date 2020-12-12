@@ -29,7 +29,6 @@ import java.util.Set;
 import java.util.UUID;
 import javax.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Cascade;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 

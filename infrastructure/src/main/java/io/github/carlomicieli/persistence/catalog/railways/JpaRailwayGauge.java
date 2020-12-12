@@ -19,9 +19,7 @@ import io.github.carlomicieli.lengths.Length;
 import io.github.carlomicieli.persistence.common.converter.LengthConverter;
 import io.github.carlomicieli.railways.RailwayGauge;
 import io.github.carlomicieli.valueobject.TrackGauge;
-
 import javax.persistence.*;
-
 import lombok.*;
 
 @Embeddable
