@@ -91,7 +91,7 @@ public final class Epoch {
   }
 
   private Epoch(String epoch1, String epoch2) {
-    checkArgument(Strings.isNullOrEmpty(epoch1), "epoch1 is required");
+    checkArgument(!Strings.isNullOrEmpty(epoch1), "epoch1 is required");
 
     this.value1 = epoch1;
     this.value2 = epoch2;
