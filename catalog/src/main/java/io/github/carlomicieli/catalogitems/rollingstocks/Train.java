@@ -34,7 +34,7 @@ public class Train implements RollingStock {
   private final MinRadius minRadius;
   private final Couplers couplers;
   private final String livery;
-  private final String type;
+  private final String typeName;
   private final String depot;
   private final DccInterface dccInterface;
   private final Control control;

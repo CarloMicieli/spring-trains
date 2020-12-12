@@ -70,6 +70,7 @@ public class RollingStockFactory extends EntityFactory<RollingStock, RollingStoc
 
     return FreightCar.builder()
         .id(newId)
+        .category(Category.FREIGHT_CAR)
         .couplers(couplers)
         .epoch(epoch)
         .lengthOverBuffer(length)
@@ -95,6 +96,7 @@ public class RollingStockFactory extends EntityFactory<RollingStock, RollingStoc
 
     return PassengerCar.builder()
         .id(newId)
+        .category(Category.PASSENGER_CAR)
         .couplers(couplers)
         .epoch(epoch)
         .lengthOverBuffer(length)
@@ -102,6 +104,7 @@ public class RollingStockFactory extends EntityFactory<RollingStock, RollingStoc
         .minRadius(minRadius)
         .railway(railway)
         .type(passengerCarType)
+        .serviceLevel(serviceLevel)
         .typeName(typeName)
         .build();
   }
@@ -115,6 +118,7 @@ public class RollingStockFactory extends EntityFactory<RollingStock, RollingStoc
       Couplers couplers,
       String typeName,
       String livery,
+      String depot,
       DccInterface dccInterface,
       Control control) {
     var newId = generateNewId();
@@ -124,13 +128,14 @@ public class RollingStockFactory extends EntityFactory<RollingStock, RollingStoc
         .control(control)
         .couplers(couplers)
         .category(category)
+        .depot(depot)
         .dccInterface(dccInterface)
         .epoch(epoch)
         .lengthOverBuffer(length)
         .livery(livery)
         .minRadius(minRadius)
         .railway(railway)
-        .type(typeName)
+        .typeName(typeName)
         .build();
   }
 }

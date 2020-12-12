@@ -75,4 +75,98 @@ class RollingStockFactoryTest {
     assertThat(locomotive.getDccInterface()).isEqualTo(DccInterface.NEM_652);
     assertThat(locomotive.getControl()).isEqualTo(Control.DCC_READY);
   }
+
+  @Test
+  void should_create_new_trains() {
+    var length = LengthOverBuffer.ofMillimeters(BigDecimal.valueOf(1000));
+    var train =
+        factory.createNewTrain(
+            FIXED_RAILWAY_ID,
+            Category.ELECTRIC_MULTIPLE_UNIT,
+            Epoch.IV,
+            length,
+            MinRadius.ofMillimeters(360),
+            Couplers.NEM_352,
+            "Etr 220",
+            "blu / grigio",
+            "Milano Centrale",
+            DccInterface.NEM_652,
+            Control.DCC_READY);
+
+    assertThat(train).isNotNull();
+
+    assertThat(train.getId()).isEqualTo(FIXED_ROLLING_STOCK_ID);
+    assertThat(train.getRailway()).isEqualTo(FIXED_RAILWAY_ID);
+
+    assertThat(train.getCategory()).isEqualTo(Category.ELECTRIC_MULTIPLE_UNIT);
+    assertThat(train.getEpoch()).isEqualTo(Epoch.IV);
+    assertThat(train.getLengthOverBuffer()).isEqualTo(length);
+    assertThat(train.getMinRadius()).isEqualTo(MinRadius.ofMillimeters(360));
+    assertThat(train.getCouplers()).isEqualTo(Couplers.NEM_352);
+    assertThat(train.getTypeName()).isEqualTo("Etr 220");
+    assertThat(train.getLivery()).isEqualTo("blu / grigio");
+    assertThat(train.getDepot()).isEqualTo("Milano Centrale");
+    assertThat(train.getDccInterface()).isEqualTo(DccInterface.NEM_652);
+    assertThat(train.getControl()).isEqualTo(Control.DCC_READY);
+  }
+
+  @Test
+  void should_create_new_passenger_cars() {
+    var length = LengthOverBuffer.ofMillimeters(BigDecimal.valueOf(303));
+    var passengerCar =
+        factory.createNewPassengerCar(
+            FIXED_RAILWAY_ID,
+            Epoch.IV,
+            length,
+            MinRadius.ofMillimeters(360),
+            Couplers.NEM_352,
+            "grigio ardesia",
+            "UIC-X",
+            PassengerCarType.OPEN_COACH,
+            ServiceLevel.SecondClass);
+
+    assertThat(passengerCar).isNotNull();
+
+    assertThat(passengerCar.getId()).isEqualTo(FIXED_ROLLING_STOCK_ID);
+    assertThat(passengerCar.getRailway()).isEqualTo(FIXED_RAILWAY_ID);
+
+    assertThat(passengerCar.getCategory()).isEqualTo(Category.PASSENGER_CAR);
+    assertThat(passengerCar.getEpoch()).isEqualTo(Epoch.IV);
+    assertThat(passengerCar.getLengthOverBuffer()).isEqualTo(length);
+    assertThat(passengerCar.getMinRadius()).isEqualTo(MinRadius.ofMillimeters(360));
+    assertThat(passengerCar.getCouplers()).isEqualTo(Couplers.NEM_352);
+    assertThat(passengerCar.getLivery()).isEqualTo("grigio ardesia");
+    assertThat(passengerCar.getTypeName()).isEqualTo("UIC-X");
+    assertThat(passengerCar.getType()).isEqualTo(PassengerCarType.OPEN_COACH);
+    assertThat(passengerCar.getServiceLevel()).isEqualTo(ServiceLevel.SecondClass);
+  }
+
+  @Test
+  void should_create_new_freight_cars() {
+    var length = LengthOverBuffer.ofMillimeters(BigDecimal.valueOf(210));
+    var passengerCar =
+        factory.createNewFreightCar(
+            FIXED_RAILWAY_ID,
+            Epoch.IV,
+            length,
+            MinRadius.ofMillimeters(360),
+            Couplers.NEM_352,
+            "castano",
+            "Gondola",
+            FreightCarType.GONDOLA);
+
+    assertThat(passengerCar).isNotNull();
+
+    assertThat(passengerCar.getId()).isEqualTo(FIXED_ROLLING_STOCK_ID);
+    assertThat(passengerCar.getRailway()).isEqualTo(FIXED_RAILWAY_ID);
+
+    assertThat(passengerCar.getCategory()).isEqualTo(Category.FREIGHT_CAR);
+    assertThat(passengerCar.getEpoch()).isEqualTo(Epoch.IV);
+    assertThat(passengerCar.getLengthOverBuffer()).isEqualTo(length);
+    assertThat(passengerCar.getMinRadius()).isEqualTo(MinRadius.ofMillimeters(360));
+    assertThat(passengerCar.getCouplers()).isEqualTo(Couplers.NEM_352);
+    assertThat(passengerCar.getLivery()).isEqualTo("castano");
+    assertThat(passengerCar.getTypeName()).isEqualTo("Gondola");
+    assertThat(passengerCar.getType()).isEqualTo(FreightCarType.GONDOLA);
+  }
 }
