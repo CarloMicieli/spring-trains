@@ -18,7 +18,9 @@ package io.github.carlomicieli.persistence.common.converter;
 import com.google.common.base.Strings;
 import io.github.carlomicieli.catalogitems.ItemNumber;
 import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
+@Converter
 public class ItemNumberConverter implements AttributeConverter<ItemNumber, String> {
   @Override
   public String convertToDatabaseColumn(ItemNumber itemNumber) {

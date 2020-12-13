@@ -37,31 +37,31 @@ public class JpaScale {
   @Column(name = "scale_id")
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  UUID id;
+  private UUID id;
 
   @Convert(converter = SlugConverter.class)
-  Slug slug;
+  private Slug slug;
 
-  String name;
+  private String name;
 
   @Convert(converter = RatioConverter.class)
-  Ratio ratio;
+  private Ratio ratio;
 
-  @Embedded JpaScaleGauge gauge;
+  @Embedded private JpaScaleGauge gauge;
 
-  String standards;
+  private String standards;
 
-  String description;
+  private String description;
 
-  Integer weight;
+  private Integer weight;
 
   @Column(name = "created")
   @CreatedDate
-  Instant createdDate;
+  private Instant createdDate;
 
   @Column(name = "last_modified")
   @LastModifiedDate
-  Instant modifiedDate;
+  private Instant modifiedDate;
 
-  @Version int version;
+  @Version private int version;
 }

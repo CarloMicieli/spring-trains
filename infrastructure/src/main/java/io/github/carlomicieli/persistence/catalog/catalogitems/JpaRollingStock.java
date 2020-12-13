@@ -18,10 +18,7 @@ package io.github.carlomicieli.persistence.catalog.catalogitems;
 import io.github.carlomicieli.catalogitems.Control;
 import io.github.carlomicieli.catalogitems.DccInterface;
 import io.github.carlomicieli.catalogitems.Epoch;
-import io.github.carlomicieli.catalogitems.rollingstocks.Category;
-import io.github.carlomicieli.catalogitems.rollingstocks.Couplers;
-import io.github.carlomicieli.catalogitems.rollingstocks.MinRadius;
-import io.github.carlomicieli.catalogitems.rollingstocks.ServiceLevel;
+import io.github.carlomicieli.catalogitems.rollingstocks.*;
 import io.github.carlomicieli.persistence.catalog.railways.JpaRailway;
 import io.github.carlomicieli.persistence.common.converter.EpochConverter;
 import io.github.carlomicieli.persistence.common.converter.MinRadiusConverter;
@@ -42,57 +39,74 @@ public class JpaRollingStock {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "rolling_stock_id")
-  UUID id;
+  private UUID id;
 
-  @ManyToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "catalog_item_id", referencedColumnName = "catalog_item_id")
-  JpaCatalogItem catalogItem;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "catalog_item_id", nullable = false)
+  private JpaCatalogItem catalogItem;
 
   @OneToOne()
   @JoinColumn(name = "railway_id", referencedColumnName = "railway_id")
-  JpaRailway railway;
+  private JpaRailway railway;
 
   @Enumerated(EnumType.STRING)
-  Category category;
+  private Category category;
 
   @Column(name = "sub_category")
-  String subCategory;
+  private String subCategory;
 
   @Convert(converter = EpochConverter.class)
-  Epoch epoch;
+  private Epoch epoch;
 
   @Convert(converter = MinRadiusConverter.class)
-  MinRadius minRadius;
+  private MinRadius minRadius;
 
   @Enumerated(EnumType.STRING)
-  Couplers couplers;
+  private Couplers couplers;
 
-  String livery;
+  private String livery;
 
   @Column(name = "length_mm")
-  BigDecimal lengthMillimeters;
+  private BigDecimal lengthMillimeters;
 
   @Column(name = "length_in")
-  BigDecimal lengthInches;
+  private BigDecimal lengthInches;
 
   @Column(name = "type_name")
-  String typeName;
+  private String typeName;
 
   @Column(name = "road_number")
-  String roadNumber;
+  private String roadNumber;
 
-  String series;
+  private String series;
 
-  String depot;
+  private String depot;
 
   @Column(name = "dcc_interface")
   @Enumerated(EnumType.STRING)
-  DccInterface dccInterface;
+  private DccInterface dccInterface;
 
   @Enumerated(EnumType.STRING)
-  Control control;
+  private Control control;
 
   @Column(name = "service_level")
   @Convert(converter = ServiceLevelConverter.class)
-  ServiceLevel serviceLevel;
+  private ServiceLevel serviceLevel;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof JpaRollingStock)) return false;
+    return id != null && id.equals(((JpaRollingStock) o).getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return getClass().hashCode();
+  }
+
+  @Override
+  public String toString() {
+    return super.toString();
+  }
 }

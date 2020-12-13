@@ -17,6 +17,7 @@ package io.github.carlomicieli;
 
 import io.github.carlomicieli.brands.BrandKind;
 import io.github.carlomicieli.catalogitems.Control;
+import io.github.carlomicieli.catalogitems.Epoch;
 import io.github.carlomicieli.catalogitems.ItemNumber;
 import io.github.carlomicieli.catalogitems.PowerMethod;
 import io.github.carlomicieli.catalogitems.deliverydates.DeliveryDate;
@@ -37,7 +38,6 @@ import io.github.carlomicieli.util.Slug;
 import io.github.carlomicieli.valueobject.TrackGauge;
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.Collections;
 import java.util.UUID;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,32 +65,31 @@ public class DataInitializer implements CommandLineRunner {
     railways.deleteAll();
     scales.deleteAll();
 
-    UUID brandId = initBrands();
-    UUID railwayId = initRailways();
-    UUID scaleId = initScales();
+    var brandId = initBrands();
+    var railwayId = initRailways();
+    var scaleId = initScales();
 
     var brand = brands.findById(brandId).get();
     var railway = railways.findById(railwayId).get();
     var scale = scales.findById(scaleId).get();
 
-    var rollingStocks =
-        Collections.singleton(
-            JpaRollingStock.builder()
-                .category(Category.FREIGHT_CAR)
-                .control(Control.DCC)
-                .couplers(Couplers.NEM_352)
-                .depot("Milano Centrale")
-                .lengthInches(BigDecimal.valueOf(210))
-                // .epoch(Epoch.II)
-                .minRadius(MinRadius.ofMillimeters(360))
-                .roadNumber("123456")
-                .series("I series")
-                .subCategory(FreightCarType.COVERED_FREIGHT_CARS.toString())
-                .serviceLevel(ServiceLevel.FirstClass)
-                .railway(railway)
-                .livery("Blue")
-                .typeName("Type name")
-                .build());
+    var rollingStock =
+        JpaRollingStock.builder()
+            .category(Category.FREIGHT_CAR)
+            .control(Control.DCC)
+            .couplers(Couplers.NEM_352)
+            .depot("Milano Centrale")
+            .lengthInches(BigDecimal.valueOf(210))
+            .epoch(Epoch.II)
+            .minRadius(MinRadius.ofMillimeters(360))
+            .roadNumber("123456")
+            .series("I series")
+            .subCategory(FreightCarType.COVERED_FREIGHT_CARS.toString())
+            .serviceLevel(ServiceLevel.FirstClass)
+            .railway(railway)
+            .livery("Blue")
+            .typeName("Type name")
+            .build();
 
     var item =
         JpaCatalogItem.builder()
@@ -107,8 +106,10 @@ public class DataInitializer implements CommandLineRunner {
             .slug(Slug.ofValues("ACME", "123456"))
             .scale(scale)
             .version(42)
-            .rollingStocks(rollingStocks)
+            // .rollingStocks(rollingStocks)
             .build();
+
+    item.addRollingStock(rollingStock);
 
     var catalogItem = catalogItems.saveAndFlush(item);
 

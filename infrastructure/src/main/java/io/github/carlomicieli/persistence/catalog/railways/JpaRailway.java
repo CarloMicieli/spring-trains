@@ -39,41 +39,41 @@ public class JpaRailway {
   @Column(name = "railway_id")
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  UUID id;
+  private UUID id;
 
   @Convert(converter = SlugConverter.class)
-  Slug slug;
+  private Slug slug;
 
-  String name;
+  private String name;
 
   @Column(name = "railway_logo_id")
-  UUID logoId;
+  private UUID logoId;
 
   @Column(name = "company_name")
-  String companyName;
+  private String companyName;
 
   @Convert(converter = CountryConverter.class)
-  Country country;
+  private Country country;
 
-  @Embedded JpaPeriodOfActivity periodOfActivity;
+  @Embedded private JpaPeriodOfActivity periodOfActivity;
 
-  @Embedded JpaRailwayGauge trackGauge;
+  @Embedded private JpaRailwayGauge trackGauge;
 
-  @Embedded JpaRailwayLength totalLength;
+  @Embedded private JpaRailwayLength totalLength;
 
   @Convert(converter = URLConverter.class)
   @Column(name = "website_url")
-  URL websiteUrl;
+  private URL websiteUrl;
 
-  String headquarters;
+  private String headquarters;
 
   @Column(name = "created")
   @CreatedDate
-  Instant createdDate;
+  private Instant createdDate;
 
   @Column(name = "last_modified")
   @LastModifiedDate
-  Instant modifiedDate;
+  private Instant modifiedDate;
 
-  @Version int version;
+  @Version private int version;
 }

@@ -20,12 +20,11 @@ import io.github.carlomicieli.catalogitems.PowerMethod;
 import io.github.carlomicieli.catalogitems.deliverydates.DeliveryDate;
 import io.github.carlomicieli.persistence.catalog.brands.JpaBrand;
 import io.github.carlomicieli.persistence.catalog.scales.JpaScale;
-import io.github.carlomicieli.persistence.common.converter.DeliveryDateConverter;
-import io.github.carlomicieli.persistence.common.converter.ItemNumberConverter;
-import io.github.carlomicieli.persistence.common.converter.SlugConverter;
+import io.github.carlomicieli.persistence.common.converter.*;
 import io.github.carlomicieli.util.Slug;
 import java.time.Instant;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.*;
 import lombok.*;
@@ -43,51 +42,68 @@ public class JpaCatalogItem {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "catalog_item_id")
-  UUID id;
+  private UUID id;
 
   @OneToOne()
   @JoinColumn(name = "scale_id", referencedColumnName = "scale_id")
-  JpaScale scale;
+  private JpaScale scale;
 
   @OneToOne()
   @JoinColumn(name = "brand_id", referencedColumnName = "brand_id")
-  JpaBrand brand;
+  private JpaBrand brand;
 
-  @OneToMany(mappedBy = "catalogItem", cascade = CascadeType.ALL)
-  Set<JpaRollingStock> rollingStocks;
+  @OneToMany(mappedBy = "catalogItem", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<JpaRollingStock> rollingStocks;
 
   @Column(name = "item_number")
   @Convert(converter = ItemNumberConverter.class)
-  ItemNumber itemNumber;
+  private ItemNumber itemNumber;
 
   @Convert(converter = SlugConverter.class)
-  Slug slug;
+  private Slug slug;
 
   @Column(name = "power_method")
   @Enumerated(EnumType.STRING)
-  PowerMethod powerMethod;
+  private PowerMethod powerMethod;
 
   @Column(name = "delivery_date")
   @Convert(converter = DeliveryDateConverter.class)
-  DeliveryDate deliveryDate;
+  private DeliveryDate deliveryDate;
 
-  boolean available;
+  private boolean available;
 
-  String description;
+  private String description;
 
   @Column(name = "model_description")
-  String modelDescription;
+  private String modelDescription;
 
   @Column(name = "prototype_description")
-  String prototypeDescription;
+  private String prototypeDescription;
 
   @Column(name = "created")
   @CreatedDate
-  Instant createdDate;
+  private Instant createdDate;
 
   @Column(name = "last_modified")
   @LastModifiedDate
-  Instant modifiedDate;
+  private Instant modifiedDate;
 
-  @Version int version;
+  @Version private int version;
+
+  public void addRollingStock(JpaRollingStock rs) {
+    if (rollingStocks == null) {
+      rollingStocks = new ArrayList<>();
+    }
+    rollingStocks.add(rs);
+    rs.setCatalogItem(this);
+  }
+
+  public void removeComment(JpaRollingStock rs) {
+    if (rollingStocks == null) {
+      return;
+    }
+
+    rollingStocks.remove(rs);
+    rs.setCatalogItem(null);
+  }
 }

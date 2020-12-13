@@ -18,7 +18,9 @@ package io.github.carlomicieli.persistence.common.converter;
 import io.github.carlomicieli.catalogitems.rollingstocks.MinRadius;
 import java.math.BigDecimal;
 import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
+@Converter
 public class MinRadiusConverter implements AttributeConverter<MinRadius, BigDecimal> {
   @Override
   public BigDecimal convertToDatabaseColumn(MinRadius minRadius) {

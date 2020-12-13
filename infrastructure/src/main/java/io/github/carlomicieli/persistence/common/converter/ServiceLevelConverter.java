@@ -18,7 +18,9 @@ package io.github.carlomicieli.persistence.common.converter;
 import com.google.common.base.Strings;
 import io.github.carlomicieli.catalogitems.rollingstocks.ServiceLevel;
 import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
+@Converter
 public class ServiceLevelConverter implements AttributeConverter<ServiceLevel, String> {
   @Override
   public String convertToDatabaseColumn(ServiceLevel serviceLevel) {

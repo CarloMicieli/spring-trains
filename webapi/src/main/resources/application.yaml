@@ -9,13 +9,23 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: validate
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
   jackson:
     mapper:
       accept_case_insensitive_properties: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
 
 jwt:
   secret: zdtlD3JK56m6wTTgsNFhqzjqP

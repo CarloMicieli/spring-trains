@@ -52,17 +52,17 @@ public class JpaBrandQueriesRepository implements BrandQueriesRepository {
     @Override
     public Brand convert(@Nonnull JpaBrand jpaBrand) {
       return Brand.builder()
-          .id(BrandId.of(jpaBrand.id))
-          .name(jpaBrand.name)
-          .slug(jpaBrand.slug)
-          .brandKind(jpaBrand.brandKind)
-          .mailAddress(jpaBrand.mailAddress)
-          .description(jpaBrand.description)
-          .groupName(jpaBrand.groupName)
-          .websiteUrl(jpaBrand.websiteUrl)
-          .version(jpaBrand.version)
-          .createdDate(jpaBrand.createdDate)
-          .modifiedDate(jpaBrand.modifiedDate)
+          .id(BrandId.of(jpaBrand.getId()))
+          .name(jpaBrand.getName())
+          .slug(jpaBrand.getSlug())
+          .brandKind(jpaBrand.getBrandKind())
+          .mailAddress(jpaBrand.getMailAddress())
+          .description(jpaBrand.getDescription())
+          .groupName(jpaBrand.getGroupName())
+          .websiteUrl(jpaBrand.getWebsiteUrl())
+          .version(jpaBrand.getVersion())
+          .createdDate(jpaBrand.getCreatedDate())
+          .modifiedDate(jpaBrand.getModifiedDate())
           .build();
     }
   }

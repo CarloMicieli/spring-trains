@@ -40,45 +40,45 @@ public class JpaBrand {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "brand_id")
-  UUID id;
+  private UUID id;
 
-  String name;
+  private String name;
 
   @Column(name = "company_name")
-  String companyName;
+  private String companyName;
 
   @Column(name = "brand_logo_id")
-  UUID logoId;
+  private UUID logoId;
 
   @Convert(converter = SlugConverter.class)
-  Slug slug;
+  private Slug slug;
 
   @Column(name = "website_url")
   @Convert(converter = URLConverter.class)
-  URL websiteUrl;
+  private URL websiteUrl;
 
   @Column(name = "group_name")
-  String groupName;
+  private String groupName;
 
-  String description;
+  private String description;
 
-  @Embedded JpaAddress address;
+  @Embedded private JpaAddress address;
 
   @Column(name = "kind")
   @Enumerated(EnumType.STRING)
-  BrandKind brandKind;
+  private BrandKind brandKind;
 
   @Column(name = "email")
   @Convert(converter = MailAddressConverter.class)
-  MailAddress mailAddress;
+  private MailAddress mailAddress;
 
   @Column(name = "created")
   @CreatedDate
-  Instant createdDate;
+  private Instant createdDate;
 
   @Column(name = "last_modified")
   @LastModifiedDate
-  Instant modifiedDate;
+  private Instant modifiedDate;
 
-  @Version int version;
+  @Version private int version;
 }
