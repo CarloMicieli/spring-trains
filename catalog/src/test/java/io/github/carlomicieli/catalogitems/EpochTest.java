@@ -15,6 +15,71 @@
 */
 package io.github.carlomicieli.catalogitems;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
-class EpochTest {}
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.Test;
+
+@DisplayName("An epoch")
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+class EpochTest {
+
+  @Test
+  void provides_constants_for_the_most_common_epochs() {
+    assertThat(Epoch.I.toString()).isEqualTo("I");
+    assertThat(Epoch.II.toString()).isEqualTo("II");
+    assertThat(Epoch.IIa.toString()).isEqualTo("IIa");
+    assertThat(Epoch.IIb.toString()).isEqualTo("IIb");
+    assertThat(Epoch.III.toString()).isEqualTo("III");
+    assertThat(Epoch.IIIa.toString()).isEqualTo("IIIa");
+    assertThat(Epoch.IIIb.toString()).isEqualTo("IIIb");
+    assertThat(Epoch.IV.toString()).isEqualTo("IV");
+    assertThat(Epoch.IVa.toString()).isEqualTo("IVa");
+    assertThat(Epoch.IVb.toString()).isEqualTo("IVb");
+    assertThat(Epoch.V.toString()).isEqualTo("V");
+    assertThat(Epoch.VI.toString()).isEqualTo("VI");
+  }
+
+  @Test
+  void should_parse_valid_epoch_values() {
+    var epoch = Epoch.parse("III");
+    assertThat(epoch).isEqualTo(Epoch.III);
+  }
+
+  @Test
+  void will_fail_to_parse_invalid_values_as_epochs() {
+    var ex = catchThrowableOfType(() -> Epoch.parse("invalid"), IllegalArgumentException.class);
+    assertThat(ex).isNotNull();
+    assertThat(ex.getMessage()).isEqualTo("The value is not a valid epoch");
+  }
+
+  @Test
+  void will_parse_multiple_values() {
+    var expected = "III/IV";
+    var result = Epoch.parse(expected);
+
+    assertThat(result).isNotNull();
+    assertThat(result.toString()).isEqualTo(expected);
+  }
+
+  @Test
+  void will_try_to_parse_multiple_values() {
+    var expected = "III/IV";
+    var result = Epoch.tryParse(expected);
+
+    assertThat(result).isNotNull();
+    assertThat(result).isPresent();
+    assertThat(result.get().toString()).isEqualTo(expected);
+  }
+
+  @Test
+  void will_fail_to_try_to_parse_invalid_values() {
+    var expected = "invalid";
+    var result = Epoch.tryParse(expected);
+
+    assertThat(result).isNotNull();
+    assertThat(result).isEmpty();
+  }
+}
