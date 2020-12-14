@@ -34,11 +34,10 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Builder
 @Data
 @With
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class JpaBrand {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "brand_id")
   private UUID id;
 

@@ -36,11 +36,10 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Builder
 @Data
 @With
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class JpaCatalogItem {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "catalog_item_id")
   private UUID id;
 

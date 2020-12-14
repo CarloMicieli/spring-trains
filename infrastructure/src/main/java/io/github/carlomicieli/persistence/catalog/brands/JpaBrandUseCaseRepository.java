@@ -33,6 +33,20 @@ public class JpaBrandUseCaseRepository implements BrandUseCaseRepository {
 
   @Override
   public void save(Brand brand) {
-    jpaRepo.save(JpaBrand.builder().build());
+    jpaRepo.save(
+        JpaBrand.builder()
+            .id(brand.getId().toUUID())
+            .name(brand.getName())
+            .slug(brand.getSlug())
+            .brandKind(brand.getBrandKind())
+            .address(JpaAddress.fromDomain(brand.getAddress()))
+            .mailAddress(brand.getMailAddress())
+            .description(brand.getDescription())
+            .groupName(brand.getGroupName())
+            .websiteUrl(brand.getWebsiteUrl())
+            .version(brand.getVersion())
+            .createdDate(brand.getCreatedDate())
+            .modifiedDate(brand.getModifiedDate())
+            .build());
   }
 }

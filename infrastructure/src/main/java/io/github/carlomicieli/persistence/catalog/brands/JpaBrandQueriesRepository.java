@@ -56,6 +56,7 @@ public class JpaBrandQueriesRepository implements BrandQueriesRepository {
           .name(jpaBrand.getName())
           .slug(jpaBrand.getSlug())
           .brandKind(jpaBrand.getBrandKind())
+          .address(jpaBrand.getAddress().toDomain())
           .mailAddress(jpaBrand.getMailAddress())
           .description(jpaBrand.getDescription())
           .groupName(jpaBrand.getGroupName())

@@ -33,11 +33,10 @@ import lombok.*;
 @Builder
 @Data
 @With
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class JpaRollingStock {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "rolling_stock_id")
   private UUID id;
 

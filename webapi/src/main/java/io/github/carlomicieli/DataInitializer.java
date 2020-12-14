@@ -65,6 +65,8 @@ public class DataInitializer implements CommandLineRunner {
     railways.deleteAll();
     scales.deleteAll();
 
+    scales.flush();
+
     var brandId = initBrands();
     var railwayId = initRailways();
     var scaleId = initScales();
@@ -75,6 +77,7 @@ public class DataInitializer implements CommandLineRunner {
 
     var rollingStock =
         JpaRollingStock.builder()
+            .id(UUID.randomUUID())
             .category(Category.FREIGHT_CAR)
             .control(Control.DCC)
             .couplers(Couplers.NEM_352)
@@ -93,6 +96,7 @@ public class DataInitializer implements CommandLineRunner {
 
     var item =
         JpaCatalogItem.builder()
+            .id(UUID.randomUUID())
             .brand(brand)
             .itemNumber(ItemNumber.of("123456"))
             .description("My description goes here")
@@ -106,7 +110,6 @@ public class DataInitializer implements CommandLineRunner {
             .slug(Slug.ofValues("ACME", "123456"))
             .scale(scale)
             .version(42)
-            // .rollingStocks(rollingStocks)
             .build();
 
     item.addRollingStock(rollingStock);
@@ -118,14 +121,19 @@ public class DataInitializer implements CommandLineRunner {
   }
 
   private UUID initBrands() {
+    var id = UUID.randomUUID();
+
     var newBrand =
         JpaBrand.builder()
+            .id(id)
             .name("ACME")
             .slug(Slug.of("ACME"))
             .brandKind(BrandKind.INDUSTRIAL)
             .createdDate(Instant.now())
             .build();
     var saved = brands.saveAndFlush(newBrand);
+
+    log.info("{} {}", id, saved.getId());
 
     var brandsList = brands.findAll();
     log.info("{} brand(s) found", brandsList.size());
@@ -142,6 +150,7 @@ public class DataInitializer implements CommandLineRunner {
   private UUID initRailways() {
     var newRailway =
         JpaRailway.builder()
+            .id(UUID.randomUUID())
             .name("FS")
             .slug(Slug.of("FS"))
             .country(Country.of("IT"))
@@ -164,6 +173,7 @@ public class DataInitializer implements CommandLineRunner {
   private UUID initScales() {
     var newScale =
         JpaScale.builder()
+            .id(UUID.randomUUID())
             .name("FS")
             .slug(Slug.of("FS"))
             .gauge(JpaScaleGauge.builder().trackGauge(TrackGauge.STANDARD).build())

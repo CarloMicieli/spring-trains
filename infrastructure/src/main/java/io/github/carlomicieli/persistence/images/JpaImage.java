@@ -25,11 +25,10 @@ import lombok.*;
 @Builder
 @Data
 @With
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class JpaImage {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "image_id")
   UUID id;
 

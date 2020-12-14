@@ -33,12 +33,11 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Builder
 @Data
 @With
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class JpaRailway {
   @Column(name = "railway_id")
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
 
   @Convert(converter = SlugConverter.class)
