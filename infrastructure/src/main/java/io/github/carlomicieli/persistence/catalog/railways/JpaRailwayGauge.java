@@ -25,21 +25,21 @@ import lombok.*;
 @Embeddable
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 @With
 public class JpaRailwayGauge {
   @Column(name = "track_type")
   @Enumerated(EnumType.STRING)
-  TrackGauge trackGauge;
+  private TrackGauge trackGauge;
 
   @Convert(converter = LengthConverter.MILLIMETERS.class)
   @Column(name = "gauge_mm")
-  Length millimeters;
+  private Length millimeters;
 
   @Convert(converter = LengthConverter.INCHES.class)
   @Column(name = "gauge_in")
-  Length inches;
+  private Length inches;
 
   public RailwayGauge toDomain() {
     return new RailwayGauge(trackGauge, millimeters, inches);

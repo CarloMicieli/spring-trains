@@ -25,17 +25,17 @@ import lombok.*;
 @Embeddable
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 @With
 public class JpaPeriodOfActivity {
-  boolean active;
+  private boolean active;
 
   @Column(name = "operating_since", columnDefinition = "TIMESTAMP")
-  LocalDate operatingSince;
+  private LocalDate operatingSince;
 
   @Column(name = "operating_until", columnDefinition = "TIMESTAMP")
-  LocalDate operatingUntil;
+  private LocalDate operatingUntil;
 
   public static JpaPeriodOfActivity fromDomain(PeriodOfActivity poa) {
     return new JpaPeriodOfActivity(

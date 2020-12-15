@@ -34,8 +34,8 @@ class JpaRailwayLengthTest {
     var jpaRailwayLength = JpaRailwayLength.fromDomain(railwayLength);
 
     assertThat(jpaRailwayLength).isNotNull();
-    assertThat(jpaRailwayLength.kilometers).isEqualTo(railwayLength.getKilometers());
-    assertThat(jpaRailwayLength.miles).isEqualTo(railwayLength.getMiles());
+    assertThat(jpaRailwayLength.getKilometers()).isEqualTo(railwayLength.getKilometers());
+    assertThat(jpaRailwayLength.getMiles()).isEqualTo(railwayLength.getMiles());
   }
 
   @Test
@@ -46,7 +46,7 @@ class JpaRailwayLengthTest {
     var railwayLength = jpaRailwayLength.toDomain();
 
     assertThat(railwayLength).isNotNull();
-    assertThat(railwayLength.getKilometers()).isEqualTo(jpaRailwayLength.kilometers);
-    assertThat(railwayLength.getMiles()).isEqualTo(jpaRailwayLength.miles);
+    assertThat(railwayLength.getKilometers()).isEqualTo(jpaRailwayLength.getKilometers());
+    assertThat(railwayLength.getMiles()).isEqualTo(jpaRailwayLength.getMiles());
   }
 }

@@ -44,9 +44,9 @@ class JpaRailwayGaugeTest {
     var jpaRailwayGauge = JpaRailwayGauge.fromDomain(railwayGauge);
 
     assertThat(jpaRailwayGauge).isNotNull();
-    assertThat(jpaRailwayGauge.trackGauge).isEqualTo(railwayGauge.getTrackGauge());
-    assertThat(jpaRailwayGauge.inches).isEqualTo(railwayGauge.getInches());
-    assertThat(jpaRailwayGauge.millimeters).isEqualTo(railwayGauge.getMillimeters());
+    assertThat(jpaRailwayGauge.getTrackGauge()).isEqualTo(railwayGauge.getTrackGauge());
+    assertThat(jpaRailwayGauge.getInches()).isEqualTo(railwayGauge.getInches());
+    assertThat(jpaRailwayGauge.getMillimeters()).isEqualTo(railwayGauge.getMillimeters());
   }
 
   @Test
@@ -60,8 +60,8 @@ class JpaRailwayGaugeTest {
     var railwayGauge = jpaRailwayGauge.toDomain();
 
     assertThat(railwayGauge).isNotNull();
-    assertThat(railwayGauge.getTrackGauge()).isEqualTo(jpaRailwayGauge.trackGauge);
-    assertThat(railwayGauge.getInches()).isEqualTo(jpaRailwayGauge.inches);
-    assertThat(railwayGauge.getMillimeters()).isEqualTo(jpaRailwayGauge.millimeters);
+    assertThat(railwayGauge.getTrackGauge()).isEqualTo(jpaRailwayGauge.getTrackGauge());
+    assertThat(railwayGauge.getInches()).isEqualTo(jpaRailwayGauge.getInches());
+    assertThat(railwayGauge.getMillimeters()).isEqualTo(jpaRailwayGauge.getMillimeters());
   }
 }

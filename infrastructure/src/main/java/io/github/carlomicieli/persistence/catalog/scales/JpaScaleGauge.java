@@ -20,28 +20,25 @@ import io.github.carlomicieli.scales.ScaleGauge;
 import io.github.carlomicieli.valueobject.Gauge;
 import io.github.carlomicieli.valueobject.TrackGauge;
 import javax.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Embeddable
 public class JpaScaleGauge {
   @Column(name = "track_type")
   @Enumerated(EnumType.STRING)
-  TrackGauge trackGauge;
+  private TrackGauge trackGauge;
 
   @Column(name = "gauge_mm")
   @Convert(converter = GaugeConverter.MILLIMETERS.class)
-  Gauge millimetres;
+  private Gauge millimetres;
 
   @Column(name = "gauge_in")
   @Convert(converter = GaugeConverter.INCHES.class)
-  Gauge inches;
+  private Gauge inches;
 
   public ScaleGauge toDomain() {
     return new ScaleGauge(millimetres, inches, trackGauge);

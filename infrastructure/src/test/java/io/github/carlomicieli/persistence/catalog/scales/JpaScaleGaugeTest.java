@@ -38,9 +38,9 @@ class JpaScaleGaugeTest {
 
     assertThat(jpaScaleGauge).isNotNull();
 
-    assertThat(jpaScaleGauge.inches).isEqualTo(INCHES_GAUGE);
-    assertThat(jpaScaleGauge.millimetres).isEqualTo(MILLIMETERS_GAUGE);
-    assertThat(jpaScaleGauge.trackGauge).isEqualTo(scaleGauge.getTrackGauge());
+    assertThat(jpaScaleGauge.getInches()).isEqualTo(INCHES_GAUGE);
+    assertThat(jpaScaleGauge.getMillimetres()).isEqualTo(MILLIMETERS_GAUGE);
+    assertThat(jpaScaleGauge.getTrackGauge()).isEqualTo(scaleGauge.getTrackGauge());
   }
 
   @Test

@@ -30,18 +30,18 @@ import lombok.*;
 public class JpaImage {
   @Id
   @Column(name = "image_id")
-  UUID id;
+  private UUID id;
 
   @Column(name = "content_type")
-  String contentType;
+  private String contentType;
 
   @Lob
   @Column(name = "content", columnDefinition = "bytea")
-  byte[] content;
+  private byte[] content;
 
   @Column(name = "is_deleted")
-  boolean isDeleted;
+  private boolean isDeleted;
 
   @Column(name = "created")
-  Instant createdDate;
+  private Instant createdDate;
 }

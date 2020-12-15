@@ -26,17 +26,17 @@ import lombok.*;
 @Embeddable
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 @With
 public class JpaRailwayLength {
   @Convert(converter = LengthConverter.KILOMETERS.class)
   @Column(name = "total_length_km")
-  Length kilometers;
+  private Length kilometers;
 
   @Convert(converter = LengthConverter.MILES.class)
   @Column(name = "total_length_mi")
-  Length miles;
+  private Length miles;
 
   public RailwayLength toDomain() {
     return new RailwayLength(kilometers, miles);

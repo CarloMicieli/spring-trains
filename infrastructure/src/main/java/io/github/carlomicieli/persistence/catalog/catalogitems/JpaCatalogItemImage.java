@@ -26,24 +26,24 @@ import lombok.*;
 @Builder
 @Data
 @With
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class JpaCatalogItemImage {
 
-  @EmbeddedId JpaCatalogItemImageKey id;
+  @EmbeddedId private JpaCatalogItemImageKey id;
 
   @ManyToOne
   @MapsId("image_id")
   @JoinColumn(name = "image_id")
-  JpaImage image;
+  private JpaImage image;
 
   @ManyToOne
   @MapsId("catalog_item_id")
   @JoinColumn(name = "catalog_item_id")
-  JpaCatalogItem catalogItem;
+  private JpaCatalogItem catalogItem;
 
   @Column(name = "is_default")
-  boolean isDefault;
+  private boolean isDefault;
 
   @Embeddable
   @Data
@@ -52,9 +52,9 @@ public class JpaCatalogItemImage {
   static class JpaCatalogItemImageKey implements Serializable {
 
     @Column(name = "image_id")
-    UUID imageId;
+    private UUID imageId;
 
     @Column(name = "catalog_item_id")
-    UUID catalogItemId;
+    private UUID catalogItemId;
   }
 }
