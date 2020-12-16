@@ -33,6 +33,7 @@ public final class Railway implements AggregateRoot<RailwayId> {
   private final String name;
   private final String companyName;
   private final Country country;
+  private final String description;
   private final PeriodOfActivity periodOfActivity;
   private final RailwayGauge trackGauge;
   private final RailwayLength totalLength;

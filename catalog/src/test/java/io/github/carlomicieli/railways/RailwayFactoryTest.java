@@ -57,6 +57,7 @@ class RailwayFactoryTest {
     var railway =
         factory.createNewRailway(
             "FS",
+            "Ferrovie italiane",
             "Ferrovie dello stato",
             italy,
             periodOfActivity,
@@ -69,6 +70,7 @@ class RailwayFactoryTest {
     assertThat(railway.getId()).isEqualTo(FIXED_RAILWAY_ID);
     assertThat(railway.getCountry()).isEqualTo(italy);
     assertThat(railway.getName()).isEqualTo("FS");
+    assertThat(railway.getDescription()).isEqualTo("Ferrovie italiane");
     assertThat(railway.getCompanyName()).isEqualTo("Ferrovie dello stato");
     assertThat(railway.getPeriodOfActivity()).isEqualTo(periodOfActivity);
     assertThat(railway.getTrackGauge()).isEqualTo(gauge);

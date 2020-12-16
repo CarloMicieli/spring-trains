@@ -66,6 +66,8 @@ public class JpaRailway {
 
   private String headquarters;
 
+  private String description;
+
   @Column(name = "created")
   @CreatedDate
   private Instant createdDate;

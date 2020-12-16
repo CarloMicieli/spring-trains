@@ -21,19 +21,20 @@ import lombok.*;
 @Entity
 @Table(name = "users")
 @Data
-@NoArgsConstructor
+@Builder
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
 public class User {
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
 
+  @Id
   @Column(nullable = false, unique = true)
   private String username;
 
   private String password;
 
   private boolean enabled;
+
+  private String gravatarHash;
+
+  private String email;
 }

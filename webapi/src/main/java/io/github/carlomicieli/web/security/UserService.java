@@ -40,10 +40,12 @@ public class UserService {
       throw new ValidationException("Username already in use");
     }
 
-    var newUser = new User();
-    newUser.setUsername(request.getUserName());
-    newUser.setPassword(passwordEncoder.encode(request.getPassword()));
-    newUser.setEnabled(true);
+    var newUser =
+        User.builder()
+            .username(request.getUserName())
+            .password(request.getPassword())
+            .enabled(true)
+            .build();
 
     userRepository.save(newUser);
   }

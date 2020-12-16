@@ -33,6 +33,7 @@ public final class RailwayFactory extends AggregateRootFactory<Railway, RailwayI
    */
   public Railway createNewRailway(
       String name,
+      String description,
       String companyName,
       Country country,
       PeriodOfActivity periodOfActivity,
@@ -49,6 +50,7 @@ public final class RailwayFactory extends AggregateRootFactory<Railway, RailwayI
         .id(newId)
         .slug(railwaySlug)
         .name(name)
+        .description(description)
         .companyName(companyName)
         .country(country)
         .periodOfActivity(periodOfActivity)
