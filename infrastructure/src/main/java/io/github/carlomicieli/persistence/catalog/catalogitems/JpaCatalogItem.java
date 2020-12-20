@@ -30,6 +30,7 @@ import javax.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.domain.Persistable;
 
 @Entity
 @Table(name = "catalog_items")
@@ -38,7 +39,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 @With
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class JpaCatalogItem {
+public class JpaCatalogItem implements Persistable<UUID> {
   @Id
   @Column(name = "catalog_item_id")
   private UUID id;
@@ -104,5 +105,10 @@ public class JpaCatalogItem {
 
     rollingStocks.remove(rs);
     rs.setCatalogItem(null);
+  }
+
+  @Override
+  public boolean isNew() {
+    return version == 1;
   }
 }

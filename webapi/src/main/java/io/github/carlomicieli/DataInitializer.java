@@ -31,14 +31,16 @@ import io.github.carlomicieli.persistence.catalog.catalogitems.JpaRollingStock;
 import io.github.carlomicieli.persistence.catalog.railways.JpaRailway;
 import io.github.carlomicieli.persistence.catalog.railways.JpaRailwayRepository;
 import io.github.carlomicieli.persistence.catalog.scales.JpaScale;
-import io.github.carlomicieli.persistence.catalog.scales.JpaScaleGauge;
 import io.github.carlomicieli.persistence.catalog.scales.JpaScaleRepository;
 import io.github.carlomicieli.scales.Ratio;
+import io.github.carlomicieli.scales.ScaleGauge;
+import io.github.carlomicieli.scales.ScaleId;
 import io.github.carlomicieli.util.Slug;
 import io.github.carlomicieli.valueobject.TrackGauge;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
+import javax.persistence.EntityManagerFactory;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -54,6 +56,8 @@ public class DataInitializer implements CommandLineRunner {
   @Autowired JpaRailwayRepository railways;
   @Autowired JpaScaleRepository scales;
   @Autowired JpaCatalogItemRepository catalogItems;
+
+  @Autowired EntityManagerFactory entityManagerFactory;
 
   @Override
   @Transactional
@@ -109,7 +113,7 @@ public class DataInitializer implements CommandLineRunner {
             .powerMethod(PowerMethod.AC)
             .slug(Slug.ofValues("ACME", "123456"))
             .scale(scale)
-            .version(42)
+            .version(1)
             .build();
 
     item.addRollingStock(rollingStock);
@@ -130,6 +134,7 @@ public class DataInitializer implements CommandLineRunner {
             .slug(Slug.of("ACME"))
             .brandKind(BrandKind.INDUSTRIAL)
             .createdDate(Instant.now())
+            .version(1)
             .build();
     var saved = brands.saveAndFlush(newBrand);
 
@@ -155,6 +160,7 @@ public class DataInitializer implements CommandLineRunner {
             .slug(Slug.of("FS"))
             .country(Country.of("IT"))
             .createdDate(Instant.now())
+            .version(1)
             .build();
     var saved = railways.saveAndFlush(newRailway);
 
@@ -173,12 +179,13 @@ public class DataInitializer implements CommandLineRunner {
   private UUID initScales() {
     var newScale =
         JpaScale.builder()
-            .id(UUID.randomUUID())
+            .id(ScaleId.randomId().toUUID())
             .name("FS")
             .slug(Slug.of("FS"))
-            .gauge(JpaScaleGauge.builder().trackGauge(TrackGauge.STANDARD).build())
+            .gauge(ScaleGauge.builder().trackGauge(TrackGauge.STANDARD).build())
             .ratio(Ratio.of(BigDecimal.valueOf(87)))
             .createdDate(Instant.now())
+            .version(1)
             .build();
     var saved = scales.saveAndFlush(newScale);
 

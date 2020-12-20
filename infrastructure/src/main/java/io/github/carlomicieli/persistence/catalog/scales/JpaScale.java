@@ -15,9 +15,12 @@
 */
 package io.github.carlomicieli.persistence.catalog.scales;
 
+import io.github.carlomicieli.persistence.common.converter.GaugeConverter;
 import io.github.carlomicieli.persistence.common.converter.RatioConverter;
 import io.github.carlomicieli.persistence.common.converter.SlugConverter;
+import io.github.carlomicieli.persistence.common.converter.TrackGaugeConverter;
 import io.github.carlomicieli.scales.Ratio;
+import io.github.carlomicieli.scales.ScaleGauge;
 import io.github.carlomicieli.util.Slug;
 import java.time.Instant;
 import java.util.UUID;
@@ -25,6 +28,7 @@ import javax.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.domain.Persistable;
 
 @Entity
 @Table(name = "scales")
@@ -33,7 +37,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 @With
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class JpaScale {
+public class JpaScale implements Persistable<UUID> {
   @Column(name = "scale_id")
   @Id
   private UUID id;
@@ -46,7 +50,18 @@ public class JpaScale {
   @Convert(converter = RatioConverter.class)
   private Ratio ratio;
 
-  @Embedded private JpaScaleGauge gauge;
+  @Embedded
+  @Converts({
+    @Convert(attributeName = "millimetres", converter = GaugeConverter.MILLIMETERS.class),
+    @Convert(attributeName = "inches", converter = GaugeConverter.INCHES.class),
+    @Convert(attributeName = "trackGauge", converter = TrackGaugeConverter.class)
+  })
+  @AttributeOverrides({
+    @AttributeOverride(name = "millimetres", column = @Column(name = "gauge_mm")),
+    @AttributeOverride(name = "inches", column = @Column(name = "gauge_in")),
+    @AttributeOverride(name = "trackGauge", column = @Column(name = "track_type"))
+  })
+  private ScaleGauge gauge;
 
   private String standards;
 
@@ -63,4 +78,9 @@ public class JpaScale {
   private Instant modifiedDate;
 
   @Version private int version;
+
+  @Override
+  public boolean isNew() {
+    return version == 1;
+  }
 }

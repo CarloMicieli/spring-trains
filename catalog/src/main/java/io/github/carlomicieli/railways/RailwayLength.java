@@ -19,10 +19,7 @@ import io.github.carlomicieli.lengths.Length;
 import io.github.carlomicieli.lengths.MeasureUnit;
 import io.github.carlomicieli.lengths.conversion.MeasureUnitsConverters;
 import java.math.BigDecimal;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.With;
+import lombok.*;
 
 /**
  * It represents the total length for {@code Railway}s.
@@ -31,11 +28,12 @@ import lombok.With;
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @With
 @Builder
-public final class RailwayLength {
-  private final Length kilometers;
-  private final Length miles;
+public class RailwayLength {
+  Length kilometers;
+  Length miles;
 
   /** Creates a new {@code RailwayLength} from a kilometers value, converting this value to miles */
   public static RailwayLength ofKilometers(double value) {

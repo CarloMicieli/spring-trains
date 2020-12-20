@@ -20,19 +20,17 @@ import io.github.carlomicieli.lengths.MeasureUnit;
 import io.github.carlomicieli.lengths.conversion.MeasureUnitsConverters;
 import io.github.carlomicieli.valueobject.TrackGauge;
 import java.math.BigDecimal;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.With;
+import lombok.*;
 
 @Data
 @With
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public final class RailwayGauge {
-  private final TrackGauge trackGauge;
-  private final Length millimeters;
-  private final Length inches;
+public class RailwayGauge {
+  TrackGauge trackGauge;
+  Length millimeters;
+  Length inches;
 
   /** Creates a new {@code RailwayGauge} value in millimeters, using the provided track gauge */
   public static RailwayGauge ofMillimeters(double value, TrackGauge trackGauge) {

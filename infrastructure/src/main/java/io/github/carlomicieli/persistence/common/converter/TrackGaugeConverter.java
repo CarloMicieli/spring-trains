@@ -13,19 +13,30 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.scales;
+package io.github.carlomicieli.persistence.common.converter;
 
-import io.github.carlomicieli.valueobject.Gauge;
+import com.google.common.base.Strings;
 import io.github.carlomicieli.valueobject.TrackGauge;
-import lombok.*;
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@With
-public class ScaleGauge {
-  Gauge millimetres;
-  Gauge inches;
-  TrackGauge trackGauge;
+@Converter
+public class TrackGaugeConverter implements AttributeConverter<TrackGauge, String> {
+  @Override
+  public String convertToDatabaseColumn(TrackGauge trackGauge) {
+    if (trackGauge == null) {
+      return null;
+    }
+
+    return trackGauge.name();
+  }
+
+  @Override
+  public TrackGauge convertToEntityAttribute(String s) {
+    if (Strings.isNullOrEmpty(s)) {
+      return null;
+    }
+
+    return Enum.valueOf(TrackGauge.class, s);
+  }
 }

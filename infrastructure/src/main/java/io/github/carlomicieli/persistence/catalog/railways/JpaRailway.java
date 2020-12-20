@@ -16,9 +16,10 @@
 package io.github.carlomicieli.persistence.catalog.railways;
 
 import io.github.carlomicieli.countries.Country;
-import io.github.carlomicieli.persistence.common.converter.CountryConverter;
-import io.github.carlomicieli.persistence.common.converter.SlugConverter;
-import io.github.carlomicieli.persistence.common.converter.URLConverter;
+import io.github.carlomicieli.persistence.common.converter.*;
+import io.github.carlomicieli.railways.PeriodOfActivity;
+import io.github.carlomicieli.railways.RailwayGauge;
+import io.github.carlomicieli.railways.RailwayLength;
 import io.github.carlomicieli.util.Slug;
 import java.net.URL;
 import java.time.Instant;
@@ -27,6 +28,7 @@ import javax.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.domain.Persistable;
 
 @Entity
 @Table(name = "railways")
@@ -35,7 +37,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 @With
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class JpaRailway {
+public class JpaRailway implements Persistable<UUID> {
   @Column(name = "railway_id")
   @Id
   private UUID id;
@@ -54,11 +56,44 @@ public class JpaRailway {
   @Convert(converter = CountryConverter.class)
   private Country country;
 
-  @Embedded private JpaPeriodOfActivity periodOfActivity;
+  @Embedded
+  @Converts({
+    @Convert(attributeName = "railwayStatus", converter = RailwayStatusConverter.class),
+  })
+  @AttributeOverrides({
+    @AttributeOverride(name = "railwayStatus", column = @Column(name = "active")),
+    @AttributeOverride(
+        name = "operatingSince",
+        column = @Column(name = "operating_since", columnDefinition = "TIMESTAMP")),
+    @AttributeOverride(
+        name = "operatingUntil",
+        column = @Column(name = "operating_until", columnDefinition = "TIMESTAMP"))
+  })
+  private PeriodOfActivity periodOfActivity;
 
-  @Embedded private JpaRailwayGauge trackGauge;
+  @Embedded
+  @Converts({
+    @Convert(attributeName = "millimeters", converter = LengthConverter.MILLIMETERS.class),
+    @Convert(attributeName = "inches", converter = LengthConverter.INCHES.class),
+    @Convert(attributeName = "trackGauge", converter = TrackGaugeConverter.class)
+  })
+  @AttributeOverrides({
+    @AttributeOverride(name = "millimeters", column = @Column(name = "gauge_mm")),
+    @AttributeOverride(name = "inches", column = @Column(name = "gauge_in")),
+    @AttributeOverride(name = "trackGauge", column = @Column(name = "track_type"))
+  })
+  private RailwayGauge trackGauge;
 
-  @Embedded private JpaRailwayLength totalLength;
+  @Embedded
+  @Converts({
+    @Convert(attributeName = "kilometers", converter = LengthConverter.KILOMETERS.class),
+    @Convert(attributeName = "miles", converter = LengthConverter.MILES.class)
+  })
+  @AttributeOverrides({
+    @AttributeOverride(name = "kilometers", column = @Column(name = "total_length_km")),
+    @AttributeOverride(name = "miles", column = @Column(name = "total_length_mi"))
+  })
+  private RailwayLength totalLength;
 
   @Convert(converter = URLConverter.class)
   @Column(name = "website_url")
@@ -77,4 +112,9 @@ public class JpaRailway {
   private Instant modifiedDate;
 
   @Version private int version;
+
+  @Override
+  public boolean isNew() {
+    return version == 1;
+  }
 }

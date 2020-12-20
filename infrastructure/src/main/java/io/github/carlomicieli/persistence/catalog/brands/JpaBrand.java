@@ -15,6 +15,7 @@
 */
 package io.github.carlomicieli.persistence.catalog.brands;
 
+import io.github.carlomicieli.addresses.Address;
 import io.github.carlomicieli.brands.BrandKind;
 import io.github.carlomicieli.mail.MailAddress;
 import io.github.carlomicieli.persistence.common.converter.MailAddressConverter;
@@ -28,6 +29,7 @@ import javax.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.domain.Persistable;
 
 @Entity
 @Table(name = "brands")
@@ -36,7 +38,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 @With
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class JpaBrand {
+public class JpaBrand implements Persistable<UUID> {
   @Id
   @Column(name = "brand_id")
   private UUID id;
@@ -61,7 +63,16 @@ public class JpaBrand {
 
   private String description;
 
-  @Embedded private JpaAddress address;
+  @Embedded
+  @AttributeOverrides({
+    @AttributeOverride(name = "line1", column = @Column(name = "address_line1")),
+    @AttributeOverride(name = "line2", column = @Column(name = "address_line2")),
+    @AttributeOverride(name = "city", column = @Column(name = "address_city")),
+    @AttributeOverride(name = "region", column = @Column(name = "address_region")),
+    @AttributeOverride(name = "postalCode", column = @Column(name = "address_postal_code")),
+    @AttributeOverride(name = "country", column = @Column(name = "address_country"))
+  })
+  private Address address;
 
   @Column(name = "kind")
   @Enumerated(EnumType.STRING)
@@ -80,4 +91,9 @@ public class JpaBrand {
   private Instant modifiedDate;
 
   @Version private int version;
+
+  @Override
+  public boolean isNew() {
+    return version == 1;
+  }
 }

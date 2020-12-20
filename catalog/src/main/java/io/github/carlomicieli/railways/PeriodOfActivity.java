@@ -17,18 +17,18 @@ package io.github.carlomicieli.railways;
 
 import java.time.LocalDate;
 import lombok.Data;
-import lombok.With;
+import lombok.NoArgsConstructor;
 
 /**
  * It represent a period of activity for {@code Railway}. Railways can be either "active" or
  * "inactive". In the latter case, inactive railways will also have a termination date.
  */
 @Data
-@With
-public final class PeriodOfActivity {
-  private final RailwayStatus railwayStatus;
-  private final LocalDate operatingSince;
-  private final LocalDate operatingUntil;
+@NoArgsConstructor
+public class PeriodOfActivity {
+  RailwayStatus railwayStatus;
+  LocalDate operatingSince;
+  LocalDate operatingUntil;
 
   public PeriodOfActivity(
       RailwayStatus railwayStatus, LocalDate operatingSince, LocalDate operatingUntil) {

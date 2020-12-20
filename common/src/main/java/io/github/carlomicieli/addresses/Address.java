@@ -16,23 +16,21 @@
 package io.github.carlomicieli.addresses;
 
 import com.google.common.base.Strings;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.With;
+import lombok.*;
 
 /** An immutable object value that represents an {@code Address}. */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @With
 public class Address {
-  private final String line1;
-  private final String line2;
-  private final String city;
-  private final String region;
-  private final String postalCode;
-  private final String country;
+  String line1;
+  String line2;
+  String city;
+  String region;
+  String postalCode;
+  String country;
 
   /**
    * Checks whether the provided {@code address} is empty.

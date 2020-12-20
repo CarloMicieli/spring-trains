@@ -39,7 +39,7 @@ public class JpaBrandUseCaseRepository implements BrandUseCaseRepository {
             .name(brand.getName())
             .slug(brand.getSlug())
             .brandKind(brand.getBrandKind())
-            .address(JpaAddress.fromDomain(brand.getAddress()))
+            .address(brand.getAddress())
             .mailAddress(brand.getMailAddress())
             .description(brand.getDescription())
             .groupName(brand.getGroupName())
