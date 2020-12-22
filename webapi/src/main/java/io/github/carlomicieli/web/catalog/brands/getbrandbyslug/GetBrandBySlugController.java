@@ -15,9 +15,9 @@
 */
 package io.github.carlomicieli.web.catalog.brands.getbrandbyslug;
 
-import io.github.carlomicieli.brands.Brand;
-import io.github.carlomicieli.brands.queries.getbrandbyslug.GetBrandBySlugCriteria;
-import io.github.carlomicieli.brands.queries.getbrandbyslug.GetBrandBySlugQuery;
+import io.github.carlomicieli.catalog.brands.Brand;
+import io.github.carlomicieli.catalog.brands.queries.getbrandbyslug.GetBrandBySlugCriteria;
+import io.github.carlomicieli.catalog.brands.queries.getbrandbyslug.GetBrandBySlugQuery;
 import io.github.carlomicieli.util.Slug;
 import io.github.carlomicieli.web.catalog.brands.BrandRepresentation;
 import java.util.Collections;

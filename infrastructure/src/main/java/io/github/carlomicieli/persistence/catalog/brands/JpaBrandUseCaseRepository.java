@@ -15,8 +15,8 @@
 */
 package io.github.carlomicieli.persistence.catalog.brands;
 
-import io.github.carlomicieli.brands.Brand;
-import io.github.carlomicieli.brands.usecases.BrandUseCaseRepository;
+import io.github.carlomicieli.catalog.brands.Brand;
+import io.github.carlomicieli.catalog.brands.usecases.BrandUseCaseRepository;
 import io.github.carlomicieli.util.Slug;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;

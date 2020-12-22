@@ -15,7 +15,7 @@
 */
 package io.github.carlomicieli.persistence.common.converter;
 
-import io.github.carlomicieli.railways.RailwayStatus;
+import io.github.carlomicieli.catalog.railways.RailwayStatus;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 

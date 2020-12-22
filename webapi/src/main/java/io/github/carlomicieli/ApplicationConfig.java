@@ -17,7 +17,7 @@ package io.github.carlomicieli;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import io.github.carlomicieli.brands.BrandId;
+import io.github.carlomicieli.catalog.brands.BrandId;
 import io.github.carlomicieli.web.catalog.brands.BrandIdSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

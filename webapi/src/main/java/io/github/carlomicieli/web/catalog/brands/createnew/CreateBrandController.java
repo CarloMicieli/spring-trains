@@ -15,8 +15,8 @@
 */
 package io.github.carlomicieli.web.catalog.brands.createnew;
 
-import io.github.carlomicieli.brands.usecases.createbrand.CreateBrandInput;
-import io.github.carlomicieli.brands.usecases.createbrand.CreateBrandUseCase;
+import io.github.carlomicieli.catalog.brands.usecases.createbrand.CreateBrandInput;
+import io.github.carlomicieli.catalog.brands.usecases.createbrand.CreateBrandUseCase;
 import javax.annotation.Nonnull;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;

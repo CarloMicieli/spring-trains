@@ -16,7 +16,7 @@
 package io.github.carlomicieli.persistence.catalog.brands;
 
 import io.github.carlomicieli.addresses.Address;
-import io.github.carlomicieli.brands.BrandKind;
+import io.github.carlomicieli.catalog.brands.BrandKind;
 import io.github.carlomicieli.mail.MailAddress;
 import io.github.carlomicieli.persistence.common.converter.MailAddressConverter;
 import io.github.carlomicieli.persistence.common.converter.SlugConverter;

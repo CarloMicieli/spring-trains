@@ -15,7 +15,7 @@
 */
 package io.github.carlomicieli.web.catalog.brands;
 
-import io.github.carlomicieli.brands.Brand;
+import io.github.carlomicieli.catalog.brands.Brand;
 import org.springframework.hateoas.EntityModel;
 
 public final class BrandRepresentation extends EntityModel<Brand> {}

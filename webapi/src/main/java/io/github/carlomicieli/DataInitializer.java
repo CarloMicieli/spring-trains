@@ -15,13 +15,13 @@
 */
 package io.github.carlomicieli;
 
-import io.github.carlomicieli.brands.BrandKind;
-import io.github.carlomicieli.catalogitems.Control;
-import io.github.carlomicieli.catalogitems.Epoch;
-import io.github.carlomicieli.catalogitems.ItemNumber;
-import io.github.carlomicieli.catalogitems.PowerMethod;
-import io.github.carlomicieli.catalogitems.deliverydates.DeliveryDate;
-import io.github.carlomicieli.catalogitems.rollingstocks.*;
+import io.github.carlomicieli.catalog.brands.BrandKind;
+import io.github.carlomicieli.catalog.catalogitems.Control;
+import io.github.carlomicieli.catalog.catalogitems.Epoch;
+import io.github.carlomicieli.catalog.catalogitems.ItemNumber;
+import io.github.carlomicieli.catalog.catalogitems.PowerMethod;
+import io.github.carlomicieli.catalog.catalogitems.deliverydates.DeliveryDate;
+import io.github.carlomicieli.catalog.catalogitems.rollingstocks.*;
 import io.github.carlomicieli.countries.Country;
 import io.github.carlomicieli.persistence.catalog.brands.JpaBrand;
 import io.github.carlomicieli.persistence.catalog.brands.JpaBrandRepository;
@@ -32,11 +32,11 @@ import io.github.carlomicieli.persistence.catalog.railways.JpaRailway;
 import io.github.carlomicieli.persistence.catalog.railways.JpaRailwayRepository;
 import io.github.carlomicieli.persistence.catalog.scales.JpaScale;
 import io.github.carlomicieli.persistence.catalog.scales.JpaScaleRepository;
-import io.github.carlomicieli.scales.Ratio;
-import io.github.carlomicieli.scales.ScaleGauge;
-import io.github.carlomicieli.scales.ScaleId;
+import io.github.carlomicieli.catalog.scales.Ratio;
+import io.github.carlomicieli.catalog.scales.ScaleGauge;
+import io.github.carlomicieli.catalog.scales.ScaleId;
 import io.github.carlomicieli.util.Slug;
-import io.github.carlomicieli.valueobject.TrackGauge;
+import io.github.carlomicieli.catalog.valueobject.TrackGauge;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;

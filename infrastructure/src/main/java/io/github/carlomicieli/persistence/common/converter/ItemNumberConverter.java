@@ -16,7 +16,7 @@
 package io.github.carlomicieli.persistence.common.converter;
 
 import com.google.common.base.Strings;
-import io.github.carlomicieli.catalogitems.ItemNumber;
+import io.github.carlomicieli.catalog.catalogitems.ItemNumber;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 

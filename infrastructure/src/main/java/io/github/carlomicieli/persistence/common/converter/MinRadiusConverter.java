@@ -15,7 +15,7 @@
 */
 package io.github.carlomicieli.persistence.common.converter;
 
-import io.github.carlomicieli.catalogitems.rollingstocks.MinRadius;
+import io.github.carlomicieli.catalog.catalogitems.rollingstocks.MinRadius;
 import java.math.BigDecimal;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

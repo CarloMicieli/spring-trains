@@ -16,7 +16,7 @@
 package io.github.carlomicieli.persistence.common.converter;
 
 import com.google.common.base.Strings;
-import io.github.carlomicieli.catalogitems.deliverydates.DeliveryDate;
+import io.github.carlomicieli.catalog.catalogitems.deliverydates.DeliveryDate;
 import javax.persistence.AttributeConverter;
 
 public class DeliveryDateConverter implements AttributeConverter<DeliveryDate, String> {

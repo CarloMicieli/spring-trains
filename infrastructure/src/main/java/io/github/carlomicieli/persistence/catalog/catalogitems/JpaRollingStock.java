@@ -15,10 +15,10 @@
 */
 package io.github.carlomicieli.persistence.catalog.catalogitems;
 
-import io.github.carlomicieli.catalogitems.Control;
-import io.github.carlomicieli.catalogitems.DccInterface;
-import io.github.carlomicieli.catalogitems.Epoch;
-import io.github.carlomicieli.catalogitems.rollingstocks.*;
+import io.github.carlomicieli.catalog.catalogitems.Control;
+import io.github.carlomicieli.catalog.catalogitems.DccInterface;
+import io.github.carlomicieli.catalog.catalogitems.Epoch;
+import io.github.carlomicieli.catalog.catalogitems.rollingstocks.*;
 import io.github.carlomicieli.persistence.catalog.railways.JpaRailway;
 import io.github.carlomicieli.persistence.common.converter.EpochConverter;
 import io.github.carlomicieli.persistence.common.converter.MinRadiusConverter;

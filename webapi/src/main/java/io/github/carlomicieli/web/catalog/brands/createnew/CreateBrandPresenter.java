@@ -15,8 +15,8 @@
 */
 package io.github.carlomicieli.web.catalog.brands.createnew;
 
-import io.github.carlomicieli.brands.usecases.createbrand.CreateBrandOutput;
-import io.github.carlomicieli.brands.usecases.createbrand.CreateBrandOutputPort;
+import io.github.carlomicieli.catalog.brands.usecases.createbrand.CreateBrandOutput;
+import io.github.carlomicieli.catalog.brands.usecases.createbrand.CreateBrandOutputPort;
 import io.github.carlomicieli.web.presenters.ServerResponseOutputPort;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;

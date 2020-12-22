@@ -15,9 +15,9 @@
 */
 package io.github.carlomicieli.persistence.catalog.catalogitems;
 
-import io.github.carlomicieli.catalogitems.ItemNumber;
-import io.github.carlomicieli.catalogitems.PowerMethod;
-import io.github.carlomicieli.catalogitems.deliverydates.DeliveryDate;
+import io.github.carlomicieli.catalog.catalogitems.ItemNumber;
+import io.github.carlomicieli.catalog.catalogitems.PowerMethod;
+import io.github.carlomicieli.catalog.catalogitems.deliverydates.DeliveryDate;
 import io.github.carlomicieli.persistence.catalog.brands.JpaBrand;
 import io.github.carlomicieli.persistence.catalog.scales.JpaScale;
 import io.github.carlomicieli.persistence.common.converter.*;

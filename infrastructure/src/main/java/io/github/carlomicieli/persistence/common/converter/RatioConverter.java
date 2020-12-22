@@ -15,7 +15,7 @@
 */
 package io.github.carlomicieli.persistence.common.converter;
 
-import io.github.carlomicieli.scales.Ratio;
+import io.github.carlomicieli.catalog.scales.Ratio;
 import java.math.BigDecimal;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

@@ -15,14 +15,14 @@
 */
 package io.github.carlomicieli.web.catalog.brands;
 
-import io.github.carlomicieli.brands.BrandFactory;
-import io.github.carlomicieli.brands.BrandId;
-import io.github.carlomicieli.brands.queries.BrandQueriesRepository;
-import io.github.carlomicieli.brands.queries.getbrandbyslug.GetBrandBySlugQuery;
-import io.github.carlomicieli.brands.usecases.BrandUseCaseRepository;
-import io.github.carlomicieli.brands.usecases.createbrand.CreateBrandInput;
-import io.github.carlomicieli.brands.usecases.createbrand.CreateBrandOutputPort;
-import io.github.carlomicieli.brands.usecases.createbrand.CreateBrandUseCase;
+import io.github.carlomicieli.catalog.brands.BrandFactory;
+import io.github.carlomicieli.catalog.brands.BrandId;
+import io.github.carlomicieli.catalog.brands.queries.BrandQueriesRepository;
+import io.github.carlomicieli.catalog.brands.queries.getbrandbyslug.GetBrandBySlugQuery;
+import io.github.carlomicieli.catalog.brands.usecases.BrandUseCaseRepository;
+import io.github.carlomicieli.catalog.brands.usecases.createbrand.CreateBrandInput;
+import io.github.carlomicieli.catalog.brands.usecases.createbrand.CreateBrandOutputPort;
+import io.github.carlomicieli.catalog.brands.usecases.createbrand.CreateBrandUseCase;
 import io.github.carlomicieli.usecases.boundaries.input.UseCaseInputValidator;
 import java.time.Clock;
 import org.springframework.context.annotation.Bean;

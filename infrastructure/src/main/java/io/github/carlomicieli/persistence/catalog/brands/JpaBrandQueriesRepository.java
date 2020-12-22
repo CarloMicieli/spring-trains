@@ -15,9 +15,9 @@
 */
 package io.github.carlomicieli.persistence.catalog.brands;
 
-import io.github.carlomicieli.brands.Brand;
-import io.github.carlomicieli.brands.BrandId;
-import io.github.carlomicieli.brands.queries.BrandQueriesRepository;
+import io.github.carlomicieli.catalog.brands.Brand;
+import io.github.carlomicieli.catalog.brands.BrandId;
+import io.github.carlomicieli.catalog.brands.queries.BrandQueriesRepository;
 import io.github.carlomicieli.persistence.common.adapter.PageableAdapter;
 import io.github.carlomicieli.queries.pagination.Page;
 import io.github.carlomicieli.queries.pagination.PaginatedResult;
