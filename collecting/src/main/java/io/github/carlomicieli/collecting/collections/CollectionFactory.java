@@ -13,24 +13,19 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.catalog.catalogitems.rollingstocks;
+package io.github.carlomicieli.collecting.collections;
 
-import io.github.carlomicieli.catalog.catalogitems.Epoch;
-import io.github.carlomicieli.catalog.railways.RailwayId;
-import io.github.carlomicieli.domain.Entity;
+import io.github.carlomicieli.collecting.valueobject.Owner;
+import io.github.carlomicieli.domain.AggregateRootFactory;
+import java.time.Clock;
+import java.util.function.Supplier;
 
-public interface RollingStock extends Entity<RollingStockId> {
-  RailwayId getRailway();
+public class CollectionFactory extends AggregateRootFactory<Collection, CollectionId> {
+  public CollectionFactory(Clock clock, Supplier<CollectionId> identifierSource) {
+    super(clock, identifierSource);
+  }
 
-  Category getCategory();
-
-  Epoch getEpoch();
-
-  LengthOverBuffer getLengthOverBuffer();
-
-  MinRadius getMinRadius();
-
-  Couplers getCouplers();
-
-  String getLivery();
+  public Collection createNewCollection(Owner owner, String notes) {
+    throw new UnsupportedOperationException("TODO");
+  }
 }

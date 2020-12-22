@@ -15,9 +15,9 @@
 */
 package io.github.carlomicieli.catalog.scales.queries.getscalebyslug;
 
-import io.github.carlomicieli.queries.SingleResultQuery;
 import io.github.carlomicieli.catalog.scales.Scale;
 import io.github.carlomicieli.catalog.scales.queries.ScaleQueriesRepository;
+import io.github.carlomicieli.queries.SingleResultQuery;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;

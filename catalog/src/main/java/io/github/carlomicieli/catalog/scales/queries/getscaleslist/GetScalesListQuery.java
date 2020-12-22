@@ -15,12 +15,12 @@
 */
 package io.github.carlomicieli.catalog.scales.queries.getscaleslist;
 
+import io.github.carlomicieli.catalog.scales.Scale;
+import io.github.carlomicieli.catalog.scales.queries.ScaleQueriesRepository;
 import io.github.carlomicieli.queries.PaginatedQuery;
 import io.github.carlomicieli.queries.pagination.Page;
 import io.github.carlomicieli.queries.pagination.PaginatedResult;
 import io.github.carlomicieli.queries.sorting.Sorting;
-import io.github.carlomicieli.catalog.scales.Scale;
-import io.github.carlomicieli.catalog.scales.queries.ScaleQueriesRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 

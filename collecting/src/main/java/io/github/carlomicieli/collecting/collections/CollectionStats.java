@@ -13,24 +13,30 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.catalog.railways.queries.getrailwaybyslug;
+package io.github.carlomicieli.collecting.collections;
 
-import io.github.carlomicieli.catalog.railways.Railway;
-import io.github.carlomicieli.catalog.railways.queries.RailwayQueriesRepository;
-import io.github.carlomicieli.queries.SingleResultQuery;
-import java.util.Optional;
+import io.github.carlomicieli.collecting.valueobject.Owner;
+import io.github.carlomicieli.collecting.valueobject.Price;
+import java.time.Instant;
+import java.util.List;
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.Builder;
+import lombok.Value;
+import lombok.With;
 
-@Log4j2
+@Value
 @AllArgsConstructor
-public final class GetRailwayBySlugQuery
-    implements SingleResultQuery<GetRailwayBySlugCriteria, Railway> {
+@Builder
+@With
+public class CollectionStats {
+  CollectionId id;
+  Owner owner;
+  Instant modifiedDate;
+  Price totalValue;
+  List<CollectionStatsItem> items;
 
-  private final RailwayQueriesRepository railwayRepo;
-
-  @Override
-  public Optional<Railway> execute(GetRailwayBySlugCriteria criteria) {
+  /** Generates the statistics from the {@code Collection}. */
+  public static CollectionStats fromCollection(Collection collection) {
     throw new UnsupportedOperationException("TODO");
   }
 }

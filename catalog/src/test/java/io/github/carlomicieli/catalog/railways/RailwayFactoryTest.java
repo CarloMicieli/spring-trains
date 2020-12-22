@@ -17,8 +17,8 @@ package io.github.carlomicieli.catalog.railways;
 
 import static org.assertj.core.api.Assertions.*;
 
-import io.github.carlomicieli.countries.Country;
 import io.github.carlomicieli.catalog.valueobject.TrackGauge;
+import io.github.carlomicieli.countries.Country;
 import java.net.URI;
 import java.time.Clock;
 import java.time.Instant;

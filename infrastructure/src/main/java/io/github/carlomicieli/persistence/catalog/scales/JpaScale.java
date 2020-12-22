@@ -15,12 +15,12 @@
 */
 package io.github.carlomicieli.persistence.catalog.scales;
 
+import io.github.carlomicieli.catalog.scales.Ratio;
+import io.github.carlomicieli.catalog.scales.ScaleGauge;
 import io.github.carlomicieli.persistence.common.converter.GaugeConverter;
 import io.github.carlomicieli.persistence.common.converter.RatioConverter;
 import io.github.carlomicieli.persistence.common.converter.SlugConverter;
 import io.github.carlomicieli.persistence.common.converter.TrackGaugeConverter;
-import io.github.carlomicieli.catalog.scales.Ratio;
-import io.github.carlomicieli.catalog.scales.ScaleGauge;
 import io.github.carlomicieli.util.Slug;
 import java.time.Instant;
 import java.util.UUID;

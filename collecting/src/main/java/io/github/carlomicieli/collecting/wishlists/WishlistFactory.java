@@ -13,24 +13,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.catalog.railways.queries.getrailwaybyslug;
+package io.github.carlomicieli.collecting.wishlists;
 
-import io.github.carlomicieli.catalog.railways.Railway;
-import io.github.carlomicieli.catalog.railways.queries.RailwayQueriesRepository;
-import io.github.carlomicieli.queries.SingleResultQuery;
-import java.util.Optional;
-import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import io.github.carlomicieli.collecting.valueobject.Owner;
+import io.github.carlomicieli.domain.AggregateRootFactory;
+import java.time.Clock;
+import java.util.function.Supplier;
 
-@Log4j2
-@AllArgsConstructor
-public final class GetRailwayBySlugQuery
-    implements SingleResultQuery<GetRailwayBySlugCriteria, Railway> {
+public class WishlistFactory extends AggregateRootFactory<Wishlist, WishlistId> {
+  public WishlistFactory(Clock clock, Supplier<WishlistId> identifierSource) {
+    super(clock, identifierSource);
+  }
 
-  private final RailwayQueriesRepository railwayRepo;
-
-  @Override
-  public Optional<Railway> execute(GetRailwayBySlugCriteria criteria) {
+  public Wishlist createNewWishlist(
+      Owner owner, String listName, Visibility visibility, Budget budget) {
     throw new UnsupportedOperationException("TODO");
   }
 }

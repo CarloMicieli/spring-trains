@@ -17,8 +17,8 @@ package io.github.carlomicieli.catalog.railways;
 
 import static org.assertj.core.api.Assertions.*;
 
-import io.github.carlomicieli.lengths.Length;
 import io.github.carlomicieli.catalog.valueobject.TrackGauge;
+import io.github.carlomicieli.lengths.Length;
 import java.math.BigDecimal;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;

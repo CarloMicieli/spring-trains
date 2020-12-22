@@ -15,12 +15,12 @@
 */
 package io.github.carlomicieli.catalog.railways.queries.getrailwayslist;
 
+import io.github.carlomicieli.catalog.railways.Railway;
+import io.github.carlomicieli.catalog.railways.queries.RailwayQueriesRepository;
 import io.github.carlomicieli.queries.PaginatedQuery;
 import io.github.carlomicieli.queries.pagination.Page;
 import io.github.carlomicieli.queries.pagination.PaginatedResult;
 import io.github.carlomicieli.queries.sorting.Sorting;
-import io.github.carlomicieli.catalog.railways.Railway;
-import io.github.carlomicieli.catalog.railways.queries.RailwayQueriesRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 

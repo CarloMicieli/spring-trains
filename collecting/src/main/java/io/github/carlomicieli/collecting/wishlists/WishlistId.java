@@ -13,24 +13,30 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.catalog.railways.queries.getrailwaybyslug;
+package io.github.carlomicieli.collecting.wishlists;
 
-import io.github.carlomicieli.catalog.railways.Railway;
-import io.github.carlomicieli.catalog.railways.queries.RailwayQueriesRepository;
-import io.github.carlomicieli.queries.SingleResultQuery;
-import java.util.Optional;
+import io.github.carlomicieli.domain.Identifier;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.EqualsAndHashCode;
 
-@Log4j2
-@AllArgsConstructor
-public final class GetRailwayBySlugQuery
-    implements SingleResultQuery<GetRailwayBySlugCriteria, Railway> {
+/** The {@code Wishlist} unique identifier. */
+@AllArgsConstructor(staticName = "of")
+@EqualsAndHashCode
+public final class WishlistId implements Identifier {
+  private final UUID value;
 
-  private final RailwayQueriesRepository railwayRepo;
+  public static WishlistId randomId() {
+    return new WishlistId(UUID.randomUUID());
+  }
 
   @Override
-  public Optional<Railway> execute(GetRailwayBySlugCriteria criteria) {
-    throw new UnsupportedOperationException("TODO");
+  public UUID toUUID() {
+    return value;
+  }
+
+  @Override
+  public String toString() {
+    return value.toString();
   }
 }

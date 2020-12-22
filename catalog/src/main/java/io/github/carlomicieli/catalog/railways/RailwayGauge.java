@@ -15,10 +15,10 @@
 */
 package io.github.carlomicieli.catalog.railways;
 
+import io.github.carlomicieli.catalog.valueobject.TrackGauge;
 import io.github.carlomicieli.lengths.Length;
 import io.github.carlomicieli.lengths.MeasureUnit;
 import io.github.carlomicieli.lengths.conversion.MeasureUnitsConverters;
-import io.github.carlomicieli.catalog.valueobject.TrackGauge;
 import java.math.BigDecimal;
 import lombok.*;
 

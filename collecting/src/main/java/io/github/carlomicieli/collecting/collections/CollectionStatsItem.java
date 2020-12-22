@@ -13,24 +13,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.catalog.catalogitems.rollingstocks;
+package io.github.carlomicieli.collecting.collections;
 
-import io.github.carlomicieli.catalog.catalogitems.Epoch;
-import io.github.carlomicieli.catalog.railways.RailwayId;
-import io.github.carlomicieli.domain.Entity;
+import io.github.carlomicieli.collecting.valueobject.Price;
+import java.time.Year;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Value;
 
-public interface RollingStock extends Entity<RollingStockId> {
-  RailwayId getRailway();
-
-  Category getCategory();
-
-  Epoch getEpoch();
-
-  LengthOverBuffer getLengthOverBuffer();
-
-  MinRadius getMinRadius();
-
-  Couplers getCouplers();
-
-  String getLivery();
+@AllArgsConstructor
+@Value
+@Builder
+public class CollectionStatsItem {
+  CollectionItemCategory category;
+  Price totalValue;
+  int count;
+  Year year;
 }

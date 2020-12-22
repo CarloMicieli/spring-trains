@@ -15,8 +15,8 @@
 */
 package io.github.carlomicieli.persistence.common.converter;
 
-import io.github.carlomicieli.lengths.MeasureUnit;
 import io.github.carlomicieli.catalog.valueobject.Gauge;
+import io.github.carlomicieli.lengths.MeasureUnit;
 import java.math.BigDecimal;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

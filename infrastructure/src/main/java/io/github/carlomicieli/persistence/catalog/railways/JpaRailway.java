@@ -15,11 +15,11 @@
 */
 package io.github.carlomicieli.persistence.catalog.railways;
 
-import io.github.carlomicieli.countries.Country;
-import io.github.carlomicieli.persistence.common.converter.*;
 import io.github.carlomicieli.catalog.railways.PeriodOfActivity;
 import io.github.carlomicieli.catalog.railways.RailwayGauge;
 import io.github.carlomicieli.catalog.railways.RailwayLength;
+import io.github.carlomicieli.countries.Country;
+import io.github.carlomicieli.persistence.common.converter.*;
 import io.github.carlomicieli.util.Slug;
 import java.net.URL;
 import java.time.Instant;

@@ -13,24 +13,30 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.catalog.catalogitems.rollingstocks;
+package io.github.carlomicieli.collecting.shops;
 
-import io.github.carlomicieli.catalog.catalogitems.Epoch;
-import io.github.carlomicieli.catalog.railways.RailwayId;
-import io.github.carlomicieli.domain.Entity;
+import io.github.carlomicieli.domain.Identifier;
+import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 
-public interface RollingStock extends Entity<RollingStockId> {
-  RailwayId getRailway();
+/** The {@code Shop} unique identifier. */
+@AllArgsConstructor(staticName = "of")
+@EqualsAndHashCode
+public final class ShopId implements Identifier {
+  private final UUID value;
 
-  Category getCategory();
+  public static ShopId randomId() {
+    return new ShopId(UUID.randomUUID());
+  }
 
-  Epoch getEpoch();
+  @Override
+  public UUID toUUID() {
+    return value;
+  }
 
-  LengthOverBuffer getLengthOverBuffer();
-
-  MinRadius getMinRadius();
-
-  Couplers getCouplers();
-
-  String getLivery();
+  @Override
+  public String toString() {
+    return value.toString();
+  }
 }

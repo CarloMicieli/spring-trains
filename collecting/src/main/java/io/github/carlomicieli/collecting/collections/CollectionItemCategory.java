@@ -13,24 +13,11 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-package io.github.carlomicieli.catalog.catalogitems.rollingstocks;
+package io.github.carlomicieli.collecting.collections;
 
-import io.github.carlomicieli.catalog.catalogitems.Epoch;
-import io.github.carlomicieli.catalog.railways.RailwayId;
-import io.github.carlomicieli.domain.Entity;
-
-public interface RollingStock extends Entity<RollingStockId> {
-  RailwayId getRailway();
-
-  Category getCategory();
-
-  Epoch getEpoch();
-
-  LengthOverBuffer getLengthOverBuffer();
-
-  MinRadius getMinRadius();
-
-  Couplers getCouplers();
-
-  String getLivery();
+public enum CollectionItemCategory {
+  LOCOMOTIVES,
+  PASSENGER_CARS,
+  FREIGHT_CARS,
+  TRAINS,
 }

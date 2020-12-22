@@ -18,8 +18,8 @@ package io.github.carlomicieli.catalog.catalogitems.rollingstocks;
 import io.github.carlomicieli.catalog.catalogitems.Control;
 import io.github.carlomicieli.catalog.catalogitems.DccInterface;
 import io.github.carlomicieli.catalog.catalogitems.Epoch;
-import io.github.carlomicieli.domain.EntityFactory;
 import io.github.carlomicieli.catalog.railways.RailwayId;
+import io.github.carlomicieli.domain.EntityFactory;
 import java.util.function.Supplier;
 
 public class RollingStockFactory extends EntityFactory<RollingStock, RollingStockId> {
